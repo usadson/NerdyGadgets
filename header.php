@@ -48,6 +48,9 @@ include_once "connect.php";
             </a></div>
         <div class="col-8" id="CategoriesBar">
             <ul id="ul-class">
+              <li>
+                <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
+              </li>
                 <?php
                 $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
@@ -70,9 +73,6 @@ include_once "connect.php";
                     <?php
                 }
                 ?>
-                <li>
-                    <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
-                </li>
             </ul>
         </div>
         <div id="ul-class-navigation">
