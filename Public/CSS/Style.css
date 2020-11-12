@@ -473,3 +473,18 @@ ul#ul-class-price li {
     border: 1px rgb(98, 158, 255) solid;
     color: #fff;
 }
+
+#view-add-shopping-cart {
+    background-color: #44d310;
+    border: none;
+    color: #F1F1F1;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 15px 20px;
+    transition: background-color .2s ease-in-out;
+}
+
+#view-add-shopping-cart:hover {
+    background-color: #369b11;
+}
