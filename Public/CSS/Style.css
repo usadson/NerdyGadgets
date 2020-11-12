@@ -61,14 +61,14 @@ table tr th,
 table tr td {
     padding: 10px;
 }
-ul#ul-class-navigation {
+#ul-class-navigation {
     right: 10px;
     line-height: 200px;
     position: absolute;
 }
-ul#ul-class-navigation li {
+#ul-class-navigation > * {
     color: white;
-    display: inline;
+    display: inline-block;
     font-family: pt-sans, sans-serif;
     font-size: 20px;
     text-decoration: none;
