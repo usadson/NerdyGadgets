@@ -26,7 +26,7 @@ include __DIR__ . "/header.php";
 <!-- Body section -->
 <div class = "body_sec">
     <section id="Content">
-        <h3></h3>
+        <h5>lijst van artikellen</h5>
 
     </section>
 </div>
