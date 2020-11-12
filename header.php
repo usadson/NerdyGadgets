@@ -77,7 +77,9 @@ include_once "connect.php";
         </div>
         <div id="ul-class-navigation">
           <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
-          <img src="Public/Img/cart.png" href="index.php" width="20%" align="right" style="padding-left:50px; padding-top:60px;padding-right:20px;" >
+          <a href="index.php">
+            <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:50px; padding-top:60px;padding-right:20px;float:right;width:20%">
+          </a>
           <!-- Dit is het icoon van de shoppingcart -->
         </div>
     </div>
