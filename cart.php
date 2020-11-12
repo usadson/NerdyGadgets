@@ -12,24 +12,25 @@ include __DIR__ . "/header.php";
         width: 200px;
 
     }
-
         </style>
 
 
 
 <!-- Title Section -->
+<div align="center">
 <header>
-    <div class="title1"><h2>Winkelwagen</h2></div>
-    <div class="title2"> <h4>Hieronder uw producten</h4></div>
+    <div class="title1"><h1>Winkelwagen</h1></div>
+    <div class="title2"> <h2>Hieronder uw producten</h2></div>
 </header>
 
 <!-- Body section -->
 <div class = "body_sec">
     <section id="Content">
-        <h3>Content section</h3>
+        <h3></h3>
+
     </section>
 </div>
-
+</div>
 <!-- button section -->
 <div class="fixed">
     <a href="browse.php">
