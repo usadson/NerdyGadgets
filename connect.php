@@ -2,9 +2,18 @@
 
 global $Connection;
 
+function GetUsername() {
+  // Magische code om te bepalen of Tristan dit gebruikt of iemand anders
+  if (!empty(getenv("APACHE_RUN_DIR"))) {
+    return "tager";
+  }
+
+  return "root";
+}
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions
 try {
-    $Connection = mysqli_connect("localhost", "tager", "", "nerdygadgets");
+    $Connection = mysqli_connect("localhost", GetUsername(), "", "nerdygadgets");
     mysqli_set_charset($Connection, 'latin1');
     $DatabaseAvailable = true;
 } catch (mysqli_sql_exception $e) {
