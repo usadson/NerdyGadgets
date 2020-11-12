@@ -32,7 +32,10 @@ include __DIR__ . "/header.php";
 
 <!-- button section -->
 <div class="fixed">
-    <button  type="button">Verder met winkelen</button>
+    <a href="browse.php">
+        <button  type="button" >Verder met winkelen</button>
+    </a>
+
     <button  type="button">Naar betaling</button>
 </div>
 
