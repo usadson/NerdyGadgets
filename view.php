@@ -139,8 +139,10 @@ if ($R) {
             if (is_array($CustomFields)) { ?>
                 <table>
                 <thead>
-                <th>Naam</th>
-                <th>Data</th>
+                  <tr>
+                    <th>Naam</th>
+                    <th>Data</th>
+                  </tr>
                 </thead>
                 <?php
                 foreach ($CustomFields as $SpecName => $SpecText) { ?>
