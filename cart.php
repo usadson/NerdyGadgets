@@ -34,7 +34,7 @@ $conn = new mysqli($servername, $username, $password, $dbname); /* SRC= https://
 <!-- Body section -->
 <div class = "body_sec">
     <section id="Content">
-        <h3></h3>
+        <h5>lijst van artikellen</h5>
 
     </section>
 </div>
