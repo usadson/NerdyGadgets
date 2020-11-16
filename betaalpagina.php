@@ -18,12 +18,15 @@ include __DIR__ . "/header.php";
             postion: fixed;
             width: 75px;
         }
-
+        input{
+            postion: fixed;
+            width: 150px;
+        }
 .container{
     background-color: dimgrey;
     box-shadow: 1px 1px 2px 1px grey;
     padding: 50px 8px 20px 38px;
-    width: 30%;
+    width: 50%;
     height: 50%
     margin-left: 35%;
 }
@@ -39,7 +42,9 @@ include __DIR__ . "/header.php";
     <option value="ABNAMRO"> ABNAMRO </option>
     <option value="RABOBANK"> RABOBANK </option>
 </select><br><br><br>
-
+<form method="GET" action="betaalpagina.php">
+    Kortingscode:
+    <input type="text" name="code"><br><br>
 <input type="submit" name="insert" value="Verder"/>
 </form>
 </div>
