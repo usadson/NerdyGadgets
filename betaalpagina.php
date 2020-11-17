@@ -10,7 +10,7 @@ include __DIR__ . "/header.php";
         select{
             position: fixed;
 
-            width: 150px;
+            width: 200px;
 
         }
 
@@ -44,7 +44,6 @@ h1{
         Naam: <input type="text" name="Naam" value=""><br><br>
         Adres: <input type="text" name="Adres" value=""><br><br>
         Postcode: <input type="text" name="Postcode" value=""><br><br>
-    </form>
 
     <label> Kies uw bank: </label><br>
 

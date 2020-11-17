@@ -12,6 +12,9 @@ i{
 th{
     color: aliceblue;
 }
+img{
+    Width: 100px
+}
     div.fixed {
         position: fixed;
         bottom: 0;
