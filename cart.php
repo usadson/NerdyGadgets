@@ -69,15 +69,31 @@ th{
                       print("</tr>");
                     }
 
+                    function MapProductIdWithQuantity($products) {
+                      $map = array();
+
+                      foreach ($products as $product) {
+                        if (!array_key_exists($product, $map)) {
+                          $map[$product] = 1;
+                        } else {
+                          $map[$product]++;
+                        }
+                      }
+
+                      return $map;
+                    }
+
                     include_once('Modules/ItemInfo.php');
 
                     $isCartEmpty = !isset($_SESSION["cart"]) || empty($_SESSION["cart"]);
 
                     if (!$isCartEmpty) {
-                      foreach ($_SESSION["cart"] as $productID) {
+                      $map = MapProductIdWithQuantity($_SESSION["cart"]);
+
+                      foreach ($map as $productID => $quantity) {
                         $itemInformation = ItemInfo($Connection, $productID);
 
-                        PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, 1, $itemInformation->Price);
+                        PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, $quantity, $itemInformation->Price);
                       }
                     }
                     ?>
