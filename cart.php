@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('header.php');
+include_once('header.php');
 ?>
 
 <style>
@@ -44,30 +43,42 @@ th{
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <?php
+
+                    function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
+                      /*
+                       * <tr>
                         <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                         <td>Placeholder</td>
                         <td>In stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
+                        <td></td>
                         <td class="text-right">000 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+
                     </tr>
-                    <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>Placeholder</td>
-                        <td>In stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
-                        <td class="text-right">000 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>Placeholder</td>
-                        <td>In stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
-                        <td class="text-right">000 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                    </tr>
+                       * */
+
+                      print("<tr>");
+
+                      print("<td><img src=\"Public/StockItemIMG/" . $image . "\" alt=\"Product Plaatje\"></td>");
+                      print("<td>" . $name . "</td>");
+                      print("<td>" . ($isInStock ? "Op voorraad" : "Niet op voorraad") . "</td>");
+                      print('<td><input class="form-control" type="text" value="' . $quantity . '" /></td>');
+                      print("<td class=\"text-right\">€ " . $price . '</td>');
+                      print('<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></td>');
+
+                      print("</tr>");
+                    }
+
+                    include_once('Modules/ItemInfo.php');
+
+                    foreach ($_SESSION["cart"] as $productID) {
+                      $itemInformation = ItemInfo($Connection, $productID);
+
+                      PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, 1, $itemInformation->Price);
+                    }
+
+                    ?>
+
                     <tr>
                         <td></td>
                         <td></td>
