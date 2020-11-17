@@ -1,20 +1,3 @@
-	<?php
-include __DIR__ . "/header.php";
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nerdygadgets";
-
-$conn = new mysqli($servername, $username, $password, $dbname); /* SRC= https://www.w3schools.com/php/php_mysql_select.asp*/
-
-?>
-
-
-
-
-
-
 <html>
 <body>
 <style>
