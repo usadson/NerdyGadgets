@@ -6,8 +6,22 @@
  /*
  $productID = 1;
  */
-include_once "../connect.php";
-function ItemInfo($productID) {
+include_once __DIR__ . "/../connect.php";
+
+class ItemInformation {
+
+  public $Name;
+  public $Price;
+  public $Image;
+
+  public function __construct($name, $price, $image) {
+    $this->Name = $name;
+    $this->Price = $price;
+    $this->Image = $image;
+  }
+}
+
+function ItemInfo($Connection, $productID) {
 	$Query = "SELECT S.StockItemID, StockItemName, RecommendedRetailPrice, ImagePath
 	FROM stockitems S
 	JOIN stockitemimages I ON I.StockItemID = S.StockItemID
@@ -15,14 +29,14 @@ function ItemInfo($productID) {
 	";
 	$Statement = mysqli_prepare($Connection, $Query);
 	mysqli_stmt_execute($Statement);
-	$HeaderItems = mysqli_stmt_get_result($Statement);
+  $HeaderItem = mysqli_stmt_get_result($Statement);
+  $item = mysqli_fetch_assoc($HeaderItem);
 
-/*foreach ($HeaderItems as $HeaderItem) {*/
-    $ID = $HeaderItem['S.StockItemID'];
-    $Name = $HeaderItem['StockItemName'];
-    $Price = $HeaderItem['RecommendedRetailPrice'];
-	$Image = $HeaderItem['ImagePath'];
-    /*print($ID . "|" . $Name . "|" . $Price . "<br>"); -- TEST print*/
-	}
-/*}*/
+  $Name = $item['StockItemName'];
+  $Price = $item['RecommendedRetailPrice'];
+  $Image = $item['ImagePath'];
+
+  return new ItemInformation($Name, $Price, $Image);
+}
+
 ?>
