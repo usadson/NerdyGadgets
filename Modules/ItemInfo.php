@@ -23,5 +23,6 @@ function ItemInfo($productID) {
     $Price = $HeaderItem['RecommendedRetailPrice'];
 	$Image = $HeaderItem['ImagePath'];
     /*print($ID . "|" . $Name . "|" . $Price . "<br>"); -- TEST print*/
+	}
 /*}*/
 ?>
