@@ -71,12 +71,15 @@ th{
 
                     include_once('Modules/ItemInfo.php');
 
-                    foreach ($_SESSION["cart"] as $productID) {
-                      $itemInformation = ItemInfo($Connection, $productID);
+                    $isCartEmpty = !isset($_SESSION["cart"]) || empty($_SESSION["cart"]);
 
-                      PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, 1, $itemInformation->Price);
+                    if (!$isCartEmpty) {
+                      foreach ($_SESSION["cart"] as $productID) {
+                        $itemInformation = ItemInfo($Connection, $productID);
+
+                        PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, 1, $itemInformation->Price);
+                      }
                     }
-
                     ?>
 
                     <tr>
@@ -110,7 +113,13 @@ th{
     </div>
 </div>
 
+<?php
 
+if ($isCartEmpty) {
+  print("<i>Je hebt nog geen producten toegevoegd aan je winkelwagen.</i>");
+}
+
+?>
 
 <!-- button section -->
 <div class="fixed">
