@@ -1,5 +1,8 @@
-<html>
-<body>
+<?php
+session_start();
+include('header.php');
+?>
+
 <style>
 td {
     color: aliceblue
@@ -19,9 +22,6 @@ th{
     }
         </style>
 
-
-
-<!-- Title Section -->
 <div align="center">
 <header>
     <div class="title1"><h1>Winkelwagen</h1></div>
