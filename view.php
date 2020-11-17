@@ -120,7 +120,10 @@ if ($R) {
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        <button id="view-add-shopping-cart">In mijn winkelwagen</button>
+                        <form method="POST" action="Modules/AddToShoppingCart.php">
+                          <input name="productID" type="hidden" value="<?php print($_GET['id']);?>">
+                          <button type="submit" id="view-add-shopping-cart">In mijn winkelwagen</button>
+                        </form>
                     </div>
                 </div>
             </div>
