@@ -173,6 +173,7 @@ if ($R) {
             ?>
         </div>
         <?php
+        print_r($Result);
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>

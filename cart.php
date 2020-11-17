@@ -1,5 +1,7 @@
 <?php
-include_once('header.php');
+include ('header.php');
+
+
 ?>
 
 <style>
@@ -28,7 +30,8 @@ img{
 <header>
     <div class="title1"><h1>Winkelwagen</h1></div>
     <div class="title2"> <h2>Hieronder uw producten</h2></div>
-
+</header>
+</div>
 
 <div class="container mb-4">
     <div class="row">

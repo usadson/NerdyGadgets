@@ -30,7 +30,7 @@ function GetItemImage($Connection, $productID) {
   $HeaderItem = mysqli_stmt_get_result($Statement);
 
   if ($HeaderItem->num_rows != 0) {
-    return mysqli_fetch_assoc($HeaderItem)['ImagePath'];
+    return "StockItemIMG" .  mysqli_fetch_assoc($HeaderItem)['ImagePath'];
   } else {
     $query = "SELECT ImagePath
               FROM stockgroups
