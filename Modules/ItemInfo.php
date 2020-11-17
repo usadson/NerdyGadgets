@@ -21,12 +21,39 @@ class ItemInformation {
   }
 }
 
+function GetItemImage($Connection, $productID) {
+  $query = "SELECT ImagePath
+	WHERE StockItemID = " . $productID;
+
+  $Statement = mysqli_prepare($Connection, $query);
+  mysqli_stmt_execute($Statement);
+  $HeaderItem = mysqli_stmt_get_result($Statement);
+
+  if ($HeaderItem->num_rows != 0) {
+    return mysqli_fetch_assoc($HeaderItem)['ImagePath'];
+  } else {
+    $query = "SELECT ImagePath
+              FROM stockgroups
+              JOIN stockitemstockgroups USING(StockGroupID)
+              WHERE StockItemID = " . $productID . "
+              LIMIT 1";
+
+    $Statement2 = mysqli_prepare($Connection, $query);
+    mysqli_stmt_execute($Statement2);
+    $HeaderItem2 = mysqli_stmt_get_result($Statement2);
+
+    if ($HeaderItem->num_rows != 0) {
+      return mysqli_fetch_assoc($HeaderItem2)['ImagePath'];
+    } else {
+      die("No image found for productID: " . $productID);
+    }
+  }
+}
+
 function ItemInfo($Connection, $productID) {
 	$Query = "SELECT S.StockItemID, StockItemName, RecommendedRetailPrice, ImagePath
 	FROM stockitems S
-	JOIN stockitemimages I ON I.StockItemID = S.StockItemID
-	WHERE S.StockItemID = '" . $productID . "'
-	";
+	JOIN stockitemimages I ON I.StockItemID = S.StockItemID";
 	$Statement = mysqli_prepare($Connection, $Query);
 	mysqli_stmt_execute($Statement);
   $HeaderItem = mysqli_stmt_get_result($Statement);
@@ -34,7 +61,7 @@ function ItemInfo($Connection, $productID) {
 
   $Name = $item['StockItemName'];
   $Price = $item['RecommendedRetailPrice'];
-  $Image = $item['ImagePath'];
+  $Image = GetItemImage($Connection, $productID);
 
   return new ItemInformation($Name, $Price, $Image);
 }
