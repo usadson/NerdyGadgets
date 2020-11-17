@@ -7,15 +7,17 @@
  $productID = 1;
  */
 include_once "../connect.php";
-$Query = "SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems WHERE StockItemID = '" . $productID . "'";
-$Statement = mysqli_prepare($Connection, $Query);
-mysqli_stmt_execute($Statement);
-$HeaderItems = mysqli_stmt_get_result($Statement);
+function ItemInfo($productID) {
+	$Query = "SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems WHERE StockItemID = '" . $productID . "'";
+	$Statement = mysqli_prepare($Connection, $Query);
+	mysqli_stmt_execute($Statement);
+	$HeaderItems = mysqli_stmt_get_result($Statement);
 
-foreach ($HeaderItems as $HeaderItem) {
+/*foreach ($HeaderItems as $HeaderItem) {*/
     $ID = $HeaderItem['StockItemID'];
     $Name = $HeaderItem['StockItemName'];
     $Price = $HeaderItem['RecommendedRetailPrice'];
     /*print($ID . "|" . $Name . "|" . $Price . "<br>"); -- TEST print*/
-}
+/*}*/
+
 ?>
