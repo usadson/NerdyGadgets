@@ -11,7 +11,7 @@ function ItemInfo($productID) {
 	$Query = "SELECT S.StockItemID, StockItemName, RecommendedRetailPrice, ImagePath
 	FROM stockitems S
 	JOIN stockitemimages I ON I.StockItemID = S.StockItemID
-	WHERE StockItemID = '" . $productID . "'
+	WHERE S.StockItemID = '" . $productID . "'
 	";
 	$Statement = mysqli_prepare($Connection, $Query);
 	mysqli_stmt_execute($Statement);
