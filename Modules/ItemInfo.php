@@ -21,39 +21,49 @@ class ItemInformation {
   }
 }
 
-function GetItemImage($Connection, $productID) {
+function GetPrimaryImage($connection, $productID) {
   $query = "SELECT ImagePath
   FROM stockitemimages
 	WHERE StockItemID = " . $productID;
 
-  $Statement = mysqli_prepare($Connection, $query);
-  mysqli_stmt_execute($Statement);
-  $HeaderItem = mysqli_stmt_get_result($Statement);
+  $statement = mysqli_prepare($connection, $query);
+  mysqli_stmt_execute($statement);
+  $headerItem = mysqli_stmt_get_result($statement);
 
-  if ($HeaderItem->num_rows != 0) {
-    return "StockItemIMG/" .  mysqli_fetch_assoc($HeaderItem)['ImagePath'];
-  } else {
-    $query = "SELECT ImagePath
-              FROM stockgroups
-              JOIN stockitemstockgroups ON StockItemID = " . $productID . "
-              LIMIT 1";
-
-    $Statement2 = mysqli_prepare($Connection, $query);
-    mysqli_stmt_execute($Statement2);
-    $HeaderItem2 = mysqli_stmt_get_result($Statement2);
-
-    if ($HeaderItem2->num_rows != 0) {
-      return "StockGroupIMG/" . mysqli_fetch_assoc($HeaderItem2)['ImagePath'];
-    } else {
-      die("No image found for productID: " . $productID);
-    }
+  if ($headerItem->num_rows != 0) {
+    return "StockItemIMG/" .  mysqli_fetch_assoc($headerItem)['ImagePath'];
   }
+
+  return null;
+}
+
+function GetItemImage($Connection, $productID) {
+  $primary = GetPrimaryImage($Connection, $productID);
+  if ($primary != null) {
+    return $primary;
+  }
+
+  $query = "SELECT ImagePath
+            FROM stockgroups
+            JOIN stockitemstockgroups ON StockItemID = " . $productID . "
+            LIMIT 1";
+
+  $Statement2 = mysqli_prepare($Connection, $query);
+  mysqli_stmt_execute($Statement2);
+  $HeaderItem2 = mysqli_stmt_get_result($Statement2);
+
+  if ($HeaderItem2->num_rows != 0) {
+    return "StockGroupIMG/" . mysqli_fetch_assoc($HeaderItem2)['ImagePath'];
+  }
+
+  die("No image found for productID: " . $productID);
 }
 
 function ItemInfo($Connection, $productID) {
-	$Query = "SELECT S.StockItemID, StockItemName, RecommendedRetailPrice, ImagePath
+	$Query = "SELECT StockItemName, RecommendedRetailPrice
 	FROM stockitems S
-	JOIN stockitemimages I ON I.StockItemID = S.StockItemID";
+	WHERE S.StockItemID = " . $productID;
+
 	$Statement = mysqli_prepare($Connection, $Query);
 	mysqli_stmt_execute($Statement);
   $HeaderItem = mysqli_stmt_get_result($Statement);
