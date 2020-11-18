@@ -98,5 +98,3 @@ function ItemInfo($Connection, $productID) {
 
   return new ItemInformation($Name, $Price, $Image);
 }
-
-?>
