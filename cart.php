@@ -5,6 +5,10 @@ include ('header.php');
 ?>
 
 <style>
+
+
+
+
 td {
     color: aliceblue
 }
@@ -117,7 +121,7 @@ img{
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Shipping</td>
+                        <td>BTW</td>
                         <td class="text-right">000 €</td>
                     </tr>
                     <tr>
