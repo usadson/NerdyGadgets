@@ -144,7 +144,7 @@ if ($isCartEmpty) {
 ?>
 
 <!-- button section -->
-<div class="fixed">
+<div align="center">
     <a href="browse.php">
         <button  type="button" >Verder met winkelen</button>
     </a>
