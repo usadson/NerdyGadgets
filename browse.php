@@ -1,5 +1,8 @@
 <?php
+
 include __DIR__ . "/header.php";
+global $Connection;
+
 $SearchString = "";
 $ReturnableResult = null;
 if (isset($_GET['search_string'])) {
