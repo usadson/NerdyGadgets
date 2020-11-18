@@ -1,19 +1,21 @@
+//*om header.php mee te nemen (layout van de pagina)
 <?php
 include __DIR__ . "/header.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Betalingpagina</title>
     <style>
-
+//*Hoe de select veld eruit ziet*//
         select{
             position: fixed;
 
             width: 200px;
 
         }
-
+//*Verder knop en naam, adres en postcode velden layout*//
         input{
             postion: fixed;
             width: 75px;
@@ -22,15 +24,16 @@ include __DIR__ . "/header.php";
             postion: fixed;
             width: 150px;
         }
+//* Box waar de velden in staan*//
 .container{
     background-color: dimgrey;
     box-shadow: 1px 1px 2px 1px grey;
     padding: 50px 8px 20px 38px;
     width: 75%;
-    height: 75%
+    height: 75%;
     margin-left: 40%;
 }
-
+//*grote van betaalgegevens*//
 h1{
     font-size: 30px;
 }
