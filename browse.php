@@ -1,5 +1,8 @@
 <?php
+
 include __DIR__ . "/header.php";
+global $Connection;
+
 $SearchString = "";
 $ReturnableResult = null;
 if (isset($_GET['search_string'])) {
@@ -164,12 +167,12 @@ if (isset($amount)) {
         <div id="FilterOptions">
             <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
             <input type="text" name="search_string" id="search_string"
-                   value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
+                   value="<?php print((isset($_GET['search_string'])) ? $_GET['search_string'] : ""); ?>"
                    class="form-submit">
             <h4 class="FilterTopMargin"><i class="fas fa-list-ol"></i> Aantal producten op pagina</h4>
 
             <input type="hidden" name="category_id" id="category_id"
-                   value="<?php print (isset($_GET['category_id'])) ? $_GET['category_id'] : ""; ?>">
+                   value="<?php print((isset($_GET['category_id'])) ? $_GET['category_id'] : ""); ?>">
             <select name="products_on_page" id="products_on_page" onchange="this.form.submit()">>
                 <option value="25" <?php if ($_SESSION['products_on_page'] == 25) {
                     print "selected";
@@ -246,7 +249,7 @@ if (isset($amount)) {
                 print ($_GET['category_id']);
             } ?>">
             <input type="hidden" name="result_page_numbers" id="result_page_numbers"
-                   value="<?php print (isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"; ?>">
+                   value="<?php print((isset($_GET['result_page_numbers'])) ? $_GET['result_page_numbers'] : "0"); ?>">
             <input type="hidden" name="products_on_page" id="products_on_page"
                    value="<?php print ($_SESSION['products_on_page']); ?>">
             <input type="hidden" name="sort" id="sort" value="<?php print ($_SESSION['sort']); ?>">

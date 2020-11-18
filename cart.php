@@ -1,5 +1,6 @@
 <?php
 include ('header.php');
+global $Connection;
 
 
 ?>
@@ -30,7 +31,7 @@ img{
     }
         </style>
 
-<div align="center">
+<div style="text-align: center">
 <header>
     <div class="title1"><h1>Winkelwagen</h1></div>
     <div class="title2"> <h2>Hieronder uw producten</h2></div>
@@ -148,7 +149,7 @@ if ($isCartEmpty) {
 ?>
 
 <!-- button section -->
-<div class="fixed">
+<div style="text-align: center">
     <a href="browse.php">
         <button  type="button" >Verder met winkelen</button>
     </a>

@@ -16,5 +16,3 @@ array_push($_SESSION["cart"], $productID);
 
 // Doorverwijst worden naar de visuele shopping cart pagina.
 header("Location: ../cart.php");
-
-?>

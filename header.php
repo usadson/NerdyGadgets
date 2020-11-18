@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "connect.php";
+global $Connection;
 ?>
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgb(35, 35, 47);">

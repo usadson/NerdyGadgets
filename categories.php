@@ -1,6 +1,7 @@
 <?php
 
 include __DIR__ . "/header.php";
+global $Connection;
 
 $Query = "
             SELECT StockGroupID, StockGroupName, ImagePath

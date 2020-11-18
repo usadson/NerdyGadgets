@@ -86,8 +86,8 @@ if ($R) {
                             <div class="carousel-inner">
                                 <?php for ($i = 0; $i < count($Images); $i++) {
                                     ?>
-                                    <div class="carousel-item <?php print ($i == 0) ? 'active' : ''; ?>">
-                                        <img src="Public/StockItemIMG/<?php print $Images[$i]['ImagePath'] ?>">
+                                    <div class="carousel-item <?php print(($i == 0) ? 'active' : ''); ?>">
+                                        <img alt="Afbeelding van het product" src="Public/StockItemIMG/<?php print $Images[$i]['ImagePath'] ?>">
                                     </div>
                                 <?php } ?>
                             </div>
