@@ -23,6 +23,7 @@ class ItemInformation {
 
 function GetItemImage($Connection, $productID) {
   $query = "SELECT ImagePath
+  FROM stockitemimages
 	WHERE StockItemID = " . $productID;
 
   $Statement = mysqli_prepare($Connection, $query);
@@ -30,20 +31,19 @@ function GetItemImage($Connection, $productID) {
   $HeaderItem = mysqli_stmt_get_result($Statement);
 
   if ($HeaderItem->num_rows != 0) {
-    return "StockItemIMG" .  mysqli_fetch_assoc($HeaderItem)['ImagePath'];
+    return "StockItemIMG/" .  mysqli_fetch_assoc($HeaderItem)['ImagePath'];
   } else {
     $query = "SELECT ImagePath
               FROM stockgroups
-              JOIN stockitemstockgroups USING(StockGroupID)
-              WHERE StockItemID = " . $productID . "
+              JOIN stockitemstockgroups ON StockItemID = " . $productID . "
               LIMIT 1";
 
     $Statement2 = mysqli_prepare($Connection, $query);
     mysqli_stmt_execute($Statement2);
     $HeaderItem2 = mysqli_stmt_get_result($Statement2);
 
-    if ($HeaderItem->num_rows != 0) {
-      return mysqli_fetch_assoc($HeaderItem2)['ImagePath'];
+    if ($HeaderItem2->num_rows != 0) {
+      return "StockGroupIMG/" . mysqli_fetch_assoc($HeaderItem2)['ImagePath'];
     } else {
       die("No image found for productID: " . $productID);
     }

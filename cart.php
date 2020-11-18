@@ -65,7 +65,7 @@ img{
 
                       print("<tr>");
 
-                      print("<td><img src=\"Public/StockItemIMG/" . $image . "\" alt=\"Product Plaatje\"></td>");
+                      print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
                       print("<td>" . $name . "</td>");
                       print("<td>" . ($isInStock ? "Op voorraad" : "Niet op voorraad") . "</td>");
                       print('<td><input class="form-control" type="text" value="' . $quantity . '" /></td>');
