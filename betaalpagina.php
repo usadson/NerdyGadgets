@@ -10,18 +10,15 @@ include __DIR__ . "/header.php";
     <style>
 /*Hoe de select veld eruit ziet*/
         select{
-            position: fixed;
 
             width: 200px;
 
         }
 /*Verder knop en naam, adres en postcode velden layout*/
         input{
-            postion: fixed;
             width: 75px;
         }
         input{
-            postion: fixed;
             width: 150px;
         }
 
