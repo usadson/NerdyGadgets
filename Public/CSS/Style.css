@@ -256,7 +256,7 @@ ul#ul-class-price li {
     margin-top: 16%;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
+    -khtml-user-select: none; /* KHTML heeft deze CSS regelnaam nooit gehad, dus waarom is deze hier? */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -303,7 +303,7 @@ ul#ul-class-price li {
     text-decoration: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
+    -khtml-user-select: none; /* KHTML heeft deze CSS regelnaam nooit gehad, dus waarom is deze hier? */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
