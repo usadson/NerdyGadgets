@@ -59,8 +59,7 @@ img{
 
 
 
-<<<<<<< HEAD
-=======
+
 					if ($_POST['deleteall'] == "Verwijder alles"){
 						print('<h5 align="center"><b>Alle producten zijn verwijderd</b></h5>');
 						unset($_SESSION["cart"]);
@@ -74,7 +73,6 @@ img{
 
 
 
->>>>>>> 4cbca6b0310b0e26fb67a883efa5b28bb55d821f
                     function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
                       /*
                        * <tr>
@@ -90,13 +88,16 @@ img{
 
 
 
+                      	$quantity = 1;
+			$qp = $price * $quantity;
+
                       print("<tr>");
 
                       print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
                       print("<td>" . $name . "</td>");
                       print("<td>" . ($isInStock ? "Op voorraad" : "Niet op voorraad") . "</td>");
                       print('<td><input class="form-control" type="text" value="' . $quantity . '" /></td>');
-                      print("<td class=\"text-right\">€ " . $price . '</td>');
+                      print("<td class=\"text-right\">€ " . $qp . '</td>');
                       print('<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></td>');
 
                       print("</tr>");
