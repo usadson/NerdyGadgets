@@ -2,7 +2,7 @@
 include ('header.php');
 global $Connection;
 /* voor oplevering */
-/*error_reporting(0);*/
+error_reporting(0);
 
 ?>
 
