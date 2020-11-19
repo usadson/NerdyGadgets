@@ -27,18 +27,54 @@ error_reporting(0);
 
   }
 
-  i#noProductsWarning {
+  span#noProductsWarning {
     display: block;
+    font-size: 26px;
     text-align: center;
     width: 100%;
   }
+
+  button.big-button {
+    background-color: #22aa19;
+    border: none;
+    border-radius: 7px;
+    color: #eeeeee;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 22px;
+    padding: 15px;
+    text-align: center;
+    width: 300px;
+
+    margin: 50px 5px 5px;
+  }
+
+  button.big-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+  }
+
+  div.title1 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
+
+  div.title2 {
+    margin-bottom: 40px;
+  }
   
+  #shoppingCartTitle {
+    color: #05d670;
+    font-weight: 600;
+  }
+
 </style>
 
 <div style="text-align: center">
 <header>
-    <div class="title1"><h1>Winkelwagen</h1></div>
-    <div id="subTitle" class="title2"> <h2>Hieronder uw producten</h2></div>
+    <div class="title1"><h1 id="shoppingCartTitle">Winkelwagen</h1></div>
+    <div id="subTitle" class="title2"> <h2>Hier zijn je producten</h2></div>
 </header>
 </div>
 
@@ -68,15 +104,18 @@ error_reporting(0);
     </div>
 </div>
 
-<i id="noProductsWarning" style="opacity:0">Je hebt nog geen producten toegevoegd aan je winkelwagen.</i>
+<span id="noProductsWarning" style="opacity:0">
+  Je hebt nog geen producten in je winkelmandje<br>
+   gedaan, zullen we verder gaan met winkelen?
+</span>
 
 <!-- button section -->
 <div style="text-align: center">
   <a href="browse.php">
-    <button type="button">Verder met winkelen</button>
+    <button class="big-button" type="button">Verder winkelen</button>
   </a>
   <a href="betaalpagina.php" id="cartToPaymentSectionContainer" >
-    <button type="button">Naar betaling</button>
+    <button class="big-button" type="button">Naar betaling</button>
   </a>
   <form id="cartRemoveAllContainer" action="Interface/TruncateCart.php" method="post">
     <input type="submit" value="Verwijder alles">
@@ -164,6 +203,7 @@ error_reporting(0);
    */
   function tryUpdateWarningMessage(productCount) {
     let messageElement = document.getElementById("noProductsWarning");
+    let shoppingCartTitle = document.getElementById("shoppingCartTitle");
 
     /**
      * Lijst met irrelevante elementen als de winkelwagen leeg is.
@@ -173,9 +213,11 @@ error_reporting(0);
     if (productCount.toString() === "0") {
       messageElement.style.opacity = "1";
       containers.forEach(name => document.getElementById(name).style.display = "none");
+      shoppingCartTitle.innerText = "Je winkelmandje is leeg.";
     } else {
       messageElement.style.opacity = "0";
       containers.forEach(name => document.getElementById(name).style.display = "");
+      shoppingCartTitle.innerText = "Winkelwagen";
     }
   }
 
