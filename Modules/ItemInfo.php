@@ -142,7 +142,3 @@ function ItemInfo(mysqli $connection, int $productID) {
 
   return new ItemInformation($Name, $Price, $Image);
 }
-
-r
-
-
