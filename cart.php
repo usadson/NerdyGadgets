@@ -35,11 +35,11 @@ img{
 <div style="text-align: center">
 <header>
     <div class="title1"><h1>Winkelwagen</h1></div>
-    <div class="title2"> <h2>Hieronder uw producten</h2></div>
+    <div id="subTitle" class="title2"> <h2>Hieronder uw producten</h2></div>
 </header>
 </div>
 
-<div class="container mb-4">
+<div id="tableContainer" class="container mb-4">
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
@@ -69,17 +69,15 @@ img{
 
 <!-- button section -->
 <div style="text-align: center">
-    <a href="browse.php">
-        <button  type="button" >Verder met winkelen</button>
-    </a>
-    <a href="betaalpagina.php">
-        <button  type="button">Naar betaling </button>
-    </a>
-	<form action="Interface/TruncateCart.php" method="post">
-        <input  type="submit" value="Verwijder alles">
-    </form>
-
-
+  <a href="browse.php">
+    <button type="button">Verder met winkelen</button>
+  </a>
+  <a href="betaalpagina.php" id="cartToPaymentSectionContainer" >
+    <button type="button">Naar betaling</button>
+  </a>
+  <form id="cartRemoveAllContainer" action="Interface/TruncateCart.php" method="post">
+    <input type="submit" value="Verwijder alles">
+  </form>
 </div>
 
 <?php
@@ -157,14 +155,24 @@ img{
    * Deze functie zorgt ervoor dat de melding dat-er-geen-producten-in-de
    * winkelwagen-zitten wordt weergegeven als er geen producten zijn, of anders
    * verstopt hij deze weer.
+   *
+   * Ook verstopt hij de irrelevante knoppen/informatie als er geen producten
+   * in de winkelwagen zitten.
    */
   function tryUpdateWarningMessage(productCount) {
-    let element = document.getElementById("noProductsWarning");
+    let messageElement = document.getElementById("noProductsWarning");
+
+    /**
+     * Lijst met irrelevante elementen als de winkelwagen leeg is.
+     */
+    let containers = ["tableContainer", "cartToPaymentSectionContainer", "cartRemoveAllContainer", "subTitle"];
 
     if (productCount.toString() === "0") {
-      element.style.opacity = "1";
+      messageElement.style.opacity = "1";
+      containers.forEach(name => document.getElementById(name).style.display = "none");
     } else {
-      element.style.opacity = "0";
+      messageElement.style.opacity = "0";
+      containers.forEach(name => document.getElementById(name).style.display = "");
     }
   }
 
