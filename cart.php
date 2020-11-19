@@ -1,7 +1,8 @@
 <?php
 include ('header.php');
 global $Connection;
-
+/* voor oplevering */
+/*error_reporting(0);*/
 
 ?>
 
@@ -58,6 +59,22 @@ img{
 
 
 
+<<<<<<< HEAD
+=======
+					if ($_POST['deleteall'] == "Verwijder alles"){
+						print('<h5 align="center"><b>Alle producten zijn verwijderd</b></h5>');
+						unset($_SESSION["cart"]);
+					}
+					else{
+					}
+
+
+
+
+
+
+
+>>>>>>> 4cbca6b0310b0e26fb67a883efa5b28bb55d821f
                     function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
                       /*
                        * <tr>
@@ -66,7 +83,6 @@ img{
                         <td>In stock</td>
                         <td></td>
                         <td class="text-right">000 €</td>
-
                     </tr>
                        * */
 
@@ -180,6 +196,9 @@ if ($isCartEmpty) {
     <a href="betaalpagina.php">
         <button  type="button">Naar betaling </button>
     </a>
+	<form action="cart.php" method="post">
+        <input  type="submit" name="deleteall" value="Verwijder alles"></button>
+    </form>
 
 
 </div>
