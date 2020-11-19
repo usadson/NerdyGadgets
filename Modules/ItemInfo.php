@@ -81,6 +81,8 @@ function GetSecondaryImage(mysqli $connection, int $productID) {
   return null;
 }
 
+
+
 /**
  * GetItemImage.
  *
@@ -140,3 +142,7 @@ function ItemInfo(mysqli $connection, int $productID) {
 
   return new ItemInformation($Name, $Price, $Image);
 }
+
+r
+
+

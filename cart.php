@@ -56,6 +56,8 @@ img{
                     <tbody>
                     <?php
 
+
+
                     function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
                       /*
                        * <tr>
@@ -68,6 +70,10 @@ img{
                     </tr>
                        * */
 
+
+
+
+
                       print("<tr>");
 
                       print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
@@ -78,7 +84,16 @@ img{
                       print('<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></td>');
 
                       print("</tr>");
+
+
+
                     }
+
+
+
+
+                    }
+
 
                     function MapProductIdWithQuantity($products) {
                       $map = array();
@@ -94,6 +109,7 @@ img{
                       return $map;
                     }
 
+
                     include_once('Modules/ItemInfo.php');
 
                     $isCartEmpty = !isset($_SESSION["cart"]) || empty($_SESSION["cart"]);
@@ -107,6 +123,14 @@ img{
                         PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, $quantity, $itemInformation->Price);
                       }
                     }
+
+
+
+
+
+
+
+
                     ?>
 
                     <tr>
