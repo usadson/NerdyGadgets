@@ -7,30 +7,33 @@ error_reporting(0);
 ?>
 
 <style>
-
-
-
-
-td {
+  td {
     color: aliceblue
-}
-i{
+  }
+  i{
     width: 10px
-}
-th{
+  }
+  th{
     color: aliceblue;
-}
-img{
+  }
+  img{
     Width: 100px
-}
-    div.fixed {
-        position: fixed;
-        bottom: 0;
-        padding-left: 0;
-        width: 200px;
+  }
+  div.fixed {
+    position: fixed;
+    bottom: 0;
+    padding-left: 0;
+    width: 200px;
 
-    }
-        </style>
+  }
+
+  i#noProductsWarning {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  
+</style>
 
 <div style="text-align: center">
 <header>
