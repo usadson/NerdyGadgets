@@ -56,22 +56,6 @@ img{
                     </thead>
                     <tbody>
                     <?php
-
-
-
-
-					if ($_POST['deleteall'] == "Verwijder alles"){
-						print('<h5 align="center"><b>Alle producten zijn verwijderd</b></h5>');
-						unset($_SESSION["cart"]);
-					}
-					else{
-					}
-
-
-
-
-
-
                     function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
                       /*
                        * <tr>
@@ -185,8 +169,8 @@ if ($isCartEmpty) {
     <a href="betaalpagina.php">
         <button  type="button">Naar betaling </button>
     </a>
-	<form action="cart.php" method="post">
-        <input  type="submit" name="deleteall" value="Verwijder alles"></button>
+	<form action="Interface/TruncateCart.php" method="post">
+        <input  type="submit" value="Verwijder alles"></button>
     </form>
 
 
