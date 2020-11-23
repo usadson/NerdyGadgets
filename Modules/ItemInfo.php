@@ -81,6 +81,8 @@ function GetSecondaryImage(mysqli $connection, int $productID) {
   return null;
 }
 
+
+
 /**
  * GetItemImage.
  *

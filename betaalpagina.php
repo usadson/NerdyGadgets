@@ -16,10 +16,10 @@ include __DIR__ . "/header.php";
         }
 /*Verder knop en naam, adres en postcode velden layout*/
         input{
-            width: 75px;
+            width: 200px;
         }
         input{
-            width: 150px;
+            width: 200px;
         }
 
 
@@ -57,12 +57,13 @@ h1{
     <option value="ABNAMRO"> ABNAMRO </option>
     <option value="RABOBANK"> RABOBANK </option>
 </select><br><br><br>
-<form method="GET" action="betaalpagina.php">
+<form method="GET" action="Orderbevestiging.php">
     Kortingscode:
     <input type="text" name="code"><br><br><br>
 
-<input type="submit" name="insert" value="Verder"/>
-
+<a href="Orderbevestiging.php">
+    <button>Verder</button>
+</a>
 </form>
 </div>
 
