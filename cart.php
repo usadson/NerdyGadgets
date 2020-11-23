@@ -67,7 +67,7 @@ img{
 
                     </tr>
                        * */
-
+                       /* hieronder staat waarschijnlijk de delete knop */
                       print("<tr>");
 
                       print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
@@ -115,7 +115,7 @@ img{
                         <td></td>
                         <td></td>
                         <td>Sub-Total</td>
-                        <td class="text-right">000 €</td>
+                        <td class="text-right">€ 0.00</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -123,7 +123,7 @@ img{
                         <td></td>
                         <td></td>
                         <td>BTW</td>
-                        <td class="text-right">000 €</td>
+                        <td class="text-right">€ 0.00</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -131,7 +131,7 @@ img{
                         <td></td>
                         <td></td>
                         <td><strong>Total</strong></td>
-                        <td class="text-right"><strong>000 €</strong></td>
+                        <td class="text-right"><strong>€ 0.00</strong></td>
                     </tr>
                     </tbody>
                 </table>
