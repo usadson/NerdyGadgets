@@ -103,7 +103,7 @@ error_reporting(0);
 					else{
 					}
 
-
+                        
 
 
 
@@ -122,9 +122,8 @@ error_reporting(0);
 
 
 
-
-                      	$quantity = 1;
-			$qp = $price * $quantity;
+                        $quantity = 1;
+			            $qp = $price * $quantity;
 
                       print("<tr>");
 
