@@ -21,7 +21,8 @@ login {
  <input type="submit">
 </form> 
 <?php
-
+	include_once "connect.php";
+	global $Connection;
 
 
 
@@ -30,8 +31,8 @@ $UsernameInput = $_GET['ID'];
 print ($UsernameInput . $WachtwoordInput . "<br>");
 
 if(isset($_GET['ID'])){
-	global $Connection;
-	$query = mysqli_query($connection, "SELECT HashedPassword, LogonName FROM people WHERE '" . $UsernameInput . "' LIMIT 1");
+
+	$query = mysqli_query($connection, "SELECT LogonName FROM people WHERE = '" . $UsernameInput . "' LIMIT 1");
 	/* */
 	 
 	
@@ -41,7 +42,7 @@ if(isset($_GET['ID'])){
 	 }
 	 else
 	 {
-	 print("<h1>NEEN</h1>");
+	 print("<h1> hij doet het niet </h1>");
 	 }
 }
 ?>
