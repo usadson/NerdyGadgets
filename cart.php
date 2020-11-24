@@ -63,7 +63,7 @@ error_reporting(0);
   div.title2 {
     margin-bottom: 40px;
   }
-
+  
   #shoppingCartTitle {
     color: #05d670;
     font-weight: 600;
@@ -96,9 +96,6 @@ error_reporting(0);
                     <tbody>
                     <?php
 
-
-
-
 					if ($_POST['deleteall'] == "Verwijder alles"){
 						print('<h5 align="center"><b>Alle producten zijn verwijderd</b></h5>');
 						unset($_SESSION["cart"]);
@@ -121,7 +118,59 @@ error_reporting(0);
                         <td class="text-right">000 €</td>
                     </tr>
                        * */
-                    include("Modules/ComputeShoppingCartTable.php");
+
+
+
+
+
+                      	$quantity = 1;
+			$qp = $price * $quantity;
+
+                      print("<tr>");
+
+                      print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
+                      print("<td>" . $name . "</td>");
+                      print("<td>" . ($isInStock ? "Op voorraad" : "Niet op voorraad") . "</td>");
+                      print('<td><input class="form-control" type="text" value="' . $quantity . '" /></td>');
+                      print("<td class=\"text-right\">€ " . $qp . '</td>');
+                      print('<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></td>');
+
+                      print("</tr>");
+
+
+
+                    }
+
+
+                    function MapProductIdWithQuantity($products) {
+                      $map = array();
+
+                      foreach ($products as $product) {
+                        if (!array_key_exists($product, $map)) {
+                          $map[$product] = 1;
+                        } else {
+                          $map[$product]++;
+                        }
+                      }
+
+                      return $map;
+                    }
+
+
+                    include_once('Modules/ItemInfo.php');
+
+                    $isCartEmpty = !isset($_SESSION["cart"]) || empty($_SESSION["cart"]);
+
+                    if (!$isCartEmpty) {
+                      $map = MapProductIdWithQuantity($_SESSION["cart"]);
+
+                      foreach ($map as $productID => $quantity) {
+                        $itemInformation = ItemInfo($Connection, $productID);
+
+                        PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, $quantity, $itemInformation->Price);
+                      }
+                    }
+
                     ?>
                     </tbody>
                 </table>
@@ -277,7 +326,7 @@ error_reporting(0);
   tryUpdateWarningMessage(<?php global $productCount; echo $productCount; ?>);
 
 </script>
-
+*//i//*
 </body>
 </html>
 
