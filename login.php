@@ -32,7 +32,7 @@ print ($UsernameInput . $WachtwoordInput . "<br>");
 
 if(isset($_GET['ID'])){
 
-	$query = mysqli_query($connection, "SELECT LogonName FROM people WHERE = '" . $UsernameInput . "' LIMIT 1");
+	$query = mysqli_query($Connection, "SELECT LogonName FROM people WHERE LogonName = '" . $UsernameInput . "' LIMIT 1");
 	/* */
 	 
 	
