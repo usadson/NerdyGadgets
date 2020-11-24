@@ -78,9 +78,19 @@ global $Connection;
         </div>
         <div id="ul-class-navigation">
           <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+		   <?php
+		  $logedin = false;
+		  	if($logedin == true){
+				print('jammer');
+			}
+			else{
+				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:50px; padding-top:60px;padding-right:5px;float:right;width:15%"></img> </a>');
+			}
+		  ?>
           <a href="cart.php">
             <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:50px; padding-top:60px;padding-right:20px;float:right;width:20%">
           </a>
+		 
           <!-- Dit is het icoon van de shoppingcart -->
         </div>
     </div>
