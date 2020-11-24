@@ -273,12 +273,14 @@ error_reporting(0);
       });
   }
 
+
   tryUpdateWarningMessage(<?php global $productCount; echo $productCount; ?>);
 
 </script>
 
 </body>
 </html>
+
 <?php
 include __DIR__ . "/footer.php";
 ?>
