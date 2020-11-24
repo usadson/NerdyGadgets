@@ -28,17 +28,23 @@ login {
 
 $WachtwoordInput = $_GET['Wachtwoord'];
 $UsernameInput = $_GET['ID'];
-print ($UsernameInput . $WachtwoordInput . "<br>");
+/* print ($UsernameInput . $WachtwoordInput . "<br>"); */
 
 if(isset($_GET['ID'])){
+    /* Hier moet later GEHASHED WORDEN */
+    $Wachtwoord = $WachtwoordInput;
 
-	$query = mysqli_query($Connection, "SELECT LogonName FROM people WHERE LogonName = '" . $UsernameInput . "' LIMIT 1");
+	$query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $Wachtwoord ."' LIMIT 1");
 	/* */
 	 
 	
 	$rows = mysqli_num_rows($query);
 	 if($rows == 1){
-	 print("Hij werkt dus gewoon");
+
+         while($row = mysqli_fetch_assoc($query)) {
+             echo "ID: " . $row["PersonID"] ." - Naam: " . $row["LogonName"]. " - Wachtwoord: " . $row["HashedPassword"] . "<br>";
+         }
+	 print("<h1>Hij werkt dus gewoon</h1>");
 	 }
 	 else
 	 {
