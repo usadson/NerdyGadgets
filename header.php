@@ -84,11 +84,11 @@ global $Connection;
 				print('jammer');
 			}
 			else{
-				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:50px; padding-top:60px;padding-right:5px;float:right;width:15%"></img> </a>');
+				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-top:45px;padding-right:5px;float:right;width:10%"></img> </a>');
 			}
 		  ?>
           <a href="cart.php">
-            <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:50px; padding-top:60px;padding-right:20px;float:right;width:20%">
+            <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:20px; padding-top:45px;padding-right:20px;float:right;width:20%">
           </a>
 		 
           <!-- Dit is het icoon van de shoppingcart -->
