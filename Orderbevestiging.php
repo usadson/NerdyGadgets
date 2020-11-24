@@ -11,3 +11,6 @@ include __DIR__ . "/header.php";
 
 </body>
 </html>
+<?php
+include __DIR__ . "/footer.php";
+?>

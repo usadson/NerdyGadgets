@@ -61,12 +61,13 @@ h1{
     Kortingscode:
     <input type="text" name="code"><br><br><br>
 
-<a href="Orderbevestiging.php">
-    <button>Verder</button>
-</a>
+    <input type="submit" name="insert" value="Verder"/>
 </form>
 </div>
 
 
 </body>
 </html>
+<?php
+include __DIR__ . "/footer.php";
+?>
