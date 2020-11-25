@@ -32,13 +32,15 @@ $UsernameInput = $_GET['ID'];
 /* print ($UsernameInput . $WachtwoordInput . "<br>"); */
 
 if(isset($_GET['ID'])){
-    /* Hier moet later GEHASHED WORDEN */
+    /* Begin encryptie SRC='https://youtu.be/WwxAyiAtrbM' */
     $key = md5('DonderdagOchtend');
     $salt = md5('DonderdagOchtend');
     $Wachtwoord = $_GET['Wachtwoord'];
 
     /*$EncryptedWachtwoord = rtrim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $Wachtwoord, MCRYPT_MODE_ECB)));*/
     $EncryptedWachtwoord = crypt($Wachtwoord, '$1$' . $salt . '$');
+/* EINDE ECCRYPTIE*/
+
 
 	$query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $EncryptedWachtwoord ."' LIMIT 1");
 	/* */
