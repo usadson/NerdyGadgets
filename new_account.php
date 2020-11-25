@@ -3,7 +3,11 @@
 include ('header.php');
 include_once "connect.php";
 global $Connection;
+error_reporting(0);
+/* ERROR Reporting moet uit bij oplevering*/
+
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/
+$Ingevuld = $_GET['Ingevuld'];
 ?>
 <style>
     p.error {
@@ -24,11 +28,16 @@ FORM {
 <p></p>
 <div align="center" class="FORM">
 <form align="left" method="get" action="new_account.php">
-<label for="fname" align="left">Voornaam:</label><br>
-  <input type="text" id="Voornaam" name="Voornaam" value="<?php print($_GET['Voornaam']);?>"><br>
+
+
+    <input type="hidden" id="Ingevuld" name="Ingevuld" value="1">
+
+
+    <label for="fname" align="left">Voornaam:</label><br>
+  <input type="text" id="Voornaam" name="Voornaam" value="<?php print($_GET['Voornaam']);?> "><br>
 
     <?php
-    if($_GET['Voornaam'] == "") {
+    if(($_GET['Voornaam'] == "") && isset($Ingevuld)) {
         print('<p class="error">U moet een voornaam invullen</p>');
     }
     else{
@@ -41,7 +50,7 @@ FORM {
 
 
     <?php
-    if($_GET['Achternaam'] == "") {
+    if(($_GET['Achternaam'] == "") && isset($Ingevuld)) {
         print('<p class="error">U moet een achternaam invullen</p>');
     }
     else{
@@ -54,7 +63,7 @@ FORM {
 
 
     <?php
-    if($_GET['Telefoon'] == "") {
+    if(($_GET['Telefoon'] == "") && isset($Ingevuld)) {
         print('<p class="error">U moet een telefoonnummer invullen</p>');
     }
     else{
@@ -67,9 +76,9 @@ FORM {
 
  <input type="email" id="Mail" name="Mail" value="<?php print($_GET['Mail']);?>"><br>
     <?php
-    /* Er moet nog een check komen voor email formaat*/
     $sqlmailcheck = mysqli_query($Connection, "SELECT EmailAddress FROM people WHERE EmailAddress = '" . $_GET['Mail'] . "' LIMIT 1");
     if($_GET['Mail'] != "") {
+
         if (mysqli_num_rows($sqlmailcheck) == 0) {
             $Uniekemail = TRUE;
             print("<br>");
@@ -80,7 +89,12 @@ FORM {
         }
     }
     else{
-        print('<p class="error">U moet een emailadress invullen</p>');
+        if(isset($Ingevuld)){
+            print('<p class="error">U moet een emailadress invullen</p>');
+        }
+        else{
+            print("<br>");
+        }
     }
     ?>
  
@@ -88,7 +102,7 @@ FORM {
 <label for="fname" align="left">Wachtwoord</label><br>
  <input type="text" id="Wachtwoord1" name="Wachtwoord1"><br><br>
     <?php
-    if($_GET['Wachtwoord1'] == ""){
+    if(($_GET['Wachtwoord1'] == "") && isset($Ingevuld)){
         print('<p class="error">Je moet een wachtwoord invullen</p>');
         /* Wachtwoord complexiteit check*/
     }
@@ -99,7 +113,7 @@ FORM {
  <label for="fname" align="left">Herhaling wachtwoord</label><br>
  <input type="text" id="Wachtwoord2" name="Wachtwoord2"><br><br>
     <?php
-    if($_GET['Wachtwoord2'] == ""){
+    if(($_GET['Wachtwoord2'] == "") && isset($Ingevuld)) {
     print('<p class="error">Je moet een herhaling van je wachtwoord invullen</p>');
     /* Wachtwoord complexiteit check*/
     }
