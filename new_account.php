@@ -73,35 +73,66 @@ FORM {
 
 <label for="fname" align="left">Wachtwoord</label><br>
  <input type="text" id="Wachtwoord1" name="Wachtwoord1"><br><br>
-
+    <?php
+    if($_GET['Wachtwoord1'] == ""){
+        print('<p class="error">Je moet een wachtwoord invullen</p>');
+        /* Wachtwoord complexiteit check*/
+    }
+    else{
+        print('<br>');
+    }
+    ?>
  <label for="fname" align="left">Herhaling wachtwoord</label><br>
  <input type="text" id="Wachtwoord2" name="Wachtwoord2"><br><br>
+    <?php
+    if($_GET['Wachtwoord2'] == ""){
+    print('<p class="error">Je moet een herhaling van je wachtwoord invullen</p>');
+    /* Wachtwoord complexiteit check*/
+    }
+    else{
+      if($_GET['Wachtwoord1'] == $_GET['Wachtwoord2']){
+          print('<br>');
+      }
+      else{
+          print('<p class="error">De wachtwoorden komen niet overeen</p>');
+      }
+    }
+    ?>
     <input type="submit">
  </form>
  <?php
 
 
 
- /* hieronder is een check op de wachtwoorden -- Vincent */
-
- if($_GET['Voornaam'] == "" && $_GET['Achternaam'] == ""){
-     print("Je moet de naam velden nog invullen <br>");
-
-     }
- /* SRC= https://www.w3schools.com/php/php_form_url_email.asp */
 
 
-     if ($_GET['Wachtwoord2'] == "" && $_GET['Wachtwoord1'] == "") {
-         print("Je moet beide wachtwoord velden invoeren <br>");
-     } else {
-         if (($_GET['Wachtwoord1']) == $_GET['Wachtwoord2']) {
-             print("mooi man");
-         } else {
-             print("De wachtwoorden komen niet overheen");
-         }
-     }
 
+     /*Gedeelte wat he nieuwe ID uitkrekend */
+ $sqlID = mysqli_query($Connection, "SELECT MAX(PersonID) AS ID FROM people LIMIT 1");
+ while($row = mysqli_fetch_assoc($sqlID)) {
+     $NewID = ($row['ID'] + 1);
+ }
+
+
+ /* Informatie voor in databasse*/
+ $Voornaam = $_GET['Voornaam'];
+ $Achternaam = $_GET['Achternaam'];
+$Fullname =  ($Voornaam . " " . $Achternaam);
+$SearchName = ($Voornaam . " " . $Fullname);
+ $Validfrom = (date("Y/m/d"));
+ 
+
+
+ /* INFORMATIE TESTEN
+ print("ID: " . $NewID . "<br>");
+ print("Mail: " . $_GET['Mail'] . "<br>");
+ print("Voornaam: " . $_GET['Voornaam'] . "<br>");
+ print("Achternaam: " . $_GET['Achternaam'] . "<br>");
+ print("Wachtwoord: " . $_GET['Wachtwoord1'] . "<br>");
+ Print($Validfrom);
+*/
  ?>
+
 </div>
 </body>
 </html>
