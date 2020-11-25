@@ -1,6 +1,7 @@
 <html>
 <?php
 include ('header.php');
+
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/
 ?>
 <head>
@@ -32,9 +33,14 @@ $UsernameInput = $_GET['ID'];
 
 if(isset($_GET['ID'])){
     /* Hier moet later GEHASHED WORDEN */
-    $Wachtwoord = $WachtwoordInput;
+    $key = md5('DonderdagOchtend');
+    $salt = md5('DonderdagOchtend');
+    $Wachtwoord = $_GET['Wachtwoord'];
 
-	$query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $Wachtwoord ."' LIMIT 1");
+    /*$EncryptedWachtwoord = rtrim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $Wachtwoord, MCRYPT_MODE_ECB)));*/
+    $EncryptedWachtwoord = crypt($Wachtwoord, '$1$' . $salt . '$');
+
+	$query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $EncryptedWachtwoord ."' LIMIT 1");
 	/* */
 	 
 	

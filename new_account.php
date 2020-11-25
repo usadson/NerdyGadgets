@@ -3,11 +3,14 @@
 include ('header.php');
 include_once "connect.php";
 global $Connection;
-error_reporting(0);
+/* error_reporting(0); */
 /* ERROR Reporting moet uit bij oplevering*/
 
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/
 $Ingevuld = $_GET['Ingevuld'];
+
+
+
 ?>
 <style>
     p.error {
@@ -105,10 +108,15 @@ FORM {
     if(($_GET['Wachtwoord1'] == "") && isset($Ingevuld)){
         print('<p class="error">Je moet een wachtwoord invullen</p>');
         /* Wachtwoord complexiteit check*/
+
+        $VoldoendeWW = TRUE;
     }
     else{
         print('<br>');
     }
+
+
+
     ?>
  <label for="fname" align="left">Herhaling wachtwoord</label><br>
  <input type="text" id="Wachtwoord2" name="Wachtwoord2"><br><br>
@@ -129,7 +137,18 @@ FORM {
     <input type="submit">
  </form>
  <?php
+ /* Begin Wachtwoord encryptie */
 
+
+ $key = md5('DonderdagOchtend');
+ $salt = md5('DonderdagOchtend');
+ $Wachtwoord = $_GET['Wachtwoord1'];
+
+ /*$EncryptedWachtwoord = rtrim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $Wachtwoord, MCRYPT_MODE_ECB)));*/
+ $EncryptedWachtwoord = crypt($Wachtwoord, '$1$' . $salt . '$');
+ print($EncryptedWachtwoord);
+
+ /* Einde Wachtwoord encryptie */
 
 
 
@@ -142,15 +161,16 @@ FORM {
  }
 
 
+
  /* Informatie voor in databasse*/
  $Voornaam = $_GET['Voornaam'];
  $Achternaam = $_GET['Achternaam'];
 $Fullname =  ($Voornaam . " " . $Achternaam);
 $SearchName = ($Voornaam . " " . $Fullname);
  $Validfrom = (date("Y-m-d"));
- print($Validfrom);
+
  $Telefoonnummer = $_GET['Telefoon'];
-$Wachtwoord = $_GET['Wachtwoord1'];
+
 $Mail = $_GET['Mail'];
 
 
@@ -162,6 +182,7 @@ $Mail = $_GET['Mail'];
  print("Achternaam: " . $_GET['Achternaam'] . "<br>");
  print("Wachtwoord: " . $_GET['Wachtwoord1'] . "<br>");
  Print($Validfrom);
+
 */
 /*ER MOETEN NOG CHECKS KOMEN DUS NIET GEBRUIKEN */
  $sqladdaccount = ("INSERT INTO people(PersonID, FullName, PreferredName, SearchName, IsPermittedToLogon, LogonName, HashedPassword, EmailAddress, ValidFrom, ValidTo)
