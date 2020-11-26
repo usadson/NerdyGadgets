@@ -3,10 +3,11 @@
 include ('header.php');
 include_once "connect.php";
 global $Connection;
- error_reporting(0); 
+ error_reporting(0);
 /* ERROR Reporting moet uit bij oplevering*/
-
+/* Prepare SQLI statements*/
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/
+/* SQL deel staat gecommend vanwege tests */
 $Ingevuld = $_GET['Ingevuld'];
 
 
@@ -173,7 +174,10 @@ $SearchName = ($Voornaam . " " . $Fullname);
 
 $Mail = $_GET['Mail'];
 
+/* Allround check voor uitvoeren SQL query*/
 
+
+ 
 
  /* INFORMATIE TESTEN
  print("ID: " . $NewID . "<br>");
@@ -183,13 +187,19 @@ $Mail = $_GET['Mail'];
  print("Wachtwoord: " . $_GET['Wachtwoord1'] . "<br>");
  Print($Validfrom);
 
-*/
-/*ER MOETEN NOG CHECKS KOMEN DUS NIET GEBRUIKEN */
- $sqladdaccount = ("INSERT INTO people(PersonID, FullName, PreferredName, SearchName, IsPermittedToLogon, LogonName, HashedPassword, EmailAddress, ValidFrom, ValidTo)
-VALUES (" . $NewID . ", '" . $Fullname . "', '" . $Voornaam . "','" . $SearchName. "', 1, '" . $Mail ."', '" . $Wachtwoord . "', '" . $Mail . "', '" . $Validfrom . " 00:00:00', '9999-12-31 23:59:59')
 
-");
+ /*
+ if(isset($Ingevuld) && $VoldoendeWW = TRUE){
+$sqladdaccount = ("
+INSERT INTO people(PersonID, FullName, PreferredName, SearchName, IsPermittedToLogon, LogonName, HashedPassword, EmailAddress, IsEmployee, IsSystemUser, IsExternalLogonProvider, IsSalesperson, ValidFrom, ValidTo, LastEditedBy)
+VALUES (" . $NewID . " , '" . $Fullname . "', '" . $Voornaam . "', '" . $SearchName . "', 1, '" . $Mail . "', '" . $EncryptedWachtwoord . "', '" . $Mail . "', 0, 0, 0, 0, 2013-01-01-00-00-00, 9999-12-31-00-00-00, 4000)
+
+"
+);
+
+ }
  mysqli_query($Connection, $sqladdaccount);
+*/
  ?>
 
 </div>
