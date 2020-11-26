@@ -90,6 +90,12 @@ global $Connection;
           <a href="cart.php">
             <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:20px; padding-top:45px;padding-right:20px;float:right;width:20%">
           </a>
+          <a href="wishlist.php">
+            <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
+          </a>
+
+
+
 		 
           <!-- Dit is het icoon van de shoppingcart -->
         </div>
