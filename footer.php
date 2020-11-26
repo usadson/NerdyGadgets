@@ -1,7 +1,16 @@
 <?php
 include __DIR__ . "/header.php";
 ?>
-<h1>-----------------------</h1>
+<style>
+footer {
+position: absolute;
+bottom: 0;
+height: 60px;
+border-top-width: 5px;
+border-top-style: solid;
+border-top-color: #FFF;
+}
+</style>
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4">
 
