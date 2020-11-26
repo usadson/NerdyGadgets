@@ -21,7 +21,7 @@ include __DIR__ . "/header.php";
         input{
             width: 200px;
         }
-
+        
 
 /* Box waar de velden in staan*/
 
@@ -61,7 +61,10 @@ h1{
     Kortingscode:
     <input type="text" name="code"><br><br><br>
 
-    <input type="submit" name="insert" value="Verder"/>
+
+    <a href="Orderbevestiging.php"<button type="button">Verder</button>
+
+    </a>
 </form>
 </div>
 
