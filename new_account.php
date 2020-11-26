@@ -3,7 +3,7 @@
 include ('header.php');
 include_once "connect.php";
 global $Connection;
-/* error_reporting(0); */
+ error_reporting(0); 
 /* ERROR Reporting moet uit bij oplevering*/
 
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/

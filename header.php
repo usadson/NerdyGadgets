@@ -78,14 +78,14 @@ global $Connection;
         </div>
         <div id="ul-class-navigation">
           <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
-		   <?php
+		   <?php /*
 		  $logedin = false;
 		  	if($logedin == true){
 				print('jammer');
 			}
 			else{
 				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-top:45px;padding-right:5px;float:right;width:10%"></img> </a>');
-			}
+			} */
 		  ?>
           <a href="cart.php">
             <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:20px; padding-top:45px;padding-right:20px;float:right;width:20%">
