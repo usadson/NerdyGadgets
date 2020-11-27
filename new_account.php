@@ -121,10 +121,25 @@ FORM {
         print('<p class="error">Je moet een wachtwoord invullen</p>');
         /* Wachtwoord complexiteit check*/
 
-
     }
     else{
-        print('<br>');
+
+    $uppercase = preg_match('@[A-Z]@', $_GET['Wachtwoord1']);
+    $lowercase = preg_match('@[a-z]@', $_GET['Wachtwoord1']);
+    $number    = preg_match('@[0-9]@', $_GET['Wachtwoord1']);
+        if(isset($Ingevuld)){
+            if (!$uppercase || !$lowercase || !$number || strlen($_GET['Wachtwoord1']) < 8) {
+                $sterkWachtwoord = FALSE;
+                print('<p class="error"> Het wachtwoord moet minimaal 8 karakters lang zijn een hoofdleter en over een nummer beschikken.</p>');
+            } else {
+                $sterkWachtwoord = TRUE;
+                print('<br>');
+            }
+        }
+        else{
+            print('<br>');
+            $sterkWachtwoord = FALSE;
+        }
     }
 
 
@@ -198,10 +213,10 @@ $Mail = $_GET['Mail'];
 
 
 
+print($VoldoendeWW);
 
 
-
- if(($Uniekemail == TRUE) && ($VoldoendeWW = TRUE) && ($VoldoendeAchternaam = TRUE) && ($VoldoendeVoornaam = TRUE) && ($VoldoendeTEL = TRUE)) {
+ if(($Uniekemail == TRUE) && ($VoldoendeWW = TRUE) && ($VoldoendeAchternaam = TRUE) && ($VoldoendeVoornaam = TRUE) && ($VoldoendeTEL = TRUE) && ($sterkWachtwoord == TRUE)) {
  /* ##################################################################################################################################################################################################################################################################
   $sqladdaccount = ("
 INSERT INTO people(PersonID, FullName, PreferredName, SearchName, IsPermittedToLogon, LogonName, HashedPassword, EmailAddress, IsEmployee, IsSystemUser, IsExternalLogonProvider, IsSalesperson, ValidFrom, ValidTo, LastEditedBy)

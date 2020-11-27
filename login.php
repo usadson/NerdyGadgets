@@ -20,7 +20,10 @@ login {
 <label for="fname" align="left">Wachtwoord:</label><br>
   <input type="text" id="ID" name="Wachtwoord"><br>  
  <input type="submit">
-</form> 
+</form>
+    <form method="get" action="new_account.php">
+        <button type="submit">Nieuw account aanmaken</button>
+    </form>
 <?php
 	include_once "connect.php";
 	global $Connection;
