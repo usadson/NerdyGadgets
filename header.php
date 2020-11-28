@@ -2,6 +2,17 @@
 session_start();
 include_once "connect.php";
 global $Connection;
+if (isset($_SESSION['UserID'])) {
+    $LoggedIN = TRUE;
+    $LoggedINAS = $_SESSION['UserID'];
+    $LogINquery = mysqli_query($Connection, "SELECT FullName FROM people WHERE PersonID = " . $_SESSION['UserID']);
+    while($row = mysqli_fetch_assoc($LogINquery)) {
+        $FullName = $row['FullName'];
+    }
+}
+else{
+    $LoggedIN = FALSE;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgb(35, 35, 47);">
@@ -93,6 +104,12 @@ global $Connection;
           <a href="wishlist.php">
             <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
           </a>
+            <?php
+                if($LoggedIN = TRUE){
+                    print('<h1>' . $FullName . '</h1>');
+                }
+
+            ?>
 
 
 

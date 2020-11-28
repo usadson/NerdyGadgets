@@ -1,7 +1,10 @@
 <html>
 <?php
-include ('header.php');
 
+
+
+
+include ('header.php');
 /*We hebbenn toesteming gekregen om oude wachtwoorden  over te slaan*/
 ?>
 <head>
@@ -54,8 +57,14 @@ if(isset($_GET['ID'])){
 
          while($row = mysqli_fetch_assoc($query)) {
              echo "ID: " . $row["PersonID"] ." - Naam: " . $row["LogonName"]. " - Wachtwoord: " . $row["HashedPassword"] . "<br>";
+
+
+
+             $_SESSION['UserID'] = $row["PersonID"];
+
          }
 	 print("<h1>Hij werkt dus gewoon</h1>");
+
 	 }
 	 else
 	 {
