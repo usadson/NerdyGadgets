@@ -64,6 +64,7 @@ if(isset($_GET['ID'])){
 
          }
 	 print("<h1>Hij werkt dus gewoon</h1>");
+         print('<script type="text/javascript">location.href = "index.php";</script>'); /*SRC="https://stackoverflow.com/questions/4871942/how-to-redirect-to-another-page-using-php"*/
 
 	 }
 	 else

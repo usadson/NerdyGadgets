@@ -87,29 +87,30 @@ else{
                 ?>
             </ul>
         </div>
+
         <div id="ul-class-navigation">
-          <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
-		   <?php /*
-		  $logedin = false;
-		  	if($logedin == true){
-				print('jammer');
+          <a href="browse.php" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+		   <?php
+           /* FILLER moet nog een pagina voor komen*/
+		  	if($LoggedIN == true){
+				print('<div width="20%" align="center" style="padding-left:5px; padding-top:0px;padding-right:5px;"><a href="FILLER.php"> <img src="Public/Img/Account.png" align="left" style="width:9%;padding-top:65px;padding-right:30px">');
+				print("<p align='left'>" . $FullName . "</p></a></a></div>");
 			}
 			else{
-				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-top:45px;padding-right:5px;float:right;width:10%"></img> </a>');
-			} */
+				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-top:45px;padding-right:5px;float:right;width:10%"></a></а>');
+			}
 		  ?>
+
           <a href="cart.php">
-            <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:20px; padding-top:45px;padding-right:20px;float:right;width:20%">
+            <img alt="Winkelwagen" src="Public/Img/cart.png" align="left" style="padding-left:20px; padding-top:45px;padding-right:20px;width:20%">
           </a>
-          <a href="wishlist.php">
+        </div>
+            <!-- Icoon van de wishlist -->
+          <!--<a href="wishlist.php">
             <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
           </a>
-            <?php
-                if($LoggedIN = TRUE){
-                    print('<h1>' . $FullName . '</h1>');
-                }
+          -->
 
-            ?>
 
 
 
