@@ -65,7 +65,7 @@ table tr td {
 }
 #ul-class-navigation {
     right: 10px;
-    line-height: 200px;
+    line-height: 100px;
     position: absolute;
 }
 #ul-class-navigation > * {
@@ -79,9 +79,9 @@ table tr td {
 #Header {
     position: fixed;
     top:0;
-    background-color: rgb(35, 35, 47);
+    background-color: rgb(40, 40, 53);
     width: 100%;
-    height: 200px;
+    height: 9%;
     z-index: 1;
     border-bottom: 1px solid rgb(36, 41, 143);
 }
@@ -224,7 +224,7 @@ table tr td {
     background-image: url("../ProductIMGHighRes/NerdyGadgetsLogo.png");
     width: 250px;
     height: 90px;
-    margin: 55px 55px 55px 10%;
+    margin: 5px 55px 5px 10%;
 }
 ul#ul-class li {
     display: inline;
@@ -232,7 +232,7 @@ ul#ul-class li {
     margin-right: 1em;
     font-size: 18px;
     text-decoration: none;
-    line-height: 200px;
+    line-height: 100px;
 }
 ul#ul-class-price li {
     display: inline;
