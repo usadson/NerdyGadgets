@@ -28,6 +28,42 @@ else{
             font-family: MmrText;
             src: url(/Public/fonts/mmrtext.ttf);
         }
+
+
+        .dropbtn {
+            background-color: #282735;
+            color: white;
+            padding: 6px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #282735;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 5px 3px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
     <meta charset="ISO-8859-1">
     <title>NerdyGadgets</title>
@@ -93,7 +129,14 @@ else{
             <?php
             /* FILLER moet nog een pagina voor komen*/
             if($LoggedIN == true){
-                print('<li><a href="FILL.php" style="color:#FFF;padding-left: 50px;" align="center" ><img src="Public/Img/Account.png" style="padding-right: 9px;width: 4%;"> <i  style="color:#676EFF;"></i> ' . $FullName . '</a>');
+                print('<li><a href="FILL.php" style="color:#FFF;padding-left: 50px;" align="center" ><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
+  <button class="dropbtn">' . $FullName . '</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div></a>');
 
             }
             else{
