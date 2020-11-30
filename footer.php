@@ -4,11 +4,11 @@ include __DIR__ . "/header.php";
 <style>
 footer {
 position: absolute;
-bottom: 0;
-height: 60px;
+bottom: 10px;
+height: 120px;
 border-top-width: 5px;
 border-top-style: solid;
-border-top-color: #FFF;
+border-top-color: black;
 }
 </style>
 <!-- Footer -->

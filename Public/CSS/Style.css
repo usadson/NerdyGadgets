@@ -5,7 +5,7 @@ html {
 body {
     overflow-x:hidden;
     color: #FFF !important;
-    background-color: rgb(35, 35, 47) !important;
+    background-color: #c9f3ff !important;
 }
 @font-face {
     font-family: MmrText;
@@ -141,7 +141,7 @@ table tr td {
     position: absolute;
     left: 250px;
     bottom: 2.5px;
-    color: white;
+    color: #61ae3d;
     font-size: 15px;
 }
 #VideoFrame {
@@ -364,14 +364,14 @@ ul#ul-class-price li {
 }
 .StockItemName {
     font-family: pt-sans, sans-serif;
-    color: #fff;
+    color: #000000;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;
 }
 .StockItemComments {
     font-family: pt-sans, sans-serif;
-    color: #fff;
+    color: #ff0000;
     font-size: 14px;
     font-weight: bold;
 }
