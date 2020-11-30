@@ -21,7 +21,7 @@ include __DIR__ . "/header.php";
         input{
             width: 200px;
         }
-        
+
 
 /* Box waar de velden in staan*/
 
@@ -43,11 +43,12 @@ h1{
 <body>
 <div class="container">
 <h1>Betaalgegevens</h1><br><br>
+
 <form method="GET" action="betaalpagina.php">
 
-        Naam: <input type="text" name="Naam" value=""><br><br>
-        Adres: <input type="text" name="Adres" value=""><br><br>
-        Postcode: <input type="text" name="Postcode" value=""><br><br>
+        Naam: <input type="text" name="Naam"><br><br>
+        Adres: <input type="text" name="Adres"><br><br>
+        Postcode: <input type="text" name="Postcode"><br><br>
 
     <label> Kies uw bank: </label><br>
 
@@ -57,7 +58,7 @@ h1{
     <option value="ABNAMRO"> ABNAMRO </option>
     <option value="RABOBANK"> RABOBANK </option>
 </select><br><br><br>
-<form method="GET" action="Orderbevestiging.php">
+
     Kortingscode:
     <input type="text" name="code"><br><br><br>
 
@@ -65,6 +66,8 @@ h1{
     <a href="Orderbevestiging.php"<button type="button">Verder</button>
 
     </a>
+ 
+
 </form>
 </div>
 

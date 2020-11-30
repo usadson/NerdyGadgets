@@ -15,7 +15,7 @@ else{
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" style="background-color: rgb(35, 35, 47);">
+<html lang="en" style="background-color: rgb(255, 255, 255);">
 <head>
     <script src="Public/JS/fontawesome.js" crossorigin="anonymous"></script>
     <script src="Public/JS/jquery.min.js"></script>
@@ -88,7 +88,7 @@ else{
     <meta name="msapplication-TileImage" content="Public/Favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body>
+<div>
 <div class="Background">
     <div class="row" id="Header">
         <div class="col-2"><a href="./" id="LogoA">
