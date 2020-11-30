@@ -209,6 +209,18 @@ table tr td {
     font-size: 20px;
 }
 
+#StockItemReviews{
+    background-color: rgba(35, 40, 47, 0.8);
+    width: 49%;
+    float: left;
+    padding: 10px;
+    margin-left: 1%;
+    margin-top:10px;
+    border: 1px solid;
+    font-family: pt-sans, sans-serif;
+    font-size: 20px;
+}
+
 .Background {
     background-color: #23232F;
     width: 100%;
