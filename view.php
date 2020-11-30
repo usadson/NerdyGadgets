@@ -182,7 +182,7 @@ if ($R) {
             # de vraagteken moet nog een waarde krijgen en dat wordt in ------- mysqli_stmt_bind_param($Statement, "i", $_GET['id']); ------ dit stukje code gedaan
             # daarvoor is tristans code hergebruikt en variabele verandert naar de query naam:---------- $Query_reviews---------
             # als $R bij ----- mysqli_fetch_all($R, MYSQLI_ASSOC); ----- een 0 geeft, komt hij niet door de if-statement heen en wordt er geen waarde meegegeven
-            # vervolgens in het css stukje een foreach gebruikt om de reviews onder elkaar te printen.
+            # vervolgens in het css stukje een foreach gebruikt om de reviews onder elkaar te printen, als er geen reviews zijn, krijg je de pop-up dat er nog geen reviews zijn.
 
 
             $Query_reviews = "
@@ -205,8 +205,12 @@ if ($R) {
         <div id="StockItemReviews">
             <h3>Artikel reviews</h3>
             <p><?php
-                foreach($Review as $value) {
-                    print $value['Review'] . "</br>";
+                if (!isset($Review)){
+                    print ("er zijn nog geen reviews");
+                }else{
+                    foreach($Review as $value) {
+                        print $value['Review'] . "</br>";
+                    }
                 }
                 ?>
             </p>
