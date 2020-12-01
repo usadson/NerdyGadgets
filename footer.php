@@ -9,6 +9,7 @@ height: 120px;
 border-top-width: 5px;
 border-top-style: solid;
 border-top-color: black;
+color: black;
 }
 </style>
 <!-- Footer -->
