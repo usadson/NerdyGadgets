@@ -31,8 +31,8 @@ else{
 
 
         .dropbtn {
-            background-color: #282735;
-            color: white;
+            background-color: white;
+            color: black;
             padding: 6px;
             font-size: 16px;
             border: none;
@@ -46,14 +46,14 @@ else{
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #282735;
+            background-color: #ffffff;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
 
         .dropdown-content a {
-            color: white;
+            color: black;
             padding: 5px 3px;
             text-decoration: none;
             display: block;
@@ -63,7 +63,7 @@ else{
 
         .dropdown:hover .dropdown-content {display: block;}
 
-        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        .dropdown:hover .dropbtn {background-color: #bbb;}
     </style>
     <meta charset="ISO-8859-1">
     <title>NerdyGadgets</title>
@@ -121,7 +121,7 @@ else{
                     <?php
                 }
                 ?>
-                <li><a href="browse.php" style="color:#FFF;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                <li><a href="browse.php" style="color:#000;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
 
 
 
@@ -129,14 +129,13 @@ else{
             <?php
             /* FILLER moet nog een pagina voor komen*/
             if($LoggedIN == true){
-                print('<li><a href="FILL.php" style="color:#FFF;padding-left: 50px;" align="center" ><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
+                print('<li><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
   <button class="dropbtn">' . $FullName . '</button>
   <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="#">Wishlist</a>
+    <a style="color: white; background-color: red;" href="login.php?Uitloggen=1">Uitloggen</a>
   </div>
-</div></a>');
+</div>');
 
             }
             else{
