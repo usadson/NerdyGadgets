@@ -13,6 +13,12 @@ if (isset($_SESSION['UserID'])) {
 else{
     $LoggedIN = FALSE;
 }
+
+
+if(!isset($_SESSION["wishlist"])){
+    $_SESSION["wishlist"]=[];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgb(255, 255, 255);">
