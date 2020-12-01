@@ -214,6 +214,11 @@ if ($R) {
                 }
                 ?>
             </p>
+            <div
+                <a  href="http://localhost/NerdyGadgets/login.php">
+                    <button type ="submit" id="place-review-button">plaats een review</button>
+                </a>
+            </div>
         </div>
         <?php
     } else {
