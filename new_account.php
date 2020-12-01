@@ -26,12 +26,12 @@ $Ingevuld = $_GET['Ingevuld'];
 <style>
 FORM {
   width: 50%;
-  border: 10px solid white;
+  border: 5px solid black;
+    background-color: white;
 }
 </style>
 </head>
 <body>
-<h1>Er moeten nog checks komen dus niet zomaar gebruiken</h1>
 <p></p>
 <div align="center" class="FORM">
 <form align="left" method="get" action="new_account.php">
@@ -40,7 +40,7 @@ FORM {
     <input type="hidden" id="Ingevuld" name="Ingevuld" value="1">
 
 
-    <label for="fname" align="left">Voornaam:</label><br>
+    <label for="fname" align="left" style="color: black;">Voornaam:</label><br>
   <input type="text" id="Voornaam" name="Voornaam" value="<?php print($_GET['Voornaam']);?> "><br>
 
     <?php
@@ -54,7 +54,7 @@ FORM {
     }
     ?>
 
-<label for="fname" align="left">Achternaam:</label><br>
+    <label for="fname" align="left" style="color: black;">Achternaam:</label><br>
   <input type="text" id="Achternaam" name="Achternaam" value="<?php print($_GET['Achternaam']);?>""><br>
 
 
@@ -69,7 +69,7 @@ FORM {
     }
     ?>
 
-    <label for="fname" align="left">Telefoonnummer:</label><br>
+    <label for="fname" align="left" style="color: black;">Telefoonnummer:</label><br>
     <input type="tel" id="Telefoon" name="Telefoon" value="<?php print($_GET['Telefoon']);?>"><br>
 
 
@@ -85,7 +85,7 @@ FORM {
     }
     ?>
 
-<label for="fname" align="left">Emailadress:</label><br>
+    <label for="fname" align="left" style="color: black;">Emailadress:</label><br>
 
 
  <input type="email" id="Mail" name="Mail" value="<?php print($_GET['Mail']);?>"><br>
@@ -112,9 +112,9 @@ FORM {
         }
     }
     ?>
- 
 
-<label for="fname" align="left">Wachtwoord</label><br>
+
+    <label for="fname" align="left" style="color: black;">Wachtwoord</label><br>
  <input type="text" id="Wachtwoord1" name="Wachtwoord1"><br><br>
     <?php
     if(($_GET['Wachtwoord1'] == "") && isset($Ingevuld)){
@@ -145,7 +145,7 @@ FORM {
 
 
     ?>
- <label for="fname" align="left">Herhaling wachtwoord</label><br>
+    <label for="fname" align="left" style="color: black;">Herhaling wachtwoord</label><br>
  <input type="text" id="Wachtwoord2" name="Wachtwoord2"><br><br>
     <?php
     if(($_GET['Wachtwoord2'] == "") && isset($Ingevuld)) {
@@ -177,7 +177,7 @@ FORM {
 
  /*$EncryptedWachtwoord = rtrim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $Wachtwoord, MCRYPT_MODE_ECB)));*/
  $EncryptedWachtwoord = crypt($Wachtwoord, '$1$' . $salt . '$');
- print($EncryptedWachtwoord);
+ /*print($EncryptedWachtwoord);*/
 
  /* Einde Wachtwoord encryptie */
 
@@ -213,7 +213,7 @@ $Mail = $_GET['Mail'];
 
 
 
-print($VoldoendeWW);
+/*print($VoldoendeWW);*/
 
 
  if(($Uniekemail == TRUE) && ($VoldoendeWW = TRUE) && ($VoldoendeAchternaam = TRUE) && ($VoldoendeVoornaam = TRUE) && ($VoldoendeTEL = TRUE) && ($sterkWachtwoord == TRUE)) {
