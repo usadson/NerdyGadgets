@@ -37,8 +37,8 @@ if(!isset($_SESSION["wishlist"])){
 
 
         .dropbtn {
-            background-color: #282735;
-            color: white;
+            background-color: white;
+            color: black;
             padding: 6px;
             font-size: 16px;
             border: none;
@@ -52,14 +52,14 @@ if(!isset($_SESSION["wishlist"])){
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #282735;
+            background-color: #ffffff;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
 
         .dropdown-content a {
-            color: white;
+            color: black;
             padding: 5px 3px;
             text-decoration: none;
             display: block;
@@ -69,7 +69,7 @@ if(!isset($_SESSION["wishlist"])){
 
         .dropdown:hover .dropdown-content {display: block;}
 
-        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        .dropdown:hover .dropbtn {background-color: #bbb;}
     </style>
     <meta charset="ISO-8859-1">
     <title>NerdyGadgets</title>
@@ -95,18 +95,18 @@ if(!isset($_SESSION["wishlist"])){
     <meta name="theme-color" content="#ffffff">
 </head>
 <div>
-<div class="Background">
-    <div class="row" id="Header">
-        <div class="col-2"><a href="./" id="LogoA">
-                <div id="LogoImage"></div>
-            </a></div>
-        <div class="col-8" id="CategoriesBar">
-            <ul id="ul-class">
-              <li>
-                <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
-              </li>
-                <?php
-                $Query = "
+    <div class="Background">
+        <div class="row" id="Header">
+            <div class="col-2"><a href="./" id="LogoA">
+                    <div id="LogoImage"></div>
+                </a></div>
+            <div class="col-8" id="CategoriesBar">
+                <ul id="ul-class">
+                    <li>
+                        <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
+                    </li>
+                    <?php
+                    $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
                 FROM stockgroups 
                 WHERE StockGroupID IN (
@@ -114,66 +114,63 @@ if(!isset($_SESSION["wishlist"])){
                                         FROM stockitemstockgroups
                                         ) AND ImagePath IS NOT NULL
                 ORDER BY StockGroupID ASC";
-                $Statement = mysqli_prepare($Connection, $Query);
-                mysqli_stmt_execute($Statement);
-                $HeaderStockGroups = mysqli_stmt_get_result($Statement);
+                    $Statement = mysqli_prepare($Connection, $Query);
+                    mysqli_stmt_execute($Statement);
+                    $HeaderStockGroups = mysqli_stmt_get_result($Statement);
 
-                foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                    foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                        ?>
+                        <li>
+                            <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
+                               class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
+                        </li>
+                        <?php
+                    }
                     ?>
-                    <li>
-                        <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
-                           class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
-                    </li>
-                    <?php
-                }
-                ?>
-                <li><a href="browse.php" style="color:#FFF;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <li><a href="browse.php" style="color:#000;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
 
 
 
 
-            <?php
-            /* FILLER moet nog een pagina voor komen*/
-            if($LoggedIN == true){
-                print('<li><a href="FILL.php" style="color:#FFF;padding-left: 50px;" align="center" ><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
+                        <?php
+                        /* FILLER moet nog een pagina voor komen*/
+                        if($LoggedIN == true){
+                            print('<li><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
   <button class="dropbtn">' . $FullName . '</button>
   <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="#">Wishlist</a>
+    <a style="color: white; background-color: red;" href="Uitloggen.php">Uitloggen</a>
   </div>
-</div></a>');
+</div>');
 
-            }
-            else{
-                print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-left:18px;padding-right:5px;width:8%"></a></а>');
-            }
-            ?>
-                    <a href="cart.php">
-                        <img alt="Winkelwagen" src="Public/Img/cart.png" align="right" style="padding-left:20px; padding-top:28px;padding-right:0px;width:5%">
-                    </a>
-            </li>
-        </li>
-            </ul>
+                        }
+                        else{
+                            print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-left:18px;padding-right:5px;width:8%"></a></а>');
+                        }
+                        ?>
+                        <a href="cart.php">
+                            <img alt="Winkelwagen" src="Public/Img/cart.png" align="right" style="padding-left:20px; padding-top:28px;padding-right:0px;width:5%">
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+
+        <!-- Icoon van de wishlist -->
+        <!--<a href="wishlist.php">
+          <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
+        </a>
+        -->
+
+
+
+
+
+        <!-- Dit is het icoon van de shoppingcart -->
     </div>
-
-
-            <!-- Icoon van de wishlist -->
-          <!--<a href="wishlist.php">
-            <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
-          </a>
-          -->
-
-
-
-
-		 
-          <!-- Dit is het icoon van de shoppingcart -->
-        </div>
-    </div>
-    <div class="row" id="Content">
-        <div class="col-12">
-            <div id="SubContent">
-
-
+</div>
+<div class="row" id="Content">
+    <div class="col-12">
+        <div id="SubContent">
