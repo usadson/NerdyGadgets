@@ -89,18 +89,18 @@ else{
     <meta name="theme-color" content="#ffffff">
 </head>
 <div>
-<div class="Background">
-    <div class="row" id="Header">
-        <div class="col-2"><a href="./" id="LogoA">
-                <div id="LogoImage"></div>
-            </a></div>
-        <div class="col-8" id="CategoriesBar">
-            <ul id="ul-class">
-              <li>
-                <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
-              </li>
-                <?php
-                $Query = "
+    <div class="Background">
+        <div class="row" id="Header">
+            <div class="col-2"><a href="./" id="LogoA">
+                    <div id="LogoImage"></div>
+                </a></div>
+            <div class="col-8" id="CategoriesBar">
+                <ul id="ul-class">
+                    <li>
+                        <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
+                    </li>
+                    <?php
+                    $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
                 FROM stockgroups 
                 WHERE StockGroupID IN (
@@ -108,65 +108,63 @@ else{
                                         FROM stockitemstockgroups
                                         ) AND ImagePath IS NOT NULL
                 ORDER BY StockGroupID ASC";
-                $Statement = mysqli_prepare($Connection, $Query);
-                mysqli_stmt_execute($Statement);
-                $HeaderStockGroups = mysqli_stmt_get_result($Statement);
+                    $Statement = mysqli_prepare($Connection, $Query);
+                    mysqli_stmt_execute($Statement);
+                    $HeaderStockGroups = mysqli_stmt_get_result($Statement);
 
-                foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                    foreach ($HeaderStockGroups as $HeaderStockGroup) {
+                        ?>
+                        <li>
+                            <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
+                               class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
+                        </li>
+                        <?php
+                    }
                     ?>
-                    <li>
-                        <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
-                           class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
-                    </li>
-                    <?php
-                }
-                ?>
-                <li><a href="browse.php" style="color:#000;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+                    <li><a href="browse.php" style="color:#000;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
 
 
 
 
-            <?php
-            /* FILLER moet nog een pagina voor komen*/
-            if($LoggedIN == true){
-                print('<li><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
+                        <?php
+                        /* FILLER moet nog een pagina voor komen*/
+                        if($LoggedIN == true){
+                            print('<li><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
   <button class="dropbtn">' . $FullName . '</button>
   <div class="dropdown-content">
     <a href="#">Wishlist</a>
-    <a style="color: white; background-color: red;" href="login.php?Uitloggen=1">Uitloggen</a>
+    <a style="color: white; background-color: red;" href="Uitloggen.php">Uitloggen</a>
   </div>
 </div>');
 
-            }
-            else{
-                print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-left:18px;padding-right:5px;width:8%"></a></а>');
-            }
-            ?>
-                    <a href="cart.php">
-                        <img alt="Winkelwagen" src="Public/Img/cart.png" align="right" style="padding-left:20px; padding-top:28px;padding-right:0px;width:5%">
-                    </a>
-            </li>
-        </li>
-            </ul>
+                        }
+                        else{
+                            print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-left:18px;padding-right:5px;width:8%"></a></а>');
+                        }
+                        ?>
+                        <a href="cart.php">
+                            <img alt="Winkelwagen" src="Public/Img/cart.png" align="right" style="padding-left:20px; padding-top:28px;padding-right:0px;width:5%">
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+
+        <!-- Icoon van de wishlist -->
+        <!--<a href="wishlist.php">
+          <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
+        </a>
+        -->
+
+
+
+
+
+        <!-- Dit is het icoon van de shoppingcart -->
     </div>
-
-
-            <!-- Icoon van de wishlist -->
-          <!--<a href="wishlist.php">
-            <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
-          </a>
-          -->
-
-
-
-
-		 
-          <!-- Dit is het icoon van de shoppingcart -->
-        </div>
-    </div>
-    <div class="row" id="Content">
-        <div class="col-12">
-            <div id="SubContent">
-
-
+</div>
+<div class="row" id="Content">
+    <div class="col-12">
+        <div id="SubContent">
