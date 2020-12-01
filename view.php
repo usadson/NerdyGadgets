@@ -171,9 +171,51 @@ if ($R) {
                 <?php
             }
             ?>
+            <?php
+
+            # eerst css gekopieërd van het style.css bestand en een nieuwe naam gegeven
+            # vervolgens is de database een nieuwe tabel aangemaakt die stockitems_review heet
+            # mockdata in de tabel gegooid om als zogenaamde review te gebruiken
+            # het background element van css klopt niet dus met element inspecteren tijdelijk weggehaald om de review te kunnen bekijken
+            # query gemaakt om de gegevens van de database te kunnen gebruiken op de website
+            # in de WHERE clausule hebbben we een vraagteken neergezet tegen sql-injecties
+            # de vraagteken moet nog een waarde krijgen en dat wordt in ------- mysqli_stmt_bind_param($Statement, "i", $_GET['id']); ------ dit stukje code gedaan
+            # daarvoor is tristans code hergebruikt en variabele verandert naar de query naam:---------- $Query_reviews---------
+            # als $R bij ----- mysqli_fetch_all($R, MYSQLI_ASSOC); ----- een 0 geeft, komt hij niet door de if-statement heen en wordt er geen waarde meegegeven
+            # vervolgens in het css stukje een foreach gebruikt om de reviews onder elkaar te printen, als er geen reviews zijn, krijg je de pop-up dat er nog geen reviews zijn.
+
+
+            $Query_reviews = "
+                        SELECT *
+                        FROM stockitems_review
+                        WHERE StockItemID = ?";
+
+
+            $Statement = mysqli_prepare($Connection, $Query_reviews);
+            mysqli_stmt_bind_param($Statement, "i", $_GET['id']);
+            mysqli_stmt_execute($Statement);
+            $R = mysqli_stmt_get_result($Statement);
+            $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+            if ($R) {
+                $Review = $R;
+            }
+            ?>
+        </div>
+        <div id="StockItemReviews">
+            <h3>Artikel reviews</h3>
+            <p><?php
+                if (!isset($Review)){
+                    print ("er zijn nog geen reviews");
+                }else{
+                    foreach($Review as $value) {
+                        print $value['Review'] . "</br>";
+                    }
+                }
+                ?>
+            </p>
         </div>
         <?php
-        print_r($Result);
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>

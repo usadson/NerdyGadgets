@@ -4,11 +4,12 @@ include __DIR__ . "/header.php";
 <style>
 footer {
 position: absolute;
-bottom: 0;
-height: 60px;
+bottom: 10px;
+height: 120px;
 border-top-width: 5px;
 border-top-style: solid;
-border-top-color: #FFF;
+border-top-color: black;
+color: black;
 }
 </style>
 <!-- Footer -->
@@ -36,7 +37,7 @@ border-top-color: #FFF;
             <div class="col-md-6 mb-md-0 mb-3">
 
                 <!-- Content -->
-                <h5 class="text-uppercase font-weight-bold">Conatct</h5>
+                <h5 class="text-uppercase font-weight-bold">Contact</h5>
                 <p>Voor all uw vragen kunt u ons altijd via de mail bereiken:
                 info@NerdyGadgets.nl</p>
 

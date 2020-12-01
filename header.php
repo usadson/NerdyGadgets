@@ -15,7 +15,7 @@ else{
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" style="background-color: rgb(35, 35, 47);">
+<html lang="en" style="background-color: rgb(255, 255, 255);">
 <head>
     <script src="Public/JS/fontawesome.js" crossorigin="anonymous"></script>
     <script src="Public/JS/jquery.min.js"></script>
@@ -28,6 +28,42 @@ else{
             font-family: MmrText;
             src: url(/Public/fonts/mmrtext.ttf);
         }
+
+
+        .dropbtn {
+            background-color: #282735;
+            color: white;
+            padding: 6px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #282735;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 5px 3px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
     <meta charset="ISO-8859-1">
     <title>NerdyGadgets</title>
@@ -52,7 +88,7 @@ else{
     <meta name="msapplication-TileImage" content="Public/Favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body>
+<div>
 <div class="Background">
     <div class="row" id="Header">
         <div class="col-2"><a href="./" id="LogoA">
@@ -85,31 +121,44 @@ else{
                     <?php
                 }
                 ?>
+                <li><a href="browse.php" style="color:#FFF;padding-left: 50px;" align="center" ><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
+
+
+
+
+            <?php
+            /* FILLER moet nog een pagina voor komen*/
+            if($LoggedIN == true){
+                print('<li><a href="FILL.php" style="color:#FFF;padding-left: 50px;" align="center" ><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
+  <button class="dropbtn">' . $FullName . '</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div></a>');
+
+            }
+            else{
+                print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-left:18px;padding-right:5px;width:8%"></a></а>');
+            }
+            ?>
+                    <a href="cart.php">
+                        <img alt="Winkelwagen" src="Public/Img/cart.png" align="right" style="padding-left:20px; padding-top:28px;padding-right:0px;width:5%">
+                    </a>
+            </li>
+        </li>
             </ul>
         </div>
-        <div id="ul-class-navigation">
-          <a href="browse.php" class="HrefDecoration"><i class="fas fa-search" style="color:#676EFF;"></i> Zoeken</a>
-		   <?php /*
-		  $logedin = false;
-		  	if($logedin == true){
-				print('jammer');
-			}
-			else{
-				print('<a href="login.php"> <img src="Public/Img/Log in.png" style="padding-left:5px; padding-top:45px;padding-right:5px;float:right;width:10%"></img> </a>');
-			} */
-		  ?>
-          <a href="cart.php">
-            <img alt="Winkelwagen" src="Public/Img/cart.png" style="padding-left:20px; padding-top:45px;padding-right:20px;float:right;width:20%">
-          </a>
-          <a href="wishlist.php">
+    </div>
+
+
+            <!-- Icoon van de wishlist -->
+          <!--<a href="wishlist.php">
             <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
           </a>
-            <?php
-                if($LoggedIN = TRUE){
-                    print('<h1>' . $FullName . '</h1>');
-                }
+          -->
 
-            ?>
 
 
 
