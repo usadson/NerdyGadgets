@@ -149,12 +149,14 @@ include __DIR__ . "/header.php";
 
 
                         <br><br>
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Verder</button>
-
+                        <a href="Orderbevestiging.php"<button class="btn btn-primary btn-lg btn-block" type="submit">Verder</button>
+                        </a>
             </form>
 
 
             <div class="col-md-4 mb-4">
+
+
 
 
 
