@@ -196,13 +196,16 @@ if ($R) {
             # daarvoor is tristans code hergebruikt en variabele verandert naar de query naam:---------- $Query_reviews---------
             # als $R bij ----- mysqli_fetch_all($R, MYSQLI_ASSOC); ----- een 0 geeft, komt hij niet door de if-statement heen en wordt er geen waarde meegegeven
             # vervolgens in het css stukje een foreach gebruikt om de reviews onder elkaar te printen, als er geen reviews zijn, krijg je de pop-up dat er nog geen reviews zijn.
-<<<<<<< HEAD
+
             print ("<form action='view.php?id=$ProductID' method='post'>
         
-=======
+
             if(isset($_SESSION['UserID'])){
             print ("<form action='view.php?id=$ProductID' action='$wishlistQuery' method='post'>
->>>>>>> c5d111b57825eb6480be4eb464dfd7c0540d375d
+
+            if(isset($_SESSION['UserID'])){
+            print ("<form action='view.php?id=$ProductID' action='$wishlistQuery' method='post'>
+
             <input type='submit' value='Voeg toe aan wishlist' name='knoptoevoegenwish'>
         
             </form>");
@@ -245,14 +248,13 @@ if ($R) {
                 }
                 ?>
             </p>
-<<<<<<< HEAD
-=======
+
             <div>
                 <a  href="http://localhost/NerdyGadgets/login.php">
                     <button type ="submit" id="place-review-button">plaats een review</button>
                 </a>
             </div>
->>>>>>> c5d111b57825eb6480be4eb464dfd7c0540d375d
+
         </div>
         <?php
     } else {
