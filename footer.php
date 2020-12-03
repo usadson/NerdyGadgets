@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . "/header.php";
 ?>
+<br><br><br><br><br><br>
 <style>
 footer {
 position: absolute;
@@ -12,6 +13,7 @@ border-top-color: black;
 color: black;
 }
 </style>
+
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4">
 
@@ -25,7 +27,7 @@ color: black;
             <div class="col-md-6 mt-md-0 mt-3">
 
                 <!-- Content -->
-                <h5 class="text-uppercase font-weight-bold">Over NerdyGadgets</h5>
+                <h5 class="text-uppercase font-weight-bold">  Over NerdyGadgets</h5>
                 <p>NerdyGadgets is een amerikaanse bedrijf.</p>
 
             </div>
