@@ -37,7 +37,7 @@ include __DIR__ . "/header.php";
 
 
             <!--Card content-->
-            <form class="align-content-center card-body">
+            <form class="align-content-center card-body" action="Orderbevestiging.php">
 
                 <!--Grid row-->
                 <div class="row">
@@ -149,8 +149,8 @@ include __DIR__ . "/header.php";
 
 
                         <br><br>
-                        <a href="Orderbevestiging.php"<button class="btn btn-primary btn-lg btn-block" type="submit">Verder</button>
-                        </a>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Verder</button>
+
             </form>
 
 
