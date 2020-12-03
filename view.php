@@ -33,9 +33,9 @@ if ($ReturnableResult && mysqli_num_rows($ReturnableResult) == 1) {
 
 $ProductID = $Result["StockItemID"];
 
-$wishlistQuery = "
+$wishlistQuery =("
                     INSERT INTO wishlist (PersonID, StockItemID)
-                    VALUES(" . $_SESSION["UserID"] . ", " . $productID . ")";
+                    VALUES(" . $_SESSION["UserID"] . ", " . $ProductID . ")");
 
 
 
@@ -240,7 +240,7 @@ if ($R) {
                 }
                 ?>
             </p>
-            <div
+            <div>
                 <a  href="http://localhost/NerdyGadgets/login.php">
                     <button type ="submit" id="place-review-button">plaats een review</button>
                 </a>

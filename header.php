@@ -95,7 +95,7 @@ if(!isset($_SESSION["wishlist"])){
     <meta name="theme-color" content="#ffffff">
 </head>
 <div>
-    <div class="Background">
+
         <div class="row" id="Header">
             <div class="col-2"><a href="./" id="LogoA">
                     <div id="LogoImage"></div>
@@ -174,3 +174,4 @@ if(!isset($_SESSION["wishlist"])){
 <div class="row" id="Content">
     <div class="col-12">
         <div id="SubContent">
+
