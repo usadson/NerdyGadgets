@@ -175,3 +175,4 @@ if(!isset($_SESSION["wishlist"])){
     <div class="col-12">
         <div id="SubContent">
 
+        </html>
