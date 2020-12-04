@@ -21,7 +21,7 @@ include ('header.php');
         <label for="fname" align="left" style="color: black;">Emailadress:</label><br>
         <input type="text" id="ID" name="ID"><br>
         <label for="fname" align="left" style="color: black;">Wachtwoord:</label><br>
-        <input type="text" id="ID" name="Wachtwoord"><br>
+        <input type="password" id="ID" name="Wachtwoord"><br>
         <input type="submit">
     </form>
     <form method="get" action="new_account.php">
