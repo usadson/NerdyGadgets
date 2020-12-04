@@ -28,7 +28,9 @@ color: black;
 
                 <!-- Content -->
                 <h5 class="text-uppercase font-weight-bold">  Over NerdyGadgets</h5>
-                <p>NerdyGadgets is een amerikaanse bedrijf.</p>
+                <p>Recentelijk heeft het bedrijf Wide World Importers (WWI) zijn naam gewijzigd omdat de bedrijfsnaam onaangename associaties opriep.
+                    Hierom is besloten de consumentenhandel voortaan onder te brengen in een nieuwe vanuit Nederland opererende naamloze vennootschap
+                    onder de naam NerdyGadgets.</p>
 
             </div>
             <!-- Grid column -->
@@ -40,7 +42,7 @@ color: black;
 
                 <!-- Content -->
                 <h5 class="text-uppercase font-weight-bold">Contact</h5>
-                <p>Voor all uw vragen kunt u ons altijd via de mail bereiken:
+                <p>Voor all uw vragen kunt u ons altijd via de mail bereiken:<br>
                 info@NerdyGadgets.nl</p>
 
             </div>
