@@ -21,7 +21,7 @@ if(!isset($_SESSION["wishlist"])){
 
 ?>
 <!DOCTYPE html>
-<html lang="en" style="background-color: rgb(255, 255, 255);">
+<html lang="en" style="background-color: rgb(255, 255, 255);"> 
 <head>
     <script src="Public/JS/fontawesome.js" crossorigin="anonymous"></script>
     <script src="Public/JS/jquery.min.js"></script>

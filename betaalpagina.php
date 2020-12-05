@@ -21,7 +21,6 @@ include __DIR__ . "/header.php";
 
     </style>
 
-
     <div align="center">
     <!--Main layout-->
     <main class="mt-5 pt-4">
