@@ -39,17 +39,17 @@ $infoproduct = getProductInfo($id);
 #defining stockitemID
 $productID = $infoproduct["StockItemID"];
 
-/*
-#wishlistproduct toevoegen aan wishlist
-$wishlistQuery = ("INSERT INTO wishlist (PersonID, StockItemID)
-VALUES(" . $_SESSION["UserID"] . ", " . $productID . ")")
-*/
+
 
 #array_push ($_SESSION["mand"]
-
+/*
+voorwaarden voor de winkelwagentoevoeging knop, de tweede if kijkt of op de knop is geklikt, 
+als dat zo is dan kijkt die of dezelfde product al er in is gezet zodat die de juiste melding stuurt
+en vervolgens voegt die 1 op bij de aantal van deze product.
+*/
 if (isset($_POST["knoptoevoegen"])){
     if (isset($_SESSION["mand"][$productID])){
-        $melding = "product is nog een keer toegevoegd";
+        $meldingwinkelwagen = "product is nog een keer toegevoegd";
         $_SESSION["mand"][$productID] = $_SESSION["mand"][$productID] + 1 ;
         #print("inhoud van de sessie mand: ");
         #print_r($_SESSION["mand"]);
@@ -59,10 +59,28 @@ if (isset($_POST["knoptoevoegen"])){
         #print_r($_SESSION["mand"]);
         #print("<br>");
         #print_r($_SESSION);
-        $melding = "product is toegevoegd aan de winkelwagen";
+        $meldingwinkelwagen = "product is toegevoegd aan de winkelwagen";
 
     }
 }
+
+#dezelfde voorwaarden voor de wishlist session
+
+if (isset($_POST['knoptoevoegenwish'])){
+    if (isset($_SESSION['knoptoevoegenwish'][$productID])){
+        $meldingwishlist = "product is nog een keer aan de wishlist toegevoegd";
+        $_SESSION['knoptoevoegenwish'][$productID] = $_SESSION['knoptoevoegenwish'][$productID] + 1 ;
+        
+
+    }else{
+        $_SESSION["wishlist"][$productID]=1;
+        
+        $meldingwishlist = "product is toegevoegd aan de wishlist";
+
+    }
+}
+
+
 
 
 
@@ -233,8 +251,12 @@ if ($R) {
 
 
 
-        if (isset($melding)){
-            print($melding);
+        if (isset($meldingwinkelwagen)){
+            print($meldingwinkelwagen);
+        }
+
+        if (isset($meldingwishlist)){
+            print($meldingwishlist);
         }
 
 

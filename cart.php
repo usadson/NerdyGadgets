@@ -3,7 +3,7 @@
 include __DIR__ . "/header.php";
 include __DIR__ . "/functions.php";
 
-#error_reporting(0);
+error_reporting(0);
 ?>
 
 <style>
@@ -130,9 +130,9 @@ td {
                         
                     </tr>
                     ");
-
+                    #voorwaarde voor de quantiteit knop
                     if(isset($_POST["quantity"])){
-                        if($_POST["quantity"] > 0 && $_POST["quantity"] < $infoproduct["QuantityOnHand"]){
+                        if($_POST["quantity"] > 0 && $_POST["quantity"] <= $infoproduct["QuantityOnHand"]){
                         $aantal = $_POST["quantity"];
                         $productid = $_POST["productid"];
                         $_SESSION["mand"][$productid] = $aantal;

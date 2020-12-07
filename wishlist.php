@@ -1,7 +1,9 @@
 
 <?php
-include ('header.php');
-global $Connection;
+include __DIR__ . "/header.php";
+include __DIR__ . "/functions.php";
+
+
 /* voor oplevering */
 error_reporting(0);
 
@@ -10,86 +12,103 @@ error_reporting(0);
 
 <style>
     td {
-        color: aliceblue
+        color: Black    
     }
+    
     tr {
-        color: aliceblue
+        color: Black
     }
     th {
-        color: aliceblue
+        color: Black
     }
+    form {
+    width: 200px;
+    }
+
+    
 
 </style>
 
 
-<div class="col-lg-8">
-    <div class="padding-top-2x mt-2 hidden-lg-up"></div>
-    <!-- Wishlist Table-->
-    <div class="table-responsive wishlist-table margin-bottom-none">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Product Name</th>
-                <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="product-item">
-                        <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/FF0000/000000" alt="Product"></a>
-                        <div class="product-info">
-                            <h4 class="product-title"><a href="#">PRODUCT</a></h4>
-                            <div class="text-lg text-medium text-muted">$00.00</div>
-                            <div>Availability:
-                                <div class="d-inline text-success">In Stock</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="product-item">
-                        <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/87CEFA/000000" alt="Product"></a>
-                        <div class="product-info">
-                            <h4 class="product-title"><a href="#">PRODUCT</a></h4>
-                            <div class="text-lg text-medium text-muted">$00.00</div>
-                            <div>Availability:
-                                <div class="d-inline text-warning">2 - 3 Weeks</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="product-item">
-                        <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/483D8B/000000" alt="Product"></a>
-                        <div class="product-info">
-                            <h4 class="product-title"><a href="#">PRODUCT</a></h4>
-                            <div class="text-lg text-medium text-muted">$00.00</div>
-                            <div>Availability:
-                                <div class="d-inline text-success">In Stock</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <hr class="mb-4">
-    <div class="custom-control custom-checkbox">
-        <input class="custom-control-input" type="checkbox" id="inform_me" checked="">
-        <label class="custom-control-label" for="inform_me">Inform me when item from my wishlist is available</label>
-    </div>
-</div>
+    <div class='col-lg-8'>
+        <div class='padding-top-2x mt-2 hidden-lg-up'></div>
+        <!-- Wishlist Table-->
+        <div class='table-responsive wishlist-table margin-bottom-none'>
+            <table class='table'>
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
 
-<?php
+                #verwijderknop
+                if (isset($_POST['Removewishlist'])){
+                    $RemovewishID = $_POST['Removewishlist'];
+                    #print("ik ga nu de id verwijderen $RemoveID");
+                    unset($_SESSION["wishlist"][ $RemovewishID ]);  
+                }
+
+                #print_r($_SESSION['wishlist']);
+
+                foreach($_SESSION["wishlist"] as $productid => $aantal){
+
+                    $infoproduct = getProductInfo($productid);
+
+                    $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+                    mysqli_set_charset($Connection, 'latin1');
+
+                    $Query = "
+                                        SELECT ImagePath
+                                        FROM stockitemimages 
+                                        WHERE StockItemID = ?";
+
+                                        $Statement = mysqli_prepare($Connection, $Query);
+                                        mysqli_stmt_bind_param($Statement, "i", $productid);
+                                        mysqli_stmt_execute($Statement);
+                                        $R = mysqli_stmt_get_result($Statement);
+                                        $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+                                        if ($R) {
+                                            $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
+                                            #print($img);
+                                        } else {
+                                        
+                                            $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
+                                            #print ($img);
+                                         }
+                print ("
+                        <tr>
+                            <td>
+                                <div class='product-item'>
+                                    <a class='product-thumb' href='#'><img src='$img' alt='Product' height='200';></a>
+                                    <div class='product-info'>
+                                        <h4 class='product-title'><a href='#'>" . $infoproduct["StockItemName"] . "</a></h4>
+                                        <div class='text-lg text-medium text-muted'>€" . round($infoproduct["SellPrice"], 2) . "</div>
+                                        <div>
+                                            <div class='d-inline text-success'> " . $infoproduct["QuantityOnHand"] . " </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class='text-center'><a class='remove-from-cart' href='#' data-toggle='tooltip' title='' data-original-title='Remove item'><i class='icon-cross'></i></a></td>
+                        </tr>
+                        <td>
+                            <form method='post' action='wishlist.php' >
+                                <input type='Hidden' name='Removewishlist' value='$productid'>
+                                <input type='submit' value='verwijder uit wishlist' style='background-color: red;color: white;' >
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            ");
+
+}
+
+
+
+
 include __DIR__ . "/footer.php";
 ?>
 

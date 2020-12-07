@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+#session_destroy();
 include_once "connect.php";
 global $Connection;
 if (isset($_SESSION['UserID'])) {
@@ -14,6 +16,9 @@ else{
     $LoggedIN = FALSE;
 }
 
+if(!isset($_SESSION["mand"])){
+    $_SESSION["mand"]=[];
+}  
 
 if(!isset($_SESSION["wishlist"])){
     $_SESSION["wishlist"]=[];
