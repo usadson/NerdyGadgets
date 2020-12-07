@@ -4,7 +4,7 @@ html {
 
 body {
     overflow-x:hidden;
-    color: #FFF !important;
+    color: #000 !important;
     background-color: #c9f3ff !important;
 }
 @font-face {
@@ -27,7 +27,7 @@ select {
 a {
     text-decoration: none;
     position: relative;
-    color:#000000;
+    color:#000;
 }
 a:hover {
      text-decoration: none !important;
