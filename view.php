@@ -272,7 +272,8 @@ if ($R) {
             </p>
 
             <div>
-                <a  href="http://localhost/NerdyGadgets/login.php">
+                <a  href="<?php if($LoggedIN == TRUE){print ('review.php');}else{print('login.php');} ?>">
+
                     <button type ="submit" id="place-review-button">plaats een review</button>
                 </a>
             </div>
