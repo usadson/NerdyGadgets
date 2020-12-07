@@ -185,7 +185,21 @@ if ($R) {
                 foreach ($CustomFields as $SpecName => $SpecText) { ?>
                     <tr>
                         <td>
-                            <?php print $SpecName; ?>
+                            <?php
+                            if($SpecName == 'CountryOfManufacture'){
+                                print('Land van herkomst:');
+                            }
+                            elseif($SpecName == 'ShelfLife'){
+                                print('Houdbaarheid');
+                            }
+                            elseif($SpecName == 'Range'){
+                                print('Leeftijdscategorie');
+                            }
+
+
+
+                            else{
+                            print $SpecName;} ?>
                         </td>
                         <td>
                             <?php
