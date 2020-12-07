@@ -238,7 +238,7 @@ if ($R) {
         }
 
 
-        ?>
+        
 
 
             $Query_reviews = "
