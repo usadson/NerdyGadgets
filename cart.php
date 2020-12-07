@@ -1,334 +1,209 @@
-<?php
-include ('header.php');
-global $Connection;
-/* voor oplevering */
-error_reporting(0);
 
+<?php
+include __DIR__ . "/header.php";
+include __DIR__ . "/functions.php";
+
+#error_reporting(0);
 ?>
 
 <style>
-  td {
+td {
     color: aliceblue
   }
-  i{
-    width: 10px
+  th {
+    color: aliceblue
   }
-  th{
-    color: aliceblue;
-  }
-  img{
-    Width: 100px
-  }
-  div.fixed {
-    position: fixed;
-    bottom: 0;
-    padding-left: 0;
-    width: 200px;
-
-  }
-
-  span#noProductsWarning {
-    display: block;
-    font-size: 26px;
-    text-align: center;
-    width: 100%;
-  }
-
-  button.big-button {
-    background-color: #22aa19;
-    border: none;
-    border-radius: 7px;
-    color: #eeeeee;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 22px;
-    padding: 15px;
-    text-align: center;
-    width: 300px;
-
-    margin: 50px 5px 5px;
-  }
-
-  button.big-button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-  }
-
-  div.title1 {
-    margin-top: 50px;
-    margin-bottom: 15px;
-  }
-
-  div.title2 {
-    margin-bottom: 40px;
-  }
-  
-  #shoppingCartTitle {
-    color: #05d670;
-    font-weight: 600;
-  }
-
 </style>
 
-<div style="text-align: center">
-<header>
-    <div class="title1"><h1 id="shoppingCartTitle">Winkelwagen</h1></div>
-    <div id="subTitle" class="title2"> <h2>Hier zijn je producten</h2></div>
-</header>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div id="tableContainer" class="container mb-4">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+<div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="col"> </th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Available</th>
-                        <th scope="col" class="text-center">Quantity</th>
-                        <th scope="col" class="text-right">Price</th>
-                        <th> </th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                </thead>
+                <tbody>
+                <?php
+                #print("dit is de inhoud van POST: ");
+                #print_r($_POST);
+                
+                if (isset($_POST["Remove"])){
+                    $RemoveID = $_POST["Remove"];
+                    #print("ik ga nu de id verwijderen $RemoveID");
+                    unset($_SESSION["mand"][ $RemoveID ]);
+                }
+                
+                if(isset($_POST["quantity"])){
+                    $aantal = $_POST["quantity"];
+                    $productid = $_POST["productid"];
+                    $_SESSION["mand"][$productid] = $aantal;
+                }
+                
+                $totaalprijs = 0;
+                foreach($_SESSION["mand"] as $productid => $aantal){
 
-					if ($_POST['deleteall'] == "Verwijder alles"){
-						print('<h5 align="center"><b>Alle producten zijn verwijderd</b></h5>');
-						unset($_SESSION["cart"]);
-					}
-					else{
-					}
 
+                    
+                    #defining variables
+                    /* 
+                    $productid = $product["StockItemID"];
+                    $productnaam = $product["StockItemName"];
+                    $productprijs = round($product["SellPrice"],2);
+                    $quantiteit = $product["QuantityOnHand"];
+                    $hoeveelheid = $product["aantal"];
+                    */
+                    #get image
+
+                    #print("product: $productid, aantal: $aantal");
+                    $infoproduct = getProductInfo($productid);
+
+                    $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+                    mysqli_set_charset($Connection, 'latin1');
+
+                    $Query = "
+                    SELECT ImagePath
+                    FROM stockitemimages 
+                    WHERE StockItemID = ?";
+
+                    $Statement = mysqli_prepare($Connection, $Query);
+                    mysqli_stmt_bind_param($Statement, "i", $productid);
+                    mysqli_stmt_execute($Statement);
+                    $R = mysqli_stmt_get_result($Statement);
+                    $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+                    if ($R) {
+                        $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
+                        #print($img);
+                    } else {
+                       
+                        $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
+                        #print ($img);
+                    }
+                    
+                    $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantal);
+                    
+                    
+                print("
+                    <tr>
+                        <td class='col-sm-8 col-md-6'>
+                        <div class='media'>
+                            <a class='thumbnail pull-left' href='#'> <img class='media-object' src= '$img' style='width: 72px; height: 72px;'> </a>
+                            <div class='media-body'>
+                                <h4 class='media-heading'><a href='#'>" . $infoproduct["StockItemName"] . "</a></h4>
+                                
+                                <span> </span><span class='text-success'><strong>" . $infoproduct["QuantityOnHand"] . " Productid: $productid </strong></span>
+                            </div>
+                        </div></td>
+                        <td class='col-sm-1 col-md-1' style='text-align: center'>
+                        <form method='post' action='cart.php'>
+                                <input type='Hidden' name='productid' value='$productid'>
+                                <input type='submit' value='pas aan'>
+                                <input type='number' name='quantity' value='$aantal' >
+                            </form>
+                        </td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>" . round($infoproduct["SellPrice"], 2) . "</strong></td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>" . round($infoproduct["SellPrice"], 2) * $aantal ."</strong></td>
+                            <td class='col-sm-1 col-md-1'>
+                            <form method='post' action='cart.php'>
+                                <input type='Hidden' name='Remove' value='$productid'>
+                                <input type='submit' value='verwijder' style='background-color: red;color: white;'>
+                            </form>
+                        </td>
                         
-
-
-
-
-                    function PrintProductRow($productID, $image, $name, $isInStock, $quantity, $price) {
-                      /*
-                       * <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>Placeholder</td>
-                        <td>In stock</td>
-                        <td></td>
-                        <td class="text-right">000 €</td>
                     </tr>
-                       * */
-
-
-
-
-                        $quantity = 1;
-			            $qp = $price * $quantity;
-
-                      print("<tr>");
-
-                      print("<td><img src=\"Public/" . $image . "\" alt=\"Product Plaatje\"></td>");
-                      print("<td>" . $name . "</td>");
-                      print("<td>" . ($isInStock ? "Op voorraad" : "Niet op voorraad") . "</td>");
-                      print('<td><input class="form-control" type="text" value="' . $quantity . '" /></td>');
-                      print("<td class=\"text-right\">€ " . $qp . '</td>');
-                      print('<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></td>');
-
-                      print("</tr>");
-
-
-
-                    }
-
-
-                    function MapProductIdWithQuantity($products) {
-                      $map = array();
-
-                      foreach ($products as $product) {
-                        if (!array_key_exists($product, $map)) {
-                          $map[$product] = 1;
-                        } else {
-                          $map[$product]++;
-                        }
-                      }
-
-                      return $map;
-                    }
-
-
-                    include_once('Modules/ItemInfo.php');
-
-                    $isCartEmpty = !isset($_SESSION["cart"]) || empty($_SESSION["cart"]);
-
-                    if (!$isCartEmpty) {
-                      $map = MapProductIdWithQuantity($_SESSION["cart"]);
-
-                      foreach ($map as $productID => $quantity) {
-                        $itemInformation = ItemInfo($Connection, $productID);
-
-                        PrintProductRow($productID, $itemInformation->Image, $itemInformation->Name, true, $quantity, $itemInformation->Price);
-                      }
-                    }
-
-                    ?>
-                    </tbody>
-                </table>
-            </div>
+                    ");
+                }
+                     ?>       
+                    
+                    
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong><?php print(round($totaalprijs,2)); ?></strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button></td>
+                        <td>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<span id="noProductsWarning" style="opacity:0">
-  Je hebt nog geen producten in je winkelmandje<br>
-   gedaan, zullen we verder gaan met winkelen?
-</span>
-
-<!-- button section -->
-<div style="text-align: center">
-  <a href="browse.php">
-    <button class="big-button" type="button">Verder winkelen</button>
-  </a>
-  <a href="betaalpagina.php" id="cartToPaymentSectionContainer" >
-    <button class="big-button" type="button">Naar betaling</button>
-  </a>
-  <form id="cartRemoveAllContainer" action="Interface/TruncateCart.php" method="post">
-    <input type="submit" value="Verwijder alles">
-  </form>
-</div>
-
-<?php
-/**
- * PREFACE: Het verwijderen van een enkel product van de pagina.
- * --------------------------------------------------------------------------
- * Het verwijderen van een product moet gedaan worden met PHP, want dit is de
- * rol die de session (dus de winkelwagen gegevens) beheert.
- *
- * Nu is het probleem dat PHP wordt uitgevoerd voordat de pagina naar de
- * browser wordt gestuurd. Om dit te 'omzeilen' kunnen we gebruik maken van
- * van <form>s. Dit kunnen we doen op twee manieren:
- *
- * 1. Bij elk product een nieuwe <form> te gebruiken en daar een
- * <input type="hidden" value="..."> te plaatsen met als waarde het product ID.
- * Dit is een heel lelijke manier om het te doen, en dit valt ook onder
- * DOM-bloating.
- *
- * 2. Bij elk product een custom attribuut te gebruiken, met als waarde de
- * product ID. (data-product-id="..."). Dan hebben we onderaan de pagina een
- * JavaScript blok die voor elk element met zo'n attribuut een actie geeft voor
- * als je op de 'Verwijder' knop drukt.
- *
- *
- *
- */
-?>
-<script>
-  /**
-   * Pak elk <td> element met een data-product-id attribuut.
-   */
-  let collection = document.querySelectorAll("td[data-product-id]");
-
-  /**
-   * De status als een item wordt verwijdert of niet.
-   *
-   * Als je een item verwijdert, duurt het even om te laden. Als de gebruiker
-   * in de tussentijd nog een product verwijdert, kan het niet helemaal
-   * kloppen.
-   */
-  let isInProgress = false;
-
-  function activateProgress() {
-    if (isInProgress) {
-        return false;
-    }
-
-    isInProgress = true;
-    console.log("Progress: activating...");
-
-    for (let i = 0; i < collection.length; i++) {
-      let trashButton = collection[i].querySelector("i.fa-trash");
-      trashButton.parentElement.style.backgroundColor = "#aaa";
-      trashButton.enabled = false;
-    }
-
-    console.log("Progress: activated");
-
-    return true;
-  }
-
-  function deactivateProgress() {
-    console.log("Progress: deactivating... ");
-    for (let i = 0; i < collection.length; i++) {
-        let trashButton = collection[i].querySelector("i.fa-trash");
-        trashButton.parentElement.style.backgroundColor = "";
-        trashButton.enabled = true;
-    }
-
-    console.log("Progress: deactivated");
-    isInProgress = false;
-  }
-
-  /**
-   * Deze functie zorgt ervoor dat de melding dat-er-geen-producten-in-de
-   * winkelwagen-zitten wordt weergegeven als er geen producten zijn, of anders
-   * verstopt hij deze weer.
-   *
-   * Ook verstopt hij de irrelevante knoppen/informatie als er geen producten
-   * in de winkelwagen zitten.
-   */
-  function tryUpdateWarningMessage(productCount) {
-    let messageElement = document.getElementById("noProductsWarning");
-    let shoppingCartTitle = document.getElementById("shoppingCartTitle");
-
-    /**
-     * Lijst met irrelevante elementen als de winkelwagen leeg is.
-     */
-    let containers = ["tableContainer", "cartToPaymentSectionContainer", "cartRemoveAllContainer", "subTitle"];
-
-    if (productCount.toString() === "0") {
-      messageElement.style.opacity = "1";
-      containers.forEach(name => document.getElementById(name).style.display = "none");
-      shoppingCartTitle.innerText = "Je winkelmandje is leeg.";
-    } else {
-      messageElement.style.opacity = "0";
-      containers.forEach(name => document.getElementById(name).style.display = "");
-      shoppingCartTitle.innerText = "Winkelwagen";
-    }
-  }
-
-  /**
-   * Dit is de functie die aangeroepen wordt als er op de 'Verwijder' knop
-   * gedrukt wordt.
-   */
-  function deleteItem(element) {
-    if (!activateProgress()) {
-        return;
-    }
-
-    let productID = element.parentElement.getAttribute("data-product-id");
-    fetch("Interface/RemoveItem.php?productID=" + productID)
-      .then(result => {
-          tryUpdateWarningMessage(result.headers.get("X-NG-Products"));
-          return result.text();
-      })
-      .then(data => {
-        /**
-         * Interface/RemoveItem.php geeft ons de nieuwe tabel weer terug,
-         * en we vervangen de oude hiermee:
-         */
-        document.querySelector("tbody").innerHTML = data;
-
-        deactivateProgress();
-      });
-  }
-
-
-  tryUpdateWarningMessage(<?php global $productCount; echo $productCount; ?>);
-
-</script>
-
 </body>
 </html>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
+
 include __DIR__ . "/footer.php";
+
 ?>

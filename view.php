@@ -4,6 +4,7 @@ $Connection = null;
 include_once('connect.php');
 
 include "./header.php";
+include __DIR__ . "/functions.php";
 
 $Query = " 
            SELECT SI.StockItemID, 
@@ -31,12 +32,37 @@ if ($ReturnableResult && mysqli_num_rows($ReturnableResult) == 1) {
     $Result = null;
 }
 
-$ProductID = $Result["StockItemID"];
+$id = $_GET['id'];
 
-$wishlistQuery =("
-                    INSERT INTO wishlist (PersonID, StockItemID)
-                    VALUES(" . $_SESSION["UserID"] . ", " . $ProductID . ")");
+$infoproduct = getProductInfo($id);
 
+#defining stockitemID
+$productID = $infoproduct["StockItemID"];
+
+/*
+#wishlistproduct toevoegen aan wishlist
+$wishlistQuery = ("INSERT INTO wishlist (PersonID, StockItemID)
+VALUES(" . $_SESSION["UserID"] . ", " . $productID . ")")
+*/
+
+#array_push ($_SESSION["mand"]
+
+if (isset($_POST["knoptoevoegen"])){
+    if (isset($_SESSION["mand"][$productID])){
+        $melding = "product is nog een keer toegevoegd";
+        $_SESSION["mand"][$productID] = $_SESSION["mand"][$productID] + 1 ;
+        #print("inhoud van de sessie mand: ");
+        #print_r($_SESSION["mand"]);
+
+    }else{
+        $_SESSION["mand"][$productID]=1;
+        #print_r($_SESSION["mand"]);
+        #print("<br>");
+        #print_r($_SESSION);
+        $melding = "product is toegevoegd aan de winkelwagen";
+
+    }
+}
 
 
 
@@ -133,10 +159,7 @@ if ($R) {
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        <form method="POST" action="Modules/AddToShoppingCart.php">
-                          <input name="productID" type="hidden" value="<?php print($_GET['id']);?>">
-                          <button type="submit" id="view-add-shopping-cart">In mijn winkelwagen</button>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -196,28 +219,26 @@ if ($R) {
             # daarvoor is tristans code hergebruikt en variabele verandert naar de query naam:---------- $Query_reviews---------
             # als $R bij ----- mysqli_fetch_all($R, MYSQLI_ASSOC); ----- een 0 geeft, komt hij niet door de if-statement heen en wordt er geen waarde meegegeven
             # vervolgens in het css stukje een foreach gebruikt om de reviews onder elkaar te printen, als er geen reviews zijn, krijg je de pop-up dat er nog geen reviews zijn.
-            /*
-            print ("<form action='view.php?id=$ProductID' method='post'>
+            print ("<form action='view.php?id=$productID' method='post'>
         
+            <input type='submit' value='Voeg toe aan winkelwagen' name='knoptoevoegen'>
+        
+            </form>");
 
-            if(isset($_SESSION['UserID'])){
-            print ("<form action='view.php?id=$ProductID' action='$wishlistQuery' method='post'>
-
-            if(isset($_SESSION['UserID'])){
-            print ("<form action='view.php?id=$ProductID' action='$wishlistQuery' method='post'>
-
+            print ("<form action='view.php?id=$productID' method='post'>
+        
             <input type='submit' value='Voeg toe aan wishlist' name='knoptoevoegenwish'>
         
             </form>");
-            }
-            */
 
 
-        
 
-            if (isset($melding)){
-                print($melding);
-            }
+        if (isset($melding)){
+            print($melding);
+        }
+
+
+        ?>
 
 
             $Query_reviews = "
