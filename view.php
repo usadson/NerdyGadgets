@@ -159,7 +159,7 @@ if ($R) {
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $Result['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        
+
                     </div>
                 </div>
             </div>
@@ -185,21 +185,7 @@ if ($R) {
                 foreach ($CustomFields as $SpecName => $SpecText) { ?>
                     <tr>
                         <td>
-                            <?php
-                            if($SpecName == 'CountryOfManufacture'){
-                                print('Land van herkomst:');
-                            }
-                            elseif($SpecName == 'ShelfLife'){
-                                print('Houdbaarheid');
-                            }
-                            elseif($SpecName == 'Range'){
-                                print('Leeftijdscategorie');
-                            }
-
-
-
-                            else{
-                            print $SpecName;} ?>
+                            <?php print $SpecName; ?>
                         </td>
                         <td>
                             <?php
@@ -252,7 +238,7 @@ if ($R) {
         }
 
 
-        
+        ?>
 
 
             $Query_reviews = "
@@ -286,8 +272,7 @@ if ($R) {
             </p>
 
             <div>
-                <a  href="<?php if($LoggedIN == TRUE){print ('review.php');}else{print('login.php');} ?>">
-
+                <a  href="http://localhost/NerdyGadgets/login.php">
                     <button type ="submit" id="place-review-button">plaats een review</button>
                 </a>
             </div>

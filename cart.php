@@ -8,10 +8,10 @@ include __DIR__ . "/functions.php";
 
 <style>
 td {
-    color: aliceblue
+    color: black
   }
   th {
-    color: aliceblue
+    color: black
   }
 </style>
 
@@ -53,14 +53,9 @@ td {
                 if (isset($_POST["Remove"])){
                     $RemoveID = $_POST["Remove"];
                     #print("ik ga nu de id verwijderen $RemoveID");
-                    unset($_SESSION["mand"][ $RemoveID ]);
+                    unset($_SESSION["mand"][ $RemoveID ]);  
                 }
                 
-                if(isset($_POST["quantity"])){
-                    $aantal = $_POST["quantity"];
-                    $productid = $_POST["productid"];
-                    $_SESSION["mand"][$productid] = $aantal;
-                }
                 
                 $totaalprijs = 0;
                 foreach($_SESSION["mand"] as $productid => $aantal){
@@ -124,8 +119,8 @@ td {
                                 <input type='number' name='quantity' value='$aantal' >
                             </form>
                         </td>
-                            <td class='col-sm-1 col-md-1 text-center'><strong>" . round($infoproduct["SellPrice"], 2) . "</strong></td>
-                            <td class='col-sm-1 col-md-1 text-center'><strong>" . round($infoproduct["SellPrice"], 2) * $aantal ."</strong></td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . round($infoproduct["SellPrice"], 2) . "</strong></td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . round($infoproduct["SellPrice"], 2) * $aantal ."</strong></td>
                             <td class='col-sm-1 col-md-1'>
                             <form method='post' action='cart.php'>
                                 <input type='Hidden' name='Remove' value='$productid'>
@@ -135,7 +130,17 @@ td {
                         
                     </tr>
                     ");
+
+                    if(isset($_POST["quantity"])){
+                        if($_POST["quantity"] > 0 && $_POST["quantity"] < $infoproduct["QuantityOnHand"]){
+                        $aantal = $_POST["quantity"];
+                        $productid = $_POST["productid"];
+                        $_SESSION["mand"][$productid] = $aantal;
+                        }
+                    }
+                    
                 }
+                
                      ?>       
                     
                     
@@ -144,20 +149,25 @@ td {
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong><?php print(round($totaalprijs,2)); ?></strong></h3></td>
+                        <td class="text-right"><h3><strong>€<?php print(round($totaalprijs,2)); ?></strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                            <a  href="browse.php">
+                                <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                </button>
+                             </a>
+                        </td>
                         <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                            <a  href="betaalpagina.php">
+                                <button type="button" class="btn btn-success">
+                                 Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button></td>
+                            </a>
                     </tr>
                 </tbody>
             </table>
