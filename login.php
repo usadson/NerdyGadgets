@@ -69,7 +69,7 @@ include ('header.php');
         }
         else
         {
-            print("<h1> hij doet het niet </h1>");
+            print("<h3 style='color: red;'> Uw opgegeven wachtwoord en e-mailadress combinatie komt bij ons niet voor.</h3>");
         }
     }
     ?>
