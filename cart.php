@@ -5,9 +5,6 @@ include __DIR__ . "/functions.php";
 
 #error_reporting(0);
 
-if ($LoggedIN){
-    unset($_SESSION["mand"]);
-}
 ?>
 
 <style>
