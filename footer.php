@@ -1,7 +1,8 @@
 <?php
-include __DIR__ . "/header.php";
+#print('cart.php including header:');
+#include __DIR__ . "/header.php";
 ?>
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <style>
 footer {
 position: absolute;
@@ -11,9 +12,13 @@ border-top-width: 5px;
 border-top-style: solid;
 border-top-color: black;
 color: black;
-}
-</style>
 
+}
+
+</style>
+<link rel="stylesheet" href="Public/CSS/Style.css" type="text/css">
+<link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="Public/CSS/nha3fuq.css">
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4">
 
