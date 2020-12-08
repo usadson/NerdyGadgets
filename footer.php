@@ -18,10 +18,12 @@ background-color: white;
     bottom: 0;
 }
 
-</style>
 <link rel="stylesheet" href="Public/CSS/Style.css" type="text/css">
 <link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="Public/CSS/nha3fuq.css">
+
+</style>
+
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4 top">
 
