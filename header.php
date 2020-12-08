@@ -13,6 +13,9 @@ if (isset($_SESSION['UserID'])) {
         $FullName = $row['FullName'];
     }
 }
+
+
+
 else{
     $LoggedIN = FALSE;
 }
