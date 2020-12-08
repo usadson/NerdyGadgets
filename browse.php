@@ -215,11 +215,11 @@ if (isset($amount)) {
         foreach ($ReturnableResult as $row) {
             ?>
             <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
-                <div id="ProductFrame">
+                <div id="ProductFrame" style="background-color: white">
                     <?php
                     if (isset($row['ImagePath'])) { ?>
                         <div class="ImgFrame"
-                             style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-repeat: no-repeat; background-position: center;"></div>
+                             style="background-image: url('<?php print "Public/StockItemIMG/" . $row['ImagePath']; ?>'); background-size: 230px; background-color: white; background-repeat: no-repeat; background-position: center;"></div>
                     <?php } else if (isset($row['BackupImagePath'])) { ?>
                         <div class="ImgFrame"
                              style="background-image: url('<?php print "Public/StockGroupIMG/" . $row['BackupImagePath'] ?>'); background-size: cover;"></div>
@@ -264,11 +264,14 @@ if (isset($amount)) {
                     } else { ?>
                         <button id="page_number" class="PageNumber" value="<?php print($i - 1); ?>" type="submit"
                                 name="page_number"><?php print($i); ?></button>
+
                     <?php }
                 }
             }
             ?>
+
         </form>
+        <br><br><br><br><br><br>
         <?php
     } else {
         ?>
