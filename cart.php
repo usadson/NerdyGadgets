@@ -122,8 +122,8 @@ th {
                                 <input type='number' name='quantity' value='$aantal' >
                             </form>
                         </td>
-                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . round($infoproduct["SellPrice"], 2) . "</strong></td>
-                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . round($infoproduct["SellPrice"], 2) * $aantal ."</strong></td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . number_format((float)$infoproduct["SellPrice"], 2, '.', '') . "</strong></td>
+                            <td class='col-sm-1 col-md-1 text-center'><strong>€" . number_format((float)$infoproduct["SellPrice"] * $aantal, 2, '.', '')  ."</strong></td>
                             <td class='col-sm-1 col-md-1'>
                             <form method='post' action='cart.php'>
                                 <input type='Hidden' name='Remove' value='$productid'>
