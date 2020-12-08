@@ -27,6 +27,42 @@ if(!isset($_SESSION["mand"])){
 if(!isset($_SESSION["wishlist"])){
     $_SESSION["wishlist"]=[];
 }
+if($LoggedIN == TRUE){
+    $sqlcartcheck = mysqli_query($Connection, "SELECT * FROM people_cart WHERE PersonID = " . $_SESSION['UserID']);
+    if (mysqli_num_rows($sqlcartcheck) == 0) {
+        $sqladdcart = ("
+INSERT INTO people_cart(PersonID, cart)
+VALUES (" . $_SESSION['UserID'] . ", 'a:0:{}')"); /* */
+        mysqli_query($Connection, $sqladdcart);
+    }
+    /*Begin versturen*/
+    /* Maakt informatie cart klaar voor database*/
+    $serieel = serialize($_SESSION['mand']);
+
+
+    /*SQL insert cart deel*/
+    $sqlupdatecart = ("
+UPDATE people_cart
+ SET cart = '" . $serieel . "' 
+ WHERE PersonID = " . $_SESSION['UserID']);
+    mysqli_query($Connection, $sqlupdatecart);
+    /* Einde versturen */
+
+
+    /* zet informatie terug naar php array */
+
+    $sqlgetcart = mysqli_query($Connection, "SELECT cart FROM people_cart WHERE PersonID = " . $_SESSION['UserID']);
+
+    $_SESSION['mand'] = [];
+    while($row = mysqli_fetch_assoc($sqlgetcart)) {
+        $_SESSION['mand'] = unserialize($row['cart']);
+    }
+
+
+    $nonserieel = unserialize($serieel);
+}
+
+
 
 ?>
 <!DOCTYPE html>

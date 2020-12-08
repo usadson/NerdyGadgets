@@ -64,6 +64,13 @@ include ('header.php');
 
             }
             print("<h1>Hij werkt dus gewoon</h1>");
+
+            $sqlgetcart = mysqli_query($Connection, "SELECT cart FROM people_cart WHERE PersonID = " . $_SESSION['UserID']);
+
+            $_SESSION['mand'] = [];
+            while($row = mysqli_fetch_assoc($sqlgetcart)) {
+                $_SESSION['mand'] = unserialize($row['cart']);
+            }
             print('<script type="text/javascript">location.href = "index.php";</script>'); /*SRC="https://stackoverflow.com/questions/4871942/how-to-redirect-to-another-page-using-php"*/
 
         }
