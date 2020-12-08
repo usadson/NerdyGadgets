@@ -4,7 +4,7 @@
 ?>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <style>
-footer {
+ footer {
 position: absolute;
 bottom: 10px;
 height: 120px;
@@ -12,7 +12,10 @@ border-top-width: 5px;
 border-top-style: solid;
 border-top-color: black;
 color: black;
-
+background-color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
 </style>
@@ -20,7 +23,7 @@ color: black;
 <link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="Public/CSS/nha3fuq.css">
 <!-- Footer -->
-<footer class="page-footer font-small teal pt-4">
+<footer class="page-footer font-small teal pt-4 top">
 
     <!-- Footer Text -->
     <div class="container-fluid text-center text-md-left">
@@ -60,6 +63,7 @@ color: black;
     <!-- Footer Text -->
 
     <!-- Copyright -->
+
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
         <a href="http://localhost/nerdygadgets/"> NerdyGadgets TM</a>
     </div>

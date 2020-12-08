@@ -215,7 +215,7 @@ if (isset($amount)) {
         foreach ($ReturnableResult as $row) {
             ?>
             <a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
-                <div id="ProductFrame">
+                <div id="ProductFrame" style="background-color: white">
                     <?php
                     if (isset($row['ImagePath'])) { ?>
                         <div class="ImgFrame"
@@ -264,11 +264,14 @@ if (isset($amount)) {
                     } else { ?>
                         <button id="page_number" class="PageNumber" value="<?php print($i - 1); ?>" type="submit"
                                 name="page_number"><?php print($i); ?></button>
+
                     <?php }
                 }
             }
             ?>
+
         </form>
+        <br><br><br><br><br><br>
         <?php
     } else {
         ?>
