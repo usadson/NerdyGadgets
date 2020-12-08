@@ -2,6 +2,7 @@
 
 session_start();
 #session_destroy();
+#error_reporting(0);
 include_once "connect.php";
 global $Connection;
 if (isset($_SESSION['UserID'])) {

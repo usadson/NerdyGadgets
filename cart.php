@@ -3,14 +3,14 @@
 include __DIR__ . "/header.php";
 include __DIR__ . "/functions.php";
 
-error_reporting(0);
+#error_reporting(0);
 ?>
 
 <style>
 td {
     color: black
   }
-  th {
+th {
     color: black
   }
 </style>
@@ -49,7 +49,9 @@ td {
                 <?php
                 #print("dit is de inhoud van POST: ");
                 #print_r($_POST);
+
                 
+                #verwijderknop
                 if (isset($_POST["Remove"])){
                     $RemoveID = $_POST["Remove"];
                     #print("ik ga nu de id verwijderen $RemoveID");

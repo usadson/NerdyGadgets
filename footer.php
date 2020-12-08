@@ -14,6 +14,10 @@ color: black;
 }
 </style>
 
+<link rel="stylesheet" href="Public/CSS/Style.css" type="text/css">
+<link rel="stylesheet" href="Public/CSS/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="Public/CSS/nha3fuq.css">
+
 <!-- Footer -->
 <footer class="page-footer font-small teal pt-4">
 
