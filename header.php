@@ -150,12 +150,12 @@ UPDATE people_cart
                     <li>
                         <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
                     </li>
-                    <?php
-                    $Query = "
+                <?php
+                $Query = "
                 SELECT StockGroupID, StockGroupName, ImagePath
-                FROM stockgroups 
+                FROM stockgroups
                 WHERE StockGroupID IN (
-                                        SELECT StockGroupID 
+                                        SELECT StockGroupID
                                         FROM stockitemstockgroups
                                         ) AND ImagePath IS NOT NULL
                 ORDER BY StockGroupID ASC";
@@ -169,6 +169,7 @@ UPDATE people_cart
                             <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
                                class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
                         </li>
+                    
                         <?php
                     }
                     ?>
@@ -208,16 +209,7 @@ UPDATE people_cart
           <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
         </a>
         -->
-
-
-
-
-
-        <!-- Dit is het icoon van de shoppingcart -->
-    </div>
-</div>
-<div class="row" id="Content">
-    <div class="col-12">
-        <div id="SubContent">
-
-        </html>
+		 
+          <!-- Dit is het icoon van de shoppingcart -->
+        </div>
+    </html>

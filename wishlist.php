@@ -12,7 +12,7 @@ error_reporting(0);
 
 <style>
     td {
-        color: Black    
+        color: Black
     }
     
     tr {

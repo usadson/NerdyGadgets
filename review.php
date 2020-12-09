@@ -6,7 +6,7 @@ global $Connection;
 
     <script src="https://use.fontawesome.com/a6f0361695.js"></script>
 
-    <div align="center">
+    <div align="center" class="ExactCenter">
     <h2 id="fh2">schrijf hier een review over het product</h2>
     <h6 id="fh6">uw review gaat ons helpen met het aanbieden van onze producten.</h6>
 
@@ -15,7 +15,7 @@ global $Connection;
         <div class="pinfo">naam en achternaam</div>
 
         <div class="form-group">
-            <div class="col-md-4 inputGroupContainer">
+            <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input  name="name" placeholder="Jan van Dijk" class="form-control"  type="text">
@@ -24,7 +24,7 @@ global $Connection;
         </div>
 
         <div class="form-group">
-            <div class="col-md-4 inputGroupContainer">
+            <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                     <input name="email" type="email" class="form-control" placeholder="janvandijk@gmail.com">
@@ -36,7 +36,7 @@ global $Connection;
 
 
         <div class="form-group">
-            <div class="col-md-4 inputGroupContainer">
+            <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-heart"></i></span>
                     <select class="form-control" id="rate">
@@ -54,7 +54,7 @@ global $Connection;
 
 
         <div class="form-group">
-            <div class="col-md-4 inputGroupContainer">
+            <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                     <textarea class="form-control" name="comment" id="review" rows="3"></textarea>

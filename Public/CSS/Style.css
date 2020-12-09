@@ -354,6 +354,13 @@ ul#ul-class-price li {
 .StockItemPriceText:hover {
     text-decoration: none;
 }
+.ExactCenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
 .StockItemID {
     font-family: vortice-concept, sans-serif;
     color: #676EFF;

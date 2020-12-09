@@ -292,19 +292,11 @@ if ($R) {
                 }
                 ?>
             </p>
-<<<<<<< Updated upstream
-
-            <div>
-                <a  href="http://localhost/NerdyGadgets/login.php">
-                    <button type ="submit" id="place-review-button">plaats een review</button>
-                </a>
-=======
             <div>
             <form action="review.php" method="post">
                 <input type="hidden" name="StockItemID" value='<?php echo $Result['StockItemID']?>'>
                 <button type="submit" name="your_name" value="your_value" id="place-review-button">plaats een review</button>
             </form>
->>>>>>> Stashed changes
             </div>
 
         </div>
