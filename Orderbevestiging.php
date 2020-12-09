@@ -97,9 +97,9 @@ $totaalprijs = 0;
                         <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
                             <img align ='left' class='media-object' src= '$img' style='width: 10%;'>
                             
-                                <h3 align='right' class='media-heading'>" . $infoproduct["StockItemName"] . "</h3>
+                                <h3 align='right' class='media-heading' style='color: blue;'>" . $infoproduct["StockItemName"] . "</h3>
                                 
-                                <h4 align='right'>Prijs $aantal * " . $infoproduct["SellPrice"] . " = (" . $totaalprijsproduct . ")</strong></span>
+                                <h4 align='right' style='color: green;'>Prijs $aantal * " . $infoproduct["SellPrice"] . " = (" . $totaalprijsproduct . ")</h4>
                             
                         
                     ");
