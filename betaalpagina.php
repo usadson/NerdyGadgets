@@ -1,6 +1,21 @@
 /*om header.php mee te nemen (layout van de pagina)*/
 <?php
 include __DIR__ . "/header.php";
+include_once "connect.php";
+global $Connection;
+
+if($LoggedIN == TRUE) {
+    $sqlUserInfo = mysqli_query($Connection, "SELECT * FROM people WHERE PersonID = " . $_SESSION['UserID'] . " LIMIT 1");
+    while ($row = mysqli_fetch_assoc($sqlUserInfo)) {
+        $FullName = $row['FullName'];
+        $FirstName = $row['PreferredName'];
+        $Mail = $row['EmailAddress'];
+    }
+    $LastName = str_replace("" . $FirstName . "", "", "" . $FullName . "");
+
+    print $LastName;
+    print $Mail;
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +62,7 @@ include __DIR__ . "/header.php";
                         <!--firstName-->
                         <div class="md-form ">
                             <label for="firstName" class="">Voornaam:</label>
-                            <input type="text" id="firstName" class="form-control" required>
+                            <input type="text" id="firstName" value="<?php if($LoggedIN == TRUE) {print $FirstName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
