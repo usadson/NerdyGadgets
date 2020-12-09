@@ -75,7 +75,7 @@ if($LoggedIN == TRUE) {
                         <!--lastName-->
                         <div class="md-form">
                             <label for="lastName" class="">Achternaam:</label>
-                            <input type="text" id="lastName" class="form-control" required>
+                            <input type="text" id="lastName" value="<?php if($LoggedIN == TRUE) {print $LastName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
@@ -89,7 +89,7 @@ if($LoggedIN == TRUE) {
                 <!--email-->
                 <div class="md-form mb-5">
                     <label for="email" class="">Email:</label>
-                    <input type="text" id="email" class="form-control" placeholder="youremail@example.com" required>
+                    <input type="text" id="email" value="<?php if($LoggedIN == TRUE) {print $Mail;}?>" class="form-control" placeholder="youremail@example.com" required>
 
                 </div>
 
@@ -117,7 +117,7 @@ if($LoggedIN == TRUE) {
                         <label for="country">Land:</label>
                         <select class="custom-select d-block w-100" id="country" required>
                             <option value="">...Kies...</option>
-                            <option>Nedrland</option>
+                            <option>Nederland</option>
 
                         </select>
 
