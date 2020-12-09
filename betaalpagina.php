@@ -36,7 +36,7 @@ include __DIR__ . "/header.php";
 
 
             <!--Card content-->
-            <form class="align-content-center card-body" action="Orderbevestiging.php">
+            <form class="align-content-center card-body" method="get" action="Orderbevestiging.php">
 
                 <!--Grid row-->
                 <div class="row">
