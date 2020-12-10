@@ -47,6 +47,10 @@ $sqlmyorders = mysqli_query($Connection, "SELECT C_OrderID FROM customer_orders 
 foreach($sqlmyorders AS $orderIDarray){
 #print_r($orderID);
 $orderID = $orderIDarray['C_OrderID'];
+?>
+    <button class="accordion">Ordernummer: <?php print($orderID); ?></button>
+    <div class="panel" style="padding-top: 2%">
+    <?php
 
     $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $orderID . "' LIMIT 1");
 
@@ -54,7 +58,7 @@ $orderID = $orderIDarray['C_OrderID'];
 
         $producten = unserialize($row['products']);
     }
-    print_r($producten);
+    #print_r($producten);
 
     $totaalprijs = 0;
 
@@ -62,7 +66,8 @@ $orderID = $orderIDarray['C_OrderID'];
     foreach($producten as $productid => $aantal){
         $infoproduct = getProductInfo($productid);
         $totaalprijsproduct = 0;
-
+        $aantalproduct = $producten[$productid];
+        #print ("<h1>" . $aantalproduct . "</h1>");
         $Query = "
                     SELECT ImagePath
                     FROM stockitemimages 
@@ -84,8 +89,8 @@ $orderID = $orderIDarray['C_OrderID'];
             #print ($img);
         }
 
-        $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantal);
-        $totaalprijsproduct = ($infoproduct["SellPrice"]* $aantal);
+        $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantalproduct);
+        $totaalprijsproduct = ($infoproduct["SellPrice"]* $aantalproduct);
 
         /*print("
                     
@@ -99,29 +104,34 @@ $orderID = $orderIDarray['C_OrderID'];
                         
                     ");*/
 
-    }
+
 
     ?>
 
-    <button class="accordion">Ordernummer: <?php print($orderID); ?></button>
-    <div class="panel">
-        <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
-        <img align ='left' class='media-object' src= '$img' style='width: 10%;'>
+
+        <img align ='left' class='media-object' src= '<?php print $img; ?>' style='width: 8%;'>
 
         <h3 align='right' class='media-heading' style='color: blue;'><?php print $infoproduct["StockItemName"]; ?></h3>
 
-        <h4 align='right' style='color: green;'><?php print ("Prijs " . $infoproduct["SellPrice"]  . " * " . $aantal . " = (" . $totaalprijsproduct . ")");?></h4>
+        <h4 align='right' style='color: green;'><?php print ("Prijs " . number_format((float)$infoproduct["SellPrice"], 2, '.', '')  . " * " . $aantalproduct . " = " . number_format((float)$totaalprijsproduct, 2, '.', '') . " €");?></h4>
+        <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
 
 
 
 
 
-    </div>
+
 
 
     <?php
 }
+    ?>
+      <h2 align="right"><?php print number_format((float)$totaalprijs, 2, '.', '') ?> €.-</h2>
+    </div>
+    <?php
+}
 ?>
+
 </div>
 
 
