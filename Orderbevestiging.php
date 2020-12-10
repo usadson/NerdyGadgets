@@ -9,6 +9,9 @@ global $Connection;
   `products` LONGTEXT NOT NULL,
   `PersonID` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`C_OrderID`));
+
+
+
  */
 if(!isset($_SESSION['Done'])) {
     $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM customer_orders LIMIT 1");

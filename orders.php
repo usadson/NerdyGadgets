@@ -31,7 +31,10 @@ global $Connection;
     </style>
 
 <?php if(isset($_SESSION['UserID'])){
+
+
     ?>
+
 
 
 
@@ -45,6 +48,7 @@ global $Connection;
 
 /* NIEUWE CODE */
 $sqlmyorders = mysqli_query($Connection, "SELECT C_OrderID FROM customer_orders WHERE PersonID = " . $_SESSION['UserID'] . " ");
+
 foreach($sqlmyorders AS $orderIDarray){
 #print_r($orderID);
 $orderID = $orderIDarray['C_OrderID'];
@@ -145,7 +149,7 @@ $orderID = $orderIDarray['C_OrderID'];
     <?php
 }
 ?>
-
+        <br><br><br><br>
 </div>
 
 
