@@ -202,8 +202,7 @@ UPDATE people_cart
                 </ul>
             </div>
         </div>
-
-
+    <br><br><br><br><br><br>
         <!-- Icoon van de wishlist -->
         <!--<a href="wishlist.php">
           <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
