@@ -20,6 +20,14 @@ else{
     $LoggedIN = FALSE;
 }
 
+if(isset($_POST["quantity"])) {
+    if ($_POST["quantity"] > 0 && $_POST["quantity"] <= $infoproduct["QuantityOnHand"]) {
+        $aantal = $_POST["quantity"];
+        $productid = $_POST["productid"];
+        $_SESSION["mand"][$productid] = $aantal;
+    }
+}
+
 if(!isset($_SESSION["mand"])){
     $_SESSION["mand"]=[];
 }  
