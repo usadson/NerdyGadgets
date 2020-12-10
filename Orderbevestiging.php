@@ -4,14 +4,14 @@ include_once "connect.php";
 include __DIR__ . "/functions.php";
 global $Connection;
 /*
-   CREATE TABLE `nerdygadgets`.`consumer_orders` (
+   CREATE TABLE `nerdygadgets`.`customer_orders` (
   `C_OrderID` INT NOT NULL,
   `products` LONGTEXT NOT NULL,
   `PersonID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idconsumer_orders`));
+  PRIMARY KEY (`C_OrderID`));
  */
 if(!isset($_SESSION['Done'])) {
-    $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM consumer_orders LIMIT 1");
+    $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM customer_orders LIMIT 1");
     while ($row = mysqli_fetch_assoc($sqlID)) {
         $_SESSION['OrderID'] = ($row['ID'] + 1);
     }
@@ -28,11 +28,11 @@ if(!isset($_SESSION['Done'])) {
     $_SESSION['mand'] = [];
 
 
-    $sqlordertodatabase = ("INSERT INTO consumer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ")");
+    $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ")");
     mysqli_query($Connection, $sqlordertodatabase);
     $_SESSION['Done'] = TRUE;
 }
-$sqlItems = mysqli_query($Connection, "SELECT products FROM consumer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
+$sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
 
 while($row = mysqli_fetch_assoc($sqlItems)) {
     $BoughtProducts = unserialize($row['products']);
@@ -103,14 +103,6 @@ $totaalprijs = 0;
                             
                         
                     ");
-            #voorwaarde voor de quantiteit knop
-            if(isset($_POST["quantity"])){
-                if($_POST["quantity"] > 0 && $_POST["quantity"] <= $infoproduct["QuantityOnHand"]){
-                    $aantal = $_POST["quantity"];
-                    $productid = $_POST["productid"];
-                    $_SESSION["mand"][$productid] = $aantal;
-                }
-            }
 
         }
 
