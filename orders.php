@@ -30,12 +30,13 @@ global $Connection;
         }
     </style>
 
+<?php if(isset($_SESSION['UserID'])){
+    ?>
 
 
 
 
-
-<div align="center" width="80%" style="background-color: white"><h1>Uw bestellingen</h1>
+    <div align="center" width="80%" style="background-color: white"><br><br><h1>Uw bestellingen</h1><br><br>
 <?php
 
 
@@ -49,8 +50,21 @@ foreach($sqlmyorders AS $orderIDarray){
 $orderID = $orderIDarray['C_OrderID'];
 ?>
     <button class="accordion">Ordernummer: <?php print($orderID); ?></button>
-    <div class="panel" style="padding-top: 2%">
-    <?php
+    <div class="panel" style="padding-top: 1%; padding-left: 2%; padding-right: 2%;">
+        <div align="left">
+        <h3 align="left">Verzonden naar:</h3>
+        <div style="background-color: lightgray;width: 20%;">
+        <p align="left" style="padding-left: 8px">
+            Voornaam:    XXXX<br>
+            Achternaam:  XXXX<br>
+            Adress:      XXXX<br>
+            Postcode:    XXXX
+        </p>
+        </div>
+        </div>
+        <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
+
+        <?php
 
     $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $orderID . "' LIMIT 1");
 
@@ -155,6 +169,10 @@ $orderID = $orderIDarray['C_OrderID'];
     }
 </script>
 <?php
-
+}
+else{
+    print('<script type="text/javascript">location.href = "login.php";</script>'); /*SRC="https://stackoverflow.com/questions/4871942/how-to-redirect-to-another-page-using-php"*/
+}
 include __DIR__ . "/footer.php";
+
 ?>
