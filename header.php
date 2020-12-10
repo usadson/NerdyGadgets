@@ -183,6 +183,7 @@ UPDATE people_cart
                             print('<li><img src="Public/Img/Account.png" style="padding-right: 0px;width: 4%;"> <i  style="color:#676EFF;"></i> <div class="dropdown">
   <button class="dropbtn">' . $FullName . '</button>
   <div class="dropdown-content">
+    <a href="Orders.php">Bestellingen</a>
     <a href="wishlist.php">Wishlist</a>
     <a style="color: white; background-color: red;" href="Uitloggen.php">Uitloggen</a>
   </div>
