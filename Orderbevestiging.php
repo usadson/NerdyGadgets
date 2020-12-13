@@ -13,7 +13,7 @@ global $Connection;
 
 
  */
-if(!isset($_SESSION['Done'])) {
+if($_SESSION['mand'] != []) {
     $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM customer_orders LIMIT 1");
     while ($row = mysqli_fetch_assoc($sqlID)) {
         $_SESSION['OrderID'] = ($row['ID'] + 1);
@@ -33,7 +33,6 @@ if(!isset($_SESSION['Done'])) {
 
     $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ")");
     mysqli_query($Connection, $sqlordertodatabase);
-    $_SESSION['Done'] = TRUE;
 }
 $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
 
