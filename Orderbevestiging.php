@@ -59,10 +59,10 @@ $totaalprijs = 0;
     <h1 align="left" style="padding-left: 2%;">OrderInformatie</h1>
     <h2 align="left" style="padding-left: 2%;">Gegevens</h2>
     <p align="left" style="padding-left: 2%;">
-    Voornaam:    XXXX<br>
-    Achternaam:  XXXX<br>
-    Adress:      XXXX<br>
-    Postcode:    XXXX
+    Voornaam:    <?php print ($_POST['firstName']); ?><br>
+    Achternaam:  <?php print ($_POST['lastName']); ?><br>
+    Adress:      <?php print ($_POST['address'] . ", " . $_POST['state'] . ", " . $_POST['country']); ?><br>
+    Postcode:    <?php print ($_POST['address-2']); ?>
     </p>
     <h2 align="left" style="padding-left: 2%;">Producten</h2>
         <?php

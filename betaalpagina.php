@@ -51,7 +51,8 @@ if($LoggedIN == TRUE) {
 
 
             <!--Card content-->
-            <form class="align-content-center card-body" method="get" action="Orderbevestiging.php">
+            <form class="align-content-center card-body" method="post" action="Orderbevestiging.php">
+
 
                 <!--Grid row-->
                 <div class="row">
@@ -62,7 +63,7 @@ if($LoggedIN == TRUE) {
                         <!--firstName-->
                         <div class="md-form ">
                             <label for="firstName" class="">Voornaam:</label>
-                            <input type="text" id="firstName" value="<?php if($LoggedIN == TRUE) {print $FirstName;} else{print "";} ?>" class="form-control" required>
+                            <input type="text" id="firstName" name="firstName" value="<?php if($LoggedIN == TRUE) {print $FirstName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
@@ -75,7 +76,7 @@ if($LoggedIN == TRUE) {
                         <!--lastName-->
                         <div class="md-form">
                             <label for="lastName" class="">Achternaam:</label>
-                            <input type="text" id="lastName" value="<?php if($LoggedIN == TRUE) {print $LastName;} else{print "";} ?>" class="form-control" required>
+                            <input type="text" id="lastName" name="lastName" value="<?php if($LoggedIN == TRUE) {print $LastName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
@@ -89,7 +90,7 @@ if($LoggedIN == TRUE) {
                 <!--email-->
                 <div class="md-form mb-5">
                     <label for="email" class="">Email:</label>
-                    <input type="text" id="email" value="<?php if($LoggedIN == TRUE) {print $Mail;}?>" class="form-control" placeholder="youremail@example.com" required>
+                    <input type="text" id="email" name="email" value="<?php if($LoggedIN == TRUE) {print $Mail;}?>" class="form-control" placeholder="youremail@example.com" required>
 
                 </div>
 
@@ -97,14 +98,14 @@ if($LoggedIN == TRUE) {
                 <!--address-->
                 <div class="md-form mb-5">
                     <label for="address" class="">Adres:</label>
-                    <input type="text" id="address" class="form-control" placeholder="" required>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="" required>
 
                 </div>
 
                 <!--address-2-->
                 <div class="md-form mb-5">
                     <label for="address-2" class="">Postcode:</label>
-                    <input type="text" id="address-2" class="form-control" placeholder="" required>
+                    <input type="text" id="address-2" name="address-2" class="form-control" placeholder="" required>
 
                 </div>
 
@@ -115,7 +116,7 @@ if($LoggedIN == TRUE) {
                     <div class="col-lg-4 col-md-12 mb-4">
 
                         <label for="country">Land:</label>
-                        <select class="custom-select d-block w-100" id="country" required>
+                        <select class="custom-select d-block w-100" id="country" name="country" required>
                             <option value="">...Kies...</option>
                             <option>Nederland</option>
 
@@ -127,7 +128,7 @@ if($LoggedIN == TRUE) {
                     <div class="col-lg-4 col-md-6 mb-4">
 
                         <label for="state">Provincie:</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <select class="custom-select d-block w-100" id="state" name="state" required>
                             <option value="">...Kies...</option>
                             <option>Noord-Holland</option>
                             <option>Zuid-Holland</option>
@@ -153,7 +154,7 @@ if($LoggedIN == TRUE) {
                     <div class="col-lg-4 col-md-6 mb-4">
 
                         <label for="state">Betaalmethode:</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <select class="custom-select d-block w-100" id="payment" name="payment" required>
                             <option value="">...Kies...</option>
                             <option>iDeal</option>
                             <option>Credit card</option>
