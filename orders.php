@@ -4,6 +4,7 @@ include_once "connect.php";
 include __DIR__ . "/functions.php";
 global $Connection;
 ?>
+<!-- Hier wordt het visueele deel van de accordion gemaakt-->
     <style>
         .accordion {
             background-color: #eee;
@@ -30,7 +31,9 @@ global $Connection;
         }
     </style>
 
-<?php if(isset($_SESSION['UserID'])){
+<?php
+/* Dit mag alleen uitgevoerd als je ingelog bent */
+if(isset($_SESSION['UserID'])){
 
 
     ?>
