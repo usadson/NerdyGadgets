@@ -14,6 +14,8 @@ global $Connection;
 
 
  */
+
+/*Hier wordt de persoons informatie voor de betaling opgeslagen */
 $Order['Firstname'] = $_POST['firstName'];
 $Order['Lastname'] = $_POST['lastName'];
 $Order['Address'] = $_POST['address'];
@@ -22,7 +24,10 @@ $Order['Country'] = $_POST['country'];
 $Order['PostalCode'] = $_POST['address-2'];
 $Order['payment'] = $_POST['payment'];
 
+/* Hier wordt deze informatie klaar gemaakt voor de database */
 $SerieelOrder =  serialize($Order);
+
+
 #$NietSerieelOrder =  unserialize($SerieelOrder);
 #print_r($Order);
 #print('<br>' . $SerieelOrder . '<br>');
@@ -31,8 +36,10 @@ $SerieelOrder =  serialize($Order);
 
 
 
-
+/* ALS de mand leeg is gaat het script niet door */
 if($_SESSION['mand'] != []) {
+
+    /* Haalt het hoogst mogelijke orderId op en voegt er 1 aan toe zodat dit het nieuwe orderID kan worden */
     $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM customer_orders LIMIT 1");
     while ($row = mysqli_fetch_assoc($sqlID)) {
         $_SESSION['OrderID'] = ($row['ID'] + 1);
@@ -40,25 +47,34 @@ if($_SESSION['mand'] != []) {
 
 #print $NewID;
 
+    /* De standaard user voor niet ingelogden is 4000*/
     $user = 4000;
+
+    /* Als de user ingelogd is word $user gezet naar hun UserID */
     if (isset($_SESSION['UserID'])) {
         $user = $_SESSION['UserID'];
     }
 
+    /* Hier wordt de shoppingcart verwerkt en geleegd */
     $Ordered = $_SESSION['mand'];
     $serieel = serialize($Ordered);
     $_SESSION['mand'] = [];
 
-
+    /* Hier wordt de informatie in de database geplaatst */
     $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ", '" . $SerieelOrder . "')");
     mysqli_query($Connection, $sqlordertodatabase);
 }
+
+/*  Hier worden de gekochte producten nogmaals opgehaald*/
 $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
 
+/* Hier worden de producten van database informatie(string) naar array gezet*/
 while($row = mysqli_fetch_assoc($sqlItems)) {
     $BoughtProducts = unserialize($row['products']);
 }
 #print_r($BoughtProducts);
+
+/* $totaalprijs start op 0 om dat hier op opgeteld moet worden */
 $totaalprijs = 0;
 ?>
 <style>
@@ -73,7 +89,7 @@ $totaalprijs = 0;
     <div align="center">
 
 <h1>Betaling is gelukt!<br> Bedankt voor uw aankoop!</h1>
-
+<!-- Hieronder staan de gegevens van de betaling -->
     <div style="border-bottom: black;">
     <h1 align="left" style="padding-left: 2%;">OrderInformatie</h1>
     <h2 align="left" style="padding-left: 2%;">Gegevens</h2>
@@ -85,6 +101,7 @@ $totaalprijs = 0;
     </p>
     <h2 align="left" style="padding-left: 2%;">Producten</h2>
         <?php
+        /* Hier worden de producten individueel vertaald naar foto's , namen en prijzen (Vergelijkbaar met cart.php) */
         foreach($BoughtProducts as $productid => $aantal){
             $infoproduct = getProductInfo($productid);
             $totaalprijsproduct = 0;
