@@ -52,6 +52,11 @@ $sqlmyorders = mysqli_query($Connection, "SELECT C_OrderID FROM customer_orders 
 foreach($sqlmyorders AS $orderIDarray){
 #print_r($orderID);
 $orderID = $orderIDarray['C_OrderID'];
+$sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WHERE C_OrderID = '" . $orderID . "' LIMIT 1");
+    while($row = mysqli_fetch_assoc($sqlSendTo)) {
+        $OrderedBy = unserialize($row['OrderInfo']);
+    }
+
 ?>
     <button class="accordion">Ordernummer: <?php print($orderID); ?></button>
     <div class="panel" style="padding-top: 1%; padding-left: 2%; padding-right: 2%;">
@@ -59,10 +64,11 @@ $orderID = $orderIDarray['C_OrderID'];
         <h3 align="left">Verzonden naar:</h3>
         <div style="background-color: lightgray;width: 20%;">
         <p align="left" style="padding-left: 8px">
-            Voornaam:    XXXX<br>
-            Achternaam:  XXXX<br>
-            Adress:      XXXX<br>
-            Postcode:    XXXX
+            Voornaam:    <?php print $OrderedBy['Firstname'] ?><br>
+            Achternaam:  <?php print $OrderedBy['Lastname'] ?><br>
+            Adress:      <?php print ($OrderedBy['Address'] . ", " . $OrderedBy['State'] . ", " . $OrderedBy['Country']) ?><br>
+            Postcode:    <?php print $OrderedBy['PostalCode'] ?><br>
+            Betaalmethode: <?php print $OrderedBy['payment'] ?>
         </p>
         </div>
         </div>

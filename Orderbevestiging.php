@@ -8,11 +8,30 @@ global $Connection;
   `C_OrderID` INT NOT NULL,
   `products` LONGTEXT NOT NULL,
   `PersonID` VARCHAR(45) NOT NULL,
+  `OrderInfo` LONGTEXT NOT NULL,
   PRIMARY KEY (`C_OrderID`));
 
 
 
  */
+$Order['Firstname'] = $_POST['firstName'];
+$Order['Lastname'] = $_POST['lastName'];
+$Order['Address'] = $_POST['address'];
+$Order['State'] = $_POST['state'];
+$Order['Country'] = $_POST['country'];
+$Order['PostalCode'] = $_POST['address-2'];
+$Order['payment'] = $_POST['payment'];
+
+$SerieelOrder =  serialize($Order);
+#$NietSerieelOrder =  unserialize($SerieelOrder);
+#print_r($Order);
+#print('<br>' . $SerieelOrder . '<br>');
+#print_r ($NietSerieelOrder);
+
+
+
+
+
 if($_SESSION['mand'] != []) {
     $sqlID = mysqli_query($Connection, "SELECT MAX(C_OrderID) AS ID FROM customer_orders LIMIT 1");
     while ($row = mysqli_fetch_assoc($sqlID)) {
@@ -31,7 +50,7 @@ if($_SESSION['mand'] != []) {
     $_SESSION['mand'] = [];
 
 
-    $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ")");
+    $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ", '" . $SerieelOrder . "')");
     mysqli_query($Connection, $sqlordertodatabase);
 }
 $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
@@ -39,7 +58,7 @@ $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHER
 while($row = mysqli_fetch_assoc($sqlItems)) {
     $BoughtProducts = unserialize($row['products']);
 }
-print_r($BoughtProducts);
+#print_r($BoughtProducts);
 $totaalprijs = 0;
 ?>
 <style>
