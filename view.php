@@ -103,6 +103,12 @@ if ($R) {
     $Images = $R;
 }
 ?>
+    <head>
+        <!-- link voor het sterrenrating gedeelte -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+
 <div id="CenteredContent">
     <?php
     if ($Result != null) {
@@ -280,22 +286,50 @@ if ($R) {
             }
             ?>
         </div>
+
         <div id="StockItemReviews">
             <h3>Artikel reviews</h3>
-            <p><?php
+            <p>
+                <?php
+                #hier worden de reviews met bijbehorende rating geprint.
                 if (!isset($Review)){
                     print ("er zijn nog geen reviews");
-                }else{
+                }
+                else{
                     foreach($Review as $value) {
-                        print $value['Review'] . "</br>";
+                        for ($count = 0; $count < 5; $count++){
+                            if ($count < $value['Rating']){
+                                echo '<span class="fa fa-star checked"></span>';
+                            }
+                            else
+                                echo '<span class="fa fa-star"></span>';
+                        }
+                        echo "</br>" . $value['Review'] . "</br>" . "</br>";
                     }
                 }
+                #hieronder staat het button gedeelte, ik heb javascript gebruikt om een pop-up te geven.
                 ?>
             </p>
             <div>
-            <form action="review.php" method="post">
+                <?php
+                if (isset($_SESSION['UserID'])) {
+                    echo '<form action="review.php" method="post">';
+                } else {
+                    echo '<form action="javascript:popUp()" method="post">';
+                }
+                ?>
+<!--            <form action="javascript:popUp()" method="post">-->
                 <input type="hidden" name="StockItemID" value='<?php echo $Result['StockItemID']?>'>
                 <button type="submit" name="your_name" value="your_value" id="place-review-button">plaats een review</button>
+                <p id="demo"></p>
+                <script>
+                    function popUp() {
+                        if (window.confirm("U bent niet ingelogd, wilt U annoniem een review plaatsen?\n 1. klik 'oke' om annoniem te plaatsen\n 2. klik 'annuleren' om hier te blijven")) {
+                            document.location.href='review.php';
+                        }
+                        document.getElementById("demo").innerHTML;
+                    }
+                </script>
             </form>
             </div>
 

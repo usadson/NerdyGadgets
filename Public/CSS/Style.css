@@ -76,6 +76,7 @@ table tr td {
     text-decoration: none;
     text-decoration-color: currentcolor;
 }
+
 #Header {
     position: fixed;
     top:0;
@@ -354,6 +355,22 @@ ul#ul-class-price li {
 .StockItemPriceText:hover {
     text-decoration: none;
 }
+
+@media (max-width:600px) {
+
+    .ExactCenter {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        background-color: springgreen;
+        background: green;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+    }
+
+}
+
+
 .ExactCenter {
     position: fixed;
     top: 50%;
@@ -361,6 +378,7 @@ ul#ul-class-price li {
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
+
 .StockItemID {
     font-family: vortice-concept, sans-serif;
     color: #676EFF;
@@ -475,4 +493,8 @@ ul#ul-class-price li {
 }
 h33{
     color: #ff0000;
+}
+
+.checked {
+     color: orange;
 }
