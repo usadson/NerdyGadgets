@@ -58,15 +58,17 @@ if($_SESSION['mand'] != []) {
     /* Hier wordt de shoppingcart verwerkt en geleegd */
     $Ordered = $_SESSION['mand'];
     $serieel = serialize($Ordered);
-    $_SESSION['mand'] = [];
+
 
     /* Hier wordt de informatie in de database geplaatst */
     $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ", '" . $SerieelOrder . "')");
+    #PREPARED STATEMENT
     mysqli_query($Connection, $sqlordertodatabase);
 }
 
 /*  Hier worden de gekochte producten nogmaals opgehaald*/
 $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
+#PREPARED STATEMENT
 
 /* Hier worden de producten van database informatie(string) naar array gezet*/
 while($row = mysqli_fetch_assoc($sqlItems)) {
@@ -102,7 +104,7 @@ $totaalprijs = 0;
     <h2 align="left" style="padding-left: 2%;">Producten</h2>
         <?php
         /* Hier worden de producten individueel vertaald naar foto's , namen en prijzen (Vergelijkbaar met cart.php) */
-        foreach($BoughtProducts as $productid => $aantal){
+        foreach($BoughtProducts as $productid => $aantal) {
             $infoproduct = getProductInfo($productid);
             $totaalprijsproduct = 0;
 
@@ -127,8 +129,8 @@ $totaalprijs = 0;
                 #print ($img);
             }
 
-            $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantal);
-            $totaalprijsproduct = ($infoproduct["SellPrice"]* $aantal);
+            $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
+            $totaalprijsproduct = ($infoproduct["SellPrice"] * $aantal);
 
             print("
                     
@@ -141,7 +143,19 @@ $totaalprijs = 0;
                             
                         
                     ");
+            if ($_SESSION['mand'] != []) {
+                $SQLGetStock = mysqli_query($Connection, "
+                    SELECT QauntityOnHand
+                    FROM stockitemholdings
+                    WHERE StockItemID = " . $productid . " ");
 
+                while ($row = mysqli_fetch_assoc($SQLGetStock)) {
+                    $Currentstock = $row['products'];
+
+                }
+
+                print ($Currentstock);
+            }
         }
 
         ?>
@@ -149,6 +163,6 @@ $totaalprijs = 0;
 </body>
 </html>
 <?php
-
+$_SESSION['mand'] = [];
 include __DIR__ . "/footer.php";
 ?>
