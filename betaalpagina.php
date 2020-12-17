@@ -1,6 +1,21 @@
 /*om header.php mee te nemen (layout van de pagina)*/
 <?php
 include __DIR__ . "/header.php";
+include_once "connect.php";
+global $Connection;
+
+if($LoggedIN == TRUE) {
+    $sqlUserInfo = mysqli_query($Connection, "SELECT * FROM people WHERE PersonID = " . $_SESSION['UserID'] . " LIMIT 1");
+    while ($row = mysqli_fetch_assoc($sqlUserInfo)) {
+        $FullName = $row['FullName'];
+        $FirstName = $row['PreferredName'];
+        $Mail = $row['EmailAddress'];
+    }
+    $LastName = str_replace("" . $FirstName . "", "", "" . $FullName . "");
+
+    print $LastName;
+    print $Mail;
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +51,8 @@ include __DIR__ . "/header.php";
 
 
             <!--Card content-->
-            <form class="align-content-center card-body" action="Orderbevestiging.php">
+            <form class="align-content-center card-body" method="post" action="Orderbevestiging.php">
+
 
                 <!--Grid row-->
                 <div class="row">
@@ -47,7 +63,7 @@ include __DIR__ . "/header.php";
                         <!--firstName-->
                         <div class="md-form ">
                             <label for="firstName" class="">Voornaam:</label>
-                            <input type="text" id="firstName" class="form-control" required>
+                            <input type="text" id="firstName" name="firstName" value="<?php if($LoggedIN == TRUE) {print $FirstName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
@@ -60,7 +76,7 @@ include __DIR__ . "/header.php";
                         <!--lastName-->
                         <div class="md-form">
                             <label for="lastName" class="">Achternaam:</label>
-                            <input type="text" id="lastName" class="form-control" required>
+                            <input type="text" id="lastName" name="lastName" value="<?php if($LoggedIN == TRUE) {print $LastName;} else{print "";} ?>" class="form-control" required>
 
                         </div>
 
@@ -74,7 +90,7 @@ include __DIR__ . "/header.php";
                 <!--email-->
                 <div class="md-form mb-5">
                     <label for="email" class="">Email:</label>
-                    <input type="text" id="email" class="form-control" placeholder="youremail@example.com" required>
+                    <input type="text" id="email" name="email" value="<?php if($LoggedIN == TRUE) {print $Mail;}?>" class="form-control" placeholder="youremail@example.com" required>
 
                 </div>
 
@@ -82,14 +98,14 @@ include __DIR__ . "/header.php";
                 <!--address-->
                 <div class="md-form mb-5">
                     <label for="address" class="">Adres:</label>
-                    <input type="text" id="address" class="form-control" placeholder="" required>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="" required>
 
                 </div>
 
                 <!--address-2-->
                 <div class="md-form mb-5">
                     <label for="address-2" class="">Postcode:</label>
-                    <input type="text" id="address-2" class="form-control" placeholder="" required>
+                    <input type="text" id="address-2" name="address-2" class="form-control" placeholder="" required>
 
                 </div>
 
@@ -100,9 +116,9 @@ include __DIR__ . "/header.php";
                     <div class="col-lg-4 col-md-12 mb-4">
 
                         <label for="country">Land:</label>
-                        <select class="custom-select d-block w-100" id="country" required>
+                        <select class="custom-select d-block w-100" id="country" name="country" required>
                             <option value="">...Kies...</option>
-                            <option>Nedrland</option>
+                            <option>Nederland</option>
 
                         </select>
 
@@ -112,7 +128,7 @@ include __DIR__ . "/header.php";
                     <div class="col-lg-4 col-md-6 mb-4">
 
                         <label for="state">Provincie:</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <select class="custom-select d-block w-100" id="state" name="state" required>
                             <option value="">...Kies...</option>
                             <option>Noord-Holland</option>
                             <option>Zuid-Holland</option>
@@ -138,7 +154,7 @@ include __DIR__ . "/header.php";
                     <div class="col-lg-4 col-md-6 mb-4">
 
                         <label for="state">Betaalmethode:</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <select class="custom-select d-block w-100" id="payment" name="payment" required>
                             <option value="">...Kies...</option>
                             <option>iDeal</option>
                             <option>Credit card</option>
