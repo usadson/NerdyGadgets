@@ -284,6 +284,7 @@ if ($R) {
             if ($R) {
                 $Review = $R;
             }
+            
             ?>
         </div>
 
@@ -292,11 +293,23 @@ if ($R) {
             <p>
                 <?php
                 #hier worden de reviews met bijbehorende rating geprint.
+                
                 if (!isset($Review)){
                     print ("er zijn nog geen reviews");
                 }
                 else{
                     foreach($Review as $value) {
+                        #print("<h1> " . $value['PersonID'] . "</h1>");
+                        $sqlgetname = "SELECT FullName FROM people WHERE PersonID = ?";
+                        $Statement2 = mysqli_prepare($Connection, $sqlgetname);
+                        mysqli_stmt_bind_param($Statement2, "i", $value['PersonID']);
+                        mysqli_stmt_execute($Statement2);
+                        $FullName = mysqli_stmt_get_result($Statement2);
+                        $FullName = mysqli_fetch_row($FullName);
+                        print ("<b>" . $FullName[0] . "</b><br>");
+                        
+                        
+
                         for ($count = 0; $count < 5; $count++){
                             if ($count < $value['Rating']){
                                 echo '<span class="fa fa-star checked"></span>';
@@ -335,6 +348,7 @@ if ($R) {
 
         </div>
         <?php
+        
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>

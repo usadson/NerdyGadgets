@@ -2,7 +2,7 @@
 #print('cart.php including header:');
 #include __DIR__ . "/header.php";
 ?>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <style>
  footer {
 position: absolute;

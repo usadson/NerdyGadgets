@@ -73,7 +73,10 @@ if(isset($_POST['StockItemID']) && isset($_POST['comment']) && isset($_POST['rat
     $ID = $_POST['ID'];
     */
 
-    $Query_review2 = "INSERT INTO stockitems_review (StockItemID, Review, Rating) VALUES (?, ?, ?)";
+    
+    
+
+    $Query_review2 = "INSERT INTO stockitems_review (PersonID,StockItemID, Review, Rating) VALUES (" . $_SESSION['UserID'] . ", ?, ?, ?)";
 
     $Statement2 = mysqli_prepare($Connection, $Query_review2);
     mysqli_stmt_bind_param($Statement2, "isi", $_POST['StockItemID'], $_POST['comment'], $_POST['rating']);
