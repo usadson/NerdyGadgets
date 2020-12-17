@@ -8,12 +8,12 @@ $SQLID = mysqli_query($Connection, "
 while ($row = mysqli_fetch_assoc($SQLID)) {
     $ID = ($row['ID'] + 1);
 }
-print $ID;
+#print $ID;
 
 $temperatuur = $_GET['temp'];
 $deviceID = $_GET['ID'];
 $Date = date("Y-m-d H:i:s");
 $DateValidTo = "9999-12-31 23:59:59";
-print $Date;
+#print $Date;
 mysqli_query($Connection, "INSERT INTO coldroomtemperatures (ColdRoomTemperatureID, ColdRoomSensorNumber, RecordedWhen, Temperature, ValidFrom, ValidTo) VALUES (" .  $ID . ", " . $deviceID . ",  '" . $Date . "', " . $temperatuur . ", '" . $Date . "', '" . $DateValidTo . "') ");
 ?>
