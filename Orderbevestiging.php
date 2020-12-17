@@ -132,6 +132,24 @@ $totaalprijs = 0;
             $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
             $totaalprijsproduct = ($infoproduct["SellPrice"] * $aantal);
 
+
+            $SQLstock = "
+                    SELECT QuantityOnHand
+                    FROM stockitemholdings
+                    WHERE StockItemID =  ?";
+            $Statement2 = mysqli_prepare($Connection, $SQLstock);
+
+            mysqli_stmt_bind_param($Statement2, "i", $productid);
+            mysqli_stmt_execute($Statement2);
+            $stock = mysqli_stmt_get_result($Statement2);
+            $stock = mysqli_fetch_all($stock, MYSQLI_ASSOC);
+            $stock = $stock[0];
+            $stock = $stock['QuantityOnHand'];
+            $newStock = ($stock - $aantal);
+            print ($stock . " | " . $newStock);
+
+
+            #print $stock;
             print("
                     
                         <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
@@ -139,22 +157,15 @@ $totaalprijs = 0;
                             
                                 <h3 align='right' class='media-heading' style='color: blue;'>" . $infoproduct["StockItemName"] . "</h3>
                                 
-                                <h4 align='right' style='color: green;'>Prijs $aantal * " . $infoproduct["SellPrice"] . " = (" . $totaalprijsproduct . ")</h4>
+                                <h4 align='right' style='color: green;'>Prijs $aantal * " . round($infoproduct["SellPrice"], 2) . " = (" . round($totaalprijsproduct, 2) . ")</h4>
                             
                         
                     ");
             if ($_SESSION['mand'] != []) {
-                $SQLGetStock = mysqli_query($Connection, "
-                    SELECT QauntityOnHand
-                    FROM stockitemholdings
-                    WHERE StockItemID = " . $productid . " ");
-
-                while ($row = mysqli_fetch_assoc($SQLGetStock)) {
-                    $Currentstock = $row['products'];
-
-                }
-
-                print ($Currentstock);
+                mysqli_query($Connection,"
+                    UPDATE stockitemholdings
+                    SET QuantityOnHand = " . $newStock . "
+                    WHERE StockItemID =  " . $productid . " ");
             }
         }
 
