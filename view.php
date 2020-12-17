@@ -309,16 +309,18 @@ if ($R) {
                 }
                 else{
                     foreach($Review as $value) {
-                        #print("<h1> " . $value['PersonID'] . "</h1>");
                         $sqlgetname = "SELECT FullName FROM people WHERE PersonID = ?";
                         $Statement2 = mysqli_prepare($Connection, $sqlgetname);
+                        #print("<h1> " . $value['PersonID'] . "</h1>");
                         mysqli_stmt_bind_param($Statement2, "i", $value['PersonID']);
                         mysqli_stmt_execute($Statement2);
                         $FullName = mysqli_stmt_get_result($Statement2);
                         $FullName = mysqli_fetch_row($FullName);
                         print ("<b>" . $FullName[0] . "</b><br>");
-                        
-                        
+
+                        #else{
+                        #    print ("<b>annoniem</b><br>");
+                        #}
 
                         for ($count = 0; $count < 5; $count++){
                             if ($count < $value['Rating']){
@@ -347,8 +349,8 @@ if ($R) {
                 <p id="demo"></p>
                 <script>
                     function popUp() {
-                        if (window.confirm("U bent niet ingelogd, wilt U annoniem een review plaatsen?\n 1. klik 'oke' om annoniem te plaatsen\n 2. klik 'annuleren' om hier te blijven")) {
-                            document.location.href='review.php';
+                        if (window.confirm("U bent niet ingelogd, U kunt niet annoniem een review plaatsen.\n 1. Klik 'oke' om naar de inlogpagina te gaan.\n 2. klik 'annuleren' om hier te blijven")) {
+                            document.location.href='login.php';
                         }
                         document.getElementById("demo").innerHTML;
                     }
