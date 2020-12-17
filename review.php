@@ -11,7 +11,7 @@ global $Connection;
      <?php
 
      if(isset($_SESSION['UserID'])){
-         echo '<h2 id="fh2">Hallo, ';echo $_SESSION['UserID'] . ". Bedankt dat U een review wilt plaatsen.";'</h2>';
+         echo '<h2 id="fh2">Hallo, ';echo $_SESSION['Username'] . ". Bedankt dat U een review wilt plaatsen.";'</h2>';
          echo '<h6 id="fh6">Uw review gaat ons helpen met het aanbieden van onze producten.</h6>';
      }
      else{

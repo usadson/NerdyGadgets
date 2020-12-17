@@ -48,7 +48,7 @@ include ('header.php');
         /* EINDE ECCRYPTIE*/
 
 
-        $query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $EncryptedWachtwoord ."' LIMIT 1");
+        $query = mysqli_query($Connection, "SELECT PersonID, LogonName, HashedPassword, FullName FROM people WHERE LogonName = '" . $UsernameInput . "' AND HashedPassword = '" . $EncryptedWachtwoord ."' LIMIT 1");
         /* */
 
 
@@ -60,6 +60,8 @@ include ('header.php');
 
 
 
+
+                $_SESSION['Username'] = $row['FullName'];
                 $_SESSION['UserID'] = $row["PersonID"];
 
             }
