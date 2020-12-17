@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_assoc($SQLID)) {
 #print $ID;
 
 $temperatuur = $_GET['temp'];
-$deviceID = 1;
+$deviceID = $_GET['ID'];
 $Date = date("Y-m-d H:i:s");
 $DateValidTo = "9999-12-31 23:59:59";
 #print $Date;
