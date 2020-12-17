@@ -233,6 +233,16 @@ if ($R) {
             ?>
             <?php
 
+            $sqlchocolade = mysqli_query($Connection, "SELECT * FROM Stockitems WHERE StockItemName LIKE '%Chocolate%' AND StockItemID = " . $productID . " ");
+            if (mysqli_num_rows($sqlchocolade)==1){
+                $querytemp = mysqli_query($Connection, "SELECT Temperature FROM coldroomtemperatures WHERE ColdRoomTemperatureID IN (SELECT max(ColdRoomTemperatureID) FROM coldroomtemperatures )");
+                while ($row = mysqli_fetch_assoc($querytemp)) {
+                    $temperature = ($row['Temperature']);
+                }
+                print("Temperatuur : ");
+                print($temperature);
+            }
+
             # eerst css gekopieërd van het style.css bestand en een nieuwe naam gegeven
             # vervolgens is de database een nieuwe tabel aangemaakt die stockitems_review heet
             # mockdata in de tabel gegooid om als zogenaamde review te gebruiken
