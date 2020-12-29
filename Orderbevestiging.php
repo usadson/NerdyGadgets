@@ -88,7 +88,7 @@ $totaalprijs = 0;
 <head>
     <title>Order bevestiging</title>
 <body>
-    <div align="center">
+    <div align="center" style="width: 80%; background-color: white; padding: 2%; alignment: center">
 
 <h1>Betaling is gelukt!<br> Bedankt voor uw aankoop!</h1>
 <!-- Hieronder staan de gegevens van de betaling -->
@@ -146,7 +146,7 @@ $totaalprijs = 0;
             $stock = $stock[0];
             $stock = $stock['QuantityOnHand'];
             $newStock = ($stock - $aantal);
-            print ($stock . " | " . $newStock);
+            #print ($stock . " | " . $newStock);
 
 
             #print $stock;
