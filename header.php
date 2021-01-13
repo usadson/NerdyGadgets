@@ -48,6 +48,7 @@ VALUES (" . $_SESSION['UserID'] . ", 'a:0:{}')"); /* */
     $serieel = serialize($_SESSION['mand']);
 
 
+
     /*SQL insert cart deel*/
     $sqlupdatecart = ("
 UPDATE people_cart
@@ -65,7 +66,6 @@ UPDATE people_cart
     while($row = mysqli_fetch_assoc($sqlgetcart)) {
         $_SESSION['mand'] = unserialize($row['cart']);
     }
-
 
     $nonserieel = unserialize($serieel);
 }

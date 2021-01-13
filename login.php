@@ -65,7 +65,7 @@ include ('header.php');
                 $_SESSION['UserID'] = $row["PersonID"];
 
             }
-            print("<h1>Hij werkt dus gewoon</h1>");
+            #print("<h1>Hij werkt dus gewoon</h1>");
 
             $sqlgetcart = mysqli_query($Connection, "SELECT cart FROM people_cart WHERE PersonID = " . $_SESSION['UserID']);
 

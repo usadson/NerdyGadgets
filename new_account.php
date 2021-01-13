@@ -171,7 +171,7 @@ FORM {
  /* Begin Wachtwoord encryptie SRC="https://youtu.be/WwxAyiAtrbM"*/
 
 
- $key = md5('DonderdagOchtend');
+ #$key = md5('DonderdagOchtend');
  $salt = md5('DonderdagOchtend');
  $Wachtwoord = $_GET['Wachtwoord1'];
 

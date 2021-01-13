@@ -1,8 +1,13 @@
 <?php
+/*
+ TODO: Maak een check voor SQL error's
+ */
+
 include __DIR__ . "/header.php";
 include_once "connect.php";
 include __DIR__ . "/functions.php";
 global $Connection;
+mysqli_query($Connection, "SET AUTOCOMMIT = 0");
 /*
    CREATE TABLE `nerdygadgets`.`customer_orders` (
   `C_OrderID` INT NOT NULL,
@@ -167,6 +172,14 @@ $totaalprijs = 0;
                     SET QuantityOnHand = " . $newStock . "
                     WHERE StockItemID =  " . $productid . " ");
             }
+
+        }
+        $sqlerror == FALSE;
+        if($sqlerror == TRUE){
+            PRINT('Transactie is mislukt');
+            mysqli_query($Connection, "ROLLBACK");
+        } else{
+            mysqli_query($Connection, "COMMIT");
         }
 
         ?>
