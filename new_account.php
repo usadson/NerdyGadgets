@@ -211,10 +211,18 @@ $Mail = $_GET['Mail'];
 
  if(($Uniekemail == TRUE) && ($VoldoendeWW = TRUE) && ($VoldoendeAchternaam = TRUE) && ($VoldoendeVoornaam = TRUE) && ($VoldoendeTEL = TRUE) && ($sterkWachtwoord == TRUE)) {
 
-  $sqladdaccount = ("
+
+     $sqladdaccount = ("
 INSERT INTO people(PersonID, FullName, PreferredName, SearchName, IsPermittedToLogon, LogonName, HashedPassword, EmailAddress, IsEmployee, IsSystemUser, IsExternalLogonProvider, IsSalesperson, ValidFrom, ValidTo, LastEditedBy)
-VALUES (" . $NewID . " , '" . $Fullname . "', '" . $Voornaam . "', '" . $SearchName . "', 1, '" . $Mail . "', '" . $EncryptedWachtwoord . "', '" . $Mail . "', 0, 0, 0, 0, 2013-01-01-00-00-00, 9999-12-31-00-00-00, 4000)");
- mysqli_query($Connection, $sqladdaccount);
+VALUES (?, ?, ?, ?, 1, ?, ?, ?, 0, 0, 0, 0, 2013-01-01-00-00-00, 9999-12-31-00-00-00, 4000)");
+
+
+    $statement = mysqli_prepare($Connection, $sqladdaccount);
+    mysqli_stmt_bind_param($statement, 'issssss', $NewID, $Fullname, $Voornaam, $SearchName, $Mail, $EncryptedWachtwoord, $Mail);
+    mysqli_stmt_execute($statement);
+
+    $result = mysqli_stmt_get_result($statement);
+
 
      print('<script type="text/javascript">location.href = "login.php";</script>'); /*SRC="https://stackoverflow.com/questions/4871942/how-to-redirect-to-another-page-using-php"*/
 }

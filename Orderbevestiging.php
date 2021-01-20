@@ -59,14 +59,29 @@ if($_SESSION['mand'] != []) {
 
 
     /* Hier wordt de informatie in de database geplaatst */
-    $sqlordertodatabase = ("INSERT INTO customer_orders VALUES (" . $_SESSION['OrderID'] . ", '" . $serieel . "', " . $user . ", '" . $SerieelOrder . "')");
-    #PREPARED STATEMENT
-    mysqli_query($Connection, $sqlordertodatabase);
-}
+
+$sqlordertodatabase = ("INSERT INTO customer_orders VALUES (?, ?, ?, ?)");
+
+$statement = mysqli_prepare($Connection, $sqlordertodatabase);
+mysqli_stmt_bind_param($statement, 'isis', $_SESSION['OrderID'], $serieel, $user, $SerieelOrder);
+mysqli_stmt_execute($statement);
+
+$result = mysqli_stmt_get_result($statement);
+
 
 /*  Hier worden de gekochte producten nogmaals opgehaald*/
-$sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = '" . $_SESSION['OrderID'] . "' LIMIT 1");
-#PREPARED STATEMENT
+$sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = ?");
+
+$statement2 = mysqli_prepare($Connection, $sqlItems);
+mysqli_stmt_bind_param($statement2, 'i', $_SESSION['OrderID']);
+mysqli_stmt_execute($statement2);
+
+$result = mysqli_stmt_get_result($statement2);
+
+
+
+
+
 
 /* Hier worden de producten van database informatie(string) naar array gezet*/
 while($row = mysqli_fetch_assoc($sqlItems)) {
@@ -162,7 +177,7 @@ $totaalprijs = 0;
             }
 
         }
-        $sqlerror == FALSE;
+        $sqlerror = FALSE;
         if($sqlerror == TRUE){
             PRINT('Transactie is mislukt');
             mysqli_query($Connection, "ROLLBACK");
