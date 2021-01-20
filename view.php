@@ -41,7 +41,7 @@ $productID = $infoproduct["StockItemID"];
 
 
 
-#array_push ($_SESSION["mand"]
+
 /*
 voorwaarden voor de winkelwagentoevoeging knop, de tweede if kijkt of op de knop is geklikt, 
 als dat zo is dan kijkt die of dezelfde product al er in is gezet zodat die de juiste melding stuurt
@@ -51,33 +51,19 @@ if (isset($_POST["knoptoevoegen"])){
     if (isset($_SESSION["mand"][$productID])){
         $meldingwinkelwagen = "product is nog een keer toegevoegd";
         $_SESSION["mand"][$productID] = $_SESSION["mand"][$productID] + 1 ;
-        #print("inhoud van de sessie mand: ");
-        #print_r($_SESSION["mand"]);
 
     }else{
         $_SESSION["mand"][$productID]=1;
-        #print_r($_SESSION["mand"]);
-        #print("<br>");
-        #print_r($_SESSION);
+        
         $meldingwinkelwagen = "product is toegevoegd aan de winkelwagen";
-
     }
 }
 
 #dezelfde voorwaarden voor de wishlist session
 
 if (isset($_POST['knoptoevoegenwish'])){
-    if (isset($_SESSION['knoptoevoegenwish'][$productID])){
-        $meldingwishlist = "product is nog een keer aan de wishlist toegevoegd";
-        $_SESSION['knoptoevoegenwish'][$productID] = $_SESSION['knoptoevoegenwish'][$productID] + 1 ;
-        
-
-    }else{
         $_SESSION["wishlist"][$productID]=1;
-        
         $meldingwishlist = "product is toegevoegd aan de wishlist";
-
-    }
 }
 
 
@@ -311,16 +297,13 @@ if ($R) {
                     foreach($Review as $value) {
                         $sqlgetname = "SELECT FullName FROM people WHERE PersonID = ?";
                         $Statement2 = mysqli_prepare($Connection, $sqlgetname);
-                        #print("<h1> " . $value['PersonID'] . "</h1>");
                         mysqli_stmt_bind_param($Statement2, "i", $value['PersonID']);
                         mysqli_stmt_execute($Statement2);
                         $FullName = mysqli_stmt_get_result($Statement2);
                         $FullName = mysqli_fetch_row($FullName);
                         print ("<b>" . $FullName[0] . "</b><br>");
 
-                        #else{
-                        #    print ("<b>annoniem</b><br>");
-                        #}
+                        
 
                         for ($count = 0; $count < 5; $count++){
                             if ($count < $value['Rating']){

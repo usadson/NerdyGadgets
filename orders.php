@@ -53,7 +53,6 @@ if(isset($_SESSION['UserID'])){
 $sqlmyorders = mysqli_query($Connection, "SELECT C_OrderID FROM customer_orders WHERE PersonID = " . $_SESSION['UserID'] . " ");
 
 foreach($sqlmyorders AS $orderIDarray){
-#print_r($orderID);
 $orderID = $orderIDarray['C_OrderID'];
 $sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WHERE C_OrderID = '" . $orderID . "' LIMIT 1");
     while($row = mysqli_fetch_assoc($sqlSendTo)) {
@@ -85,7 +84,7 @@ $sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WH
 
         $producten = unserialize($row['products']);
     }
-    #print_r($producten);
+    
 
     $totaalprijs = 0;
 
@@ -94,7 +93,7 @@ $sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WH
         $infoproduct = getProductInfo($productid);
         $totaalprijsproduct = 0;
         $aantalproduct = $producten[$productid];
-        #print ("<h1>" . $aantalproduct . "</h1>");
+        
         $Query = "
                     SELECT ImagePath
                     FROM stockitemimages 
@@ -109,30 +108,12 @@ $sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WH
 
         if ($R) {
             $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-            #print($img);
         } else {
-
             $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-            #print ($img);
         }
 
         $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantalproduct);
         $totaalprijsproduct = ($infoproduct["SellPrice"]* $aantalproduct);
-
-        /*print("
-                    
-                        <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>
-                            <img align ='left' class='media-object' src= '$img' style='width: 10%;'>
-                            
-                                <h3 align='right' class='media-heading' style='color: blue;'>" . $infoproduct["StockItemName"] . "</h3>
-                                
-                                <h4 align='right' style='color: green;'>Prijs $aantal * " . $infoproduct["SellPrice"] . " = (" . $totaalprijsproduct . ")</h4>
-                            
-                        
-                    ");*/
-
-
-
     ?>
 
 

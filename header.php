@@ -1,8 +1,6 @@
 <?php
 
 session_start();
-#session_destroy();
-#error_reporting(0);
 include_once "connect.php";
 global $Connection;
 if (isset($_SESSION['UserID'])) {
@@ -212,12 +210,5 @@ UPDATE people_cart
             </div>
         </div>
     <br><br><br><br><br><br>
-        <!-- Icoon van de wishlist -->
-        <!--<a href="wishlist.php">
-          <img alt="Wishlist" src="Public/Img/wishlist.jpg" style="padding-left:10px; padding-top:45px;padding-right:20px;float:right;width:70%">
-        </a>
-        -->
-		 
-          <!-- Dit is het icoon van de shoppingcart -->
         </div>
     </html>

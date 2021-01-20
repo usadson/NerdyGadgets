@@ -33,11 +33,4 @@ function getProductInfo($id){
     return $infoproduct;
 }
 
-
-#verwijder knop
-/*
-<button type='button'method='submit' class='btn btn-danger'>
-                                    <span class='glyphicon glyphicon-remove'></span> Remove
-                                </button>
-    */
 ?>

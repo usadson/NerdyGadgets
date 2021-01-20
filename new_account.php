@@ -170,8 +170,6 @@ FORM {
  <?php
  /* Begin Wachtwoord encryptie SRC="https://youtu.be/WwxAyiAtrbM"*/
 
-
- #$key = md5('DonderdagOchtend');
  $salt = md5('DonderdagOchtend');
  $Wachtwoord = $_GET['Wachtwoord1'];
 
@@ -211,11 +209,6 @@ $Mail = $_GET['Mail'];
 
 
 
-
-
-/*print($VoldoendeWW);*/
-
-
  if(($Uniekemail == TRUE) && ($VoldoendeWW = TRUE) && ($VoldoendeAchternaam = TRUE) && ($VoldoendeVoornaam = TRUE) && ($VoldoendeTEL = TRUE) && ($sterkWachtwoord == TRUE)) {
 
   $sqladdaccount = ("
@@ -226,16 +219,6 @@ VALUES (" . $NewID . " , '" . $Fullname . "', '" . $Voornaam . "', '" . $SearchN
      print('<script type="text/javascript">location.href = "login.php";</script>'); /*SRC="https://stackoverflow.com/questions/4871942/how-to-redirect-to-another-page-using-php"*/
 }
 
-
-
- /* INFORMATIE TESTEN
- print("ID: " . $NewID . "<br>");
- print("Mail: " . $_GET['Mail'] . "<br>");
- print("Voornaam: " . $_GET['Voornaam'] . "<br>");
- print("Achternaam: " . $_GET['Achternaam'] . "<br>");
- print("Wachtwoord: " . $_GET['Wachtwoord1'] . "<br>");
- Print($Validfrom);
-*/
  ?>
 
 </div>

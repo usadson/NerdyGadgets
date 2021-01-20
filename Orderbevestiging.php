@@ -33,12 +33,6 @@ $Order['payment'] = $_POST['payment'];
 $SerieelOrder =  serialize($Order);
 
 
-#$NietSerieelOrder =  unserialize($SerieelOrder);
-#print_r($Order);
-#print('<br>' . $SerieelOrder . '<br>');
-#print_r ($NietSerieelOrder);
-
-
 
 
 /* ALS de mand leeg is gaat het script niet door */
@@ -50,7 +44,6 @@ if($_SESSION['mand'] != []) {
         $_SESSION['OrderID'] = ($row['ID'] + 1);
     }
 
-#print $NewID;
 
     /* De standaard user voor niet ingelogden is 4000*/
     $user = 4000;
@@ -79,7 +72,7 @@ $sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHER
 while($row = mysqli_fetch_assoc($sqlItems)) {
     $BoughtProducts = unserialize($row['products']);
 }
-#print_r($BoughtProducts);
+
 
 /* $totaalprijs start op 0 om dat hier op opgeteld moet worden */
 $totaalprijs = 0;
@@ -127,11 +120,8 @@ $totaalprijs = 0;
 
             if ($R) {
                 $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-                #print($img);
             } else {
-
                 $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-                #print ($img);
             }
 
             $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
@@ -151,10 +141,8 @@ $totaalprijs = 0;
             $stock = $stock[0];
             $stock = $stock['QuantityOnHand'];
             $newStock = ($stock - $aantal);
-            #print ($stock . " | " . $newStock);
+            
 
-
-            #print $stock;
             print("
                     
                         <img src='https://media.tarkett-image.com/large/TH_25121916_25131916_25126916_25136916_001.jpg' width='100%' height='1px'>

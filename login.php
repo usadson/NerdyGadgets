@@ -35,7 +35,7 @@ include ('header.php');
 
     $WachtwoordInput = $_GET['Wachtwoord'];
     $UsernameInput = $_GET['ID'];
-    /* print ($UsernameInput . $WachtwoordInput . "<br>"); */
+    
 
     if(isset($_GET['ID'])){
         /* Begin encryptie SRC='https://youtu.be/WwxAyiAtrbM' */
@@ -65,7 +65,7 @@ include ('header.php');
                 $_SESSION['UserID'] = $row["PersonID"];
 
             }
-            #print("<h1>Hij werkt dus gewoon</h1>");
+            
 
             $sqlgetcart = mysqli_query($Connection, "SELECT cart FROM people_cart WHERE PersonID = " . $_SESSION['UserID']);
 

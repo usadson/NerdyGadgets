@@ -3,8 +3,6 @@
 include __DIR__ . "/header.php";
 include __DIR__ . "/functions.php";
 
-#error_reporting(0);
-
 ?>
 
 <style>
@@ -48,14 +46,13 @@ th {
                 </thead>
                 <tbody>
                 <?php
-                #print("dit is de inhoud van POST: ");
-                #print_r($_POST);
+                
 
                 
-                #verwijderknop
+                
                 if (isset($_POST["Remove"])){
                     $RemoveID = $_POST["Remove"];
-                    #print("ik ga nu de id verwijderen $RemoveID");
+                    
                     unset($_SESSION["mand"][ $RemoveID ]);  
                 }
                 
@@ -64,18 +61,6 @@ th {
                 foreach($_SESSION["mand"] as $productid => $aantal){
 
 
-                    
-                    #defining variables
-                    /* 
-                    $productid = $product["StockItemID"];
-                    $productnaam = $product["StockItemName"];
-                    $productprijs = round($product["SellPrice"],2);
-                    $quantiteit = $product["QuantityOnHand"];
-                    $hoeveelheid = $product["aantal"];
-                    */
-                    #get image
-
-                    #print("product: $productid, aantal: $aantal");
                     $infoproduct = getProductInfo($productid);
 
                     $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
@@ -94,11 +79,8 @@ th {
 
                     if ($R) {
                         $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-                        #print($img);
-                    } else {
-                       
+                    } else { 
                         $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-                        #print ($img);
                     }
                     
                     $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantal);

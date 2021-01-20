@@ -44,13 +44,13 @@ error_reporting(0);
                 <?php
 
                 #verwijderknop
-                if (isset($_POST['Removewishlist'])){
-                    $RemovewishID = $_POST['Removewishlist'];
-                    #print("ik ga nu de id verwijderen $RemoveID");
+                if (isset($_POST["Removewishlist"])){
+                    $RemovewishID = $_POST["Removewishlist"];
+                    
                     unset($_SESSION["wishlist"][ $RemovewishID ]);  
                 }
 
-                #print_r($_SESSION['wishlist']);
+                
 
                 foreach($_SESSION["wishlist"] as $productid => $aantal){
 
@@ -72,11 +72,11 @@ error_reporting(0);
 
                                         if ($R) {
                                             $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-                                            #print($img);
+                                            
                                         } else {
                                         
                                             $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-                                            #print ($img);
+                                            
                                          }
                 print ("
                         <tr>

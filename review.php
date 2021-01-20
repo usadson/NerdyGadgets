@@ -69,9 +69,6 @@ if(isset($_POST['StockItemID']) && isset($_POST['comment']) && isset($_POST['rat
 
     $link = mysqli_connect("$DATABASE_HOST", "$DATABASE_USER", "", "$DATABASE_NAME");
 
-    /*$Review = $_POST['review'];
-    $ID = $_POST['ID'];
-    */
 
     $Query_review2 = "INSERT INTO stockitems_review (PersonID,StockItemID, Review, Rating) VALUES (" . $_SESSION['UserID'] . ", ?, ?, ?)";
 
