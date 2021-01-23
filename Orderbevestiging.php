@@ -7,6 +7,7 @@ include __DIR__ . "/header.php";
 include_once "connect.php";
 include __DIR__ . "/functions.php";
 global $Connection;
+
 mysqli_query($Connection, "SET AUTOCOMMIT = 0");
 /*
    CREATE TABLE `nerdygadgets`.`customer_orders` (
@@ -177,13 +178,32 @@ $totaalprijs = 0;
             }
 
         }
-        $sqlerror = FALSE;
-        if($sqlerror == TRUE){
-            PRINT('Transactie is mislukt');
-            mysqli_query($Connection, "ROLLBACK");
-        } else{
-            mysqli_query($Connection, "COMMIT");
-        }
+}
+$stockupdate[] = "
+                    UPDATE stockitemholdings
+                    SET QuantityOnHand = " . $newStock . "
+                    WHERE StockItemID =  " . $productid . " ";
+
+foreach($stockupdate as $query)
+{
+    if(!$Connection->query($query))
+    {
+        $errors[$query] = $Connection->error;
+    }
+}
+
+if(isset($errors))
+{
+    $Connection->rollback();
+    foreach($errors as $sql => $error)
+    {
+        print("Transactie is mislukt !");
+    }
+}
+else
+{
+    $Connection->commit();
+}
 
         ?>
     </div>
