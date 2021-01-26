@@ -34,7 +34,7 @@ function getProductInfo($id){
 }
 
 
-Function Image ($productid, $infoproduct){
+Function Image ($productid, $infoproduct, $Connection){
             $Query = "
                     SELECT ImagePath
                     FROM stockitemimages 
