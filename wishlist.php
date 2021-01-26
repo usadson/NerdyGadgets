@@ -59,25 +59,7 @@ error_reporting(0);
                     $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
                     mysqli_set_charset($Connection, 'latin1');
 
-                    $Query = "
-                                        SELECT ImagePath
-                                        FROM stockitemimages 
-                                        WHERE StockItemID = ?";
-
-                                        $Statement = mysqli_prepare($Connection, $Query);
-                                        mysqli_stmt_bind_param($Statement, "i", $productid);
-                                        mysqli_stmt_execute($Statement);
-                                        $R = mysqli_stmt_get_result($Statement);
-                                        $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
-
-                                        if ($R) {
-                                            $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-                                            
-                                        } else {
-                                        
-                                            $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-                                            
-                                         }
+                   $img = Image ($productid, $infoproduct,$Connection) ;
                 print ("
                         <tr>
                             <td>
