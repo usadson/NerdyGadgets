@@ -125,8 +125,8 @@ $totaalprijs = 0;
             Image () ;
 
 
-            $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
-            $totaalprijsproduct = ($infoproduct["SellPrice"] * $aantal);
+          #  $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
+          #  $totaalprijsproduct = ($infoproduct["SellPrice"] * $aantal);
 
 
             $SQLstock = "
