@@ -34,7 +34,7 @@ function getProductInfo($id){
 }
 
 
-Function Image ( ){
+Function Image ( )
             $Query = "
                     SELECT ImagePath
                     FROM stockitemimages 
@@ -52,5 +52,5 @@ Function Image ( ){
             } else {
                 $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
             }
-            return $img }
+            return $img 
 ?>
