@@ -52,5 +52,5 @@ Function Image ( ){
             } else {
                 $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
             }
-            return $img ; }
+            return $img }
 ?>
