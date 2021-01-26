@@ -94,24 +94,8 @@ $sqlSendTo = mysqli_query($Connection, "SELECT OrderInfo FROM customer_orders WH
         $totaalprijsproduct = 0;
         $aantalproduct = $producten[$productid];
         
-        $Query = "
-                    SELECT ImagePath
-                    FROM stockitemimages 
-                    WHERE StockItemID = ?";
-
-        $Statement = mysqli_prepare($Connection, $Query);
-
-        mysqli_stmt_bind_param($Statement, "i", $productid);
-        mysqli_stmt_execute($Statement);
-        $R = mysqli_stmt_get_result($Statement);
-        $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
-
-        if ($R) {
-            $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
-        } else {
-            $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
-        }
-
+        $img = Image ($productid, $infoproduct,$Connection) ;
+        
         $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"]* $aantalproduct);
         $totaalprijsproduct = ($infoproduct["SellPrice"]* $aantalproduct);
     ?>

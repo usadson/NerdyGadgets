@@ -72,22 +72,7 @@ if (isset($_POST['knoptoevoegenwish'])){
 
 
 //Get Images
-$Query = "
-                SELECT ImagePath
-                FROM stockitemimages 
-                WHERE StockItemID = ?";
-
-$Statement = mysqli_prepare($Connection, $Query);
-mysqli_stmt_bind_param($Statement, "i", $_GET['id']);
-mysqli_stmt_execute($Statement);
-$R = mysqli_stmt_get_result($Statement);
-$R = mysqli_fetch_all($R, MYSQLI_ASSOC);
-
-
-
-if ($R) {
-    $Images = $R;
-}
+$img = Image ($productid, $infoproduct,$Connection) ;
 ?>
     <head>
         <!-- link voor het sterrenrating gedeelte -->
