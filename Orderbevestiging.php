@@ -71,13 +71,13 @@ $result = mysqli_stmt_get_result($statement);
 
 
 /*  Hier worden de gekochte producten nogmaals opgehaald*/
-$sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID = ?");
+$sqlItems = mysqli_query($Connection, "SELECT products FROM customer_orders WHERE C_OrderID ='" . $_SESSION['OrderID'] . "' LIMIT 1");
 
-$statement2 = mysqli_prepare($Connection, $sqlItems);
-mysqli_stmt_bind_param($statement2, 'i', $_SESSION['OrderID']);
-mysqli_stmt_execute($statement2);
+#$statement2 = mysqli_prepare($Connection, $sqlItems);
+#mysqli_stmt_bind_param($statement2, 'i', $_SESSION['OrderID']);
+#mysqli_stmt_execute($statement2);
 
-$result = mysqli_stmt_get_result($statement2);
+#$result = mysqli_stmt_get_result($statement2);
 
 
 
