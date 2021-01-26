@@ -116,7 +116,7 @@ $totaalprijs = 0;
             $infoproduct = getProductInfo($productid);
             $totaalprijsproduct = 0;
 
-            Image ($productid, $infoproduct,$Connection) ;
+            $img = Image ($productid, $infoproduct,$Connection) ;
 
 
             $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
