@@ -122,8 +122,23 @@ $totaalprijs = 0;
             $infoproduct = getProductInfo($productid);
             $totaalprijsproduct = 0;
 
-            Image () 
+            $Query = "
+                    SELECT ImagePath
+                    FROM stockitemimages 
+                    WHERE StockItemID = ?";
 
+            $Statement = mysqli_prepare($Connection, $Query);
+
+            mysqli_stmt_bind_param($Statement, "i", $productid);
+            mysqli_stmt_execute($Statement);
+            $R = mysqli_stmt_get_result($Statement);
+            $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+            if ($R) {
+                $img = "Public/StockItemIMG/" . $R[0]['ImagePath'];
+            } else {
+                $img = "Public/StockGroupIMG/" . $infoproduct['BackupImagePath'];
+            }
 
             $totaalprijs = $totaalprijs + ($infoproduct["SellPrice"] * $aantal);
             $totaalprijsproduct = ($infoproduct["SellPrice"] * $aantal);
